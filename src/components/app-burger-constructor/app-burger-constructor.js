@@ -94,7 +94,7 @@ const CartTotal = () => {
 
 
 class BurgerConstructor extends React.Component {
-  render() { 
+  render() {
     return (
       <section className={`pt-25 pl-4 ${appBurgerConstructorStyle.constructor__section}`}>
         <Product/>

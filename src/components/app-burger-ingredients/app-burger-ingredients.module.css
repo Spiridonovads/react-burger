@@ -38,13 +38,13 @@
 }
 
 .notice {
-height: 32px;
-width: 32px;
-background-color: #4C4CFF;
-border-radius: 16px;
-position: absolute;
-top: 0;
-right: 0;
+	height: 32px;
+	width: 32px;
+	background-color: #4C4CFF;
+	border-radius: 16px;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .price {

@@ -6,8 +6,8 @@ import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
-function Icon (props) {
 
+function Icon (props) {
   if(props.icon === 'burgerIcon'){
     return (
       <BurgerIcon/>
@@ -27,11 +27,10 @@ function Icon (props) {
   }
 }
 
+
+
 class HeaderList extends React.Component {
-
-
   render(){
-
     return (
     <>
       <div className={appHeaderStyles.item}>
@@ -46,9 +45,7 @@ class HeaderList extends React.Component {
 }
 
 class AppHeader extends React.Component {
- 
   render() {
-
     return (
       <>
         <header className={`pt-4 pb-4 ${appHeaderStyles.header}`}>
