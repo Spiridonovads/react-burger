@@ -1,0 +1,53 @@
+
+.header{
+	background-color: #1C1C21;
+}
+
+.wrapper {
+  max-width: 1290px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.nav {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+	justify-items: center;
+}
+
+.list {
+	display: flex;
+	justify-content: flex-start;
+	list-style-type: none;
+	column-gap: 8px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+}
+
+.button {
+	color: #8585AD;
+}
+
+.button__active {
+	color: black;
+}
+
+
+.right__edge {
+	justify-self: end;
+}
+
+.left__edge {
+	justify-self: start;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+.constructor__section {
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+	max-height: 912px;
+	max-width: 600px;
+}
+
+.scroll {
+	overflow-y: auto;
+	max-height: 464px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+}
+
+.price {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	column-gap: 40px;
+}
+
+.price__title {
+	font-size: 48px;
+	line-height: 36px;
+	font-family: 'Iceland', cursive;
+	display: flex;
+	align-items: center;
+	column-gap: 9.5px;
+}
+
+.price__title > svg {
+	width: 33px;
+	height: 33px;
+}
+
+.elementIcon {
+	display: flex;
+	column-gap: 8px;
+	align-items: center;
+}
