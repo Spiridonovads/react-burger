@@ -55,5 +55,7 @@ right: 0;
 	font-family: 'Iceland', cursive;
 }
 
-
+.visible {
+	position: relative;
+}
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import appBurgerIngredientsStyle from './app-burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -16,8 +16,8 @@ const dataPropTypes = PropTypes.shape({
 function BurgerIngredientsCard (props) {
   return(
     <>
-      <div className={`${appBurgerIngredientsStyle.card}`}>
-        <div className={appBurgerIngredientsStyle.notice}></div>
+      <div className={appBurgerIngredientsStyle.card}>
+        <div className={appBurgerIngredientsStyle.notice}/>
         <img src={props.data.image}/>
         <div className={appBurgerIngredientsStyle.price}>
           <p>{props.data.price}</p>
@@ -29,18 +29,19 @@ function BurgerIngredientsCard (props) {
   )
 }
 
-/*BurgerIngredients.propTypes = {
+BurgerIngredientsCard.propTypes = {
   props: dataPropTypes
-}*/
+}
 
 
 
 const Tabs = () => {
   const [current, setCurrent] = React.useState('one');
+
   return (
     <div style={{ display: 'flex' }}>
       <a href="#one">
-        <Tab href="#bul" value="one" active={current === 'one'} onClick={setCurrent}>
+        <Tab value="one" active={current === 'one'} onClick={setCurrent}>
         Булки
         </Tab>
       </a>
@@ -58,10 +59,9 @@ const Tabs = () => {
   )
 }
 
-class BurgerIngredients extends React.Component {
-  
-  render() {
 
+
+function BurgerIngredients(){
     let data = require('../../utile/data.json')
 
     return (
@@ -100,8 +100,9 @@ class BurgerIngredients extends React.Component {
       </section>
     </>
     );
-  }
 }
+
+
 
 export default BurgerIngredients;
 
