@@ -140,10 +140,11 @@ body {
 	background-color: #8585AD;
 }
 
-.app-burger-ingredients_scroll__vl-og::-webkit-scrollbar-thumb {
+.burger-ingredients_scroll__8Mw9j::-webkit-scrollbar-thumb {
   height: 492px;
 }
-.app-burger-ingredients_scroll__vl-og::-webkit-scrollbar-button:end:increment{
+
+.burger-ingredients_scroll__8Mw9j::-webkit-scrollbar-button:end:increment{
   height: 52px;
   background-color: #131316;
 }
@@ -152,8 +153,14 @@ body {
   height: 292px;
 }
 
+.constructor-element__text {
+  width: 220px;
+}
 
-
+.constructor-element__price svg {
+  width: 22px;
+  height: 22px;
+}
 
 
 
