@@ -37,6 +37,10 @@
 	position: relative;
 }
 
+.links {
+	color: white;
+}
+
 .notice {
 	height: 32px;
 	width: 32px;

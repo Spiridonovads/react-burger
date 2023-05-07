@@ -1,0 +1,57 @@
+.article {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal {
+	position: relative;
+	width: 720px;
+	height: 718px;
+	background-color: #131316;;
+	border-radius: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.img {
+	background-image: url('../../image/modal-done-img.svg');
+	background-repeat: no-repeat;
+	width: 120px;
+	height: 120px;
+}
+
+.id {
+	font-family: 'Iceland';
+	font-size: 144px;
+	line-height: 120px;
+	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+}
+
+.id__text {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.text {
+	text-align: center;
+}
+
+div p span {
+	color: #8585AD;
+}
+
+.close {
+	position: absolute;
+	right: 40px;
+	top: 60px;
+}

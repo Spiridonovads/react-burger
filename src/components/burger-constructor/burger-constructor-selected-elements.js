@@ -8,7 +8,7 @@ import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
 const BurgerConstructorSelectedElements = (props) => {
-  const arr = []
+  let total = 0
   return (
     <>
       <div className='pl-8'>
@@ -23,6 +23,7 @@ const BurgerConstructorSelectedElements = (props) => {
       <div className={appBurgerConstructorStyle.scroll}> 
         {props.data.map(el => {
           if(el.type != 'bun'){
+            total += el.price
             return (
               <div className={appBurgerConstructorStyle.elementIcon} key={el.id}>
                 <a href='#!'><DragIcon type="primary"/></a>

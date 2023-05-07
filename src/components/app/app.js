@@ -7,6 +7,8 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 
 class App extends React.Component {
+ 
+
   render() {
     return (
       <>
@@ -17,6 +19,7 @@ class App extends React.Component {
           <BurgerConstructor/>
         </div>
       </main>
+      
       </>
     )
   }
