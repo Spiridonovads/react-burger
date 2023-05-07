@@ -1,19 +1,20 @@
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
-import data from '../../utile/data.json';
 import Tabs from '../hocs/with-tabs';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import {useState} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import ModalOverlay from '../modal-overlay/modal-overlay';
+import PropTypes from 'prop-types';
 
 
 
-
-const BurgerIngredients = () => { 
+const BurgerIngredients = ({data}) => { 
   const [state, setState] = useState()
+
 
   const toggleModal = () => {
     setState(!state)
   }
+  let index 
       return (
           <section className={appBurgerIngredientsStyle.ingredients__section}>
             <h1 className={`mt-10 mb-5 ${appBurgerIngredientsStyle.main__title}`}>Соберите бургер</h1>
@@ -21,11 +22,12 @@ const BurgerIngredients = () => {
             <div className={`mt-10 ${appBurgerIngredientsStyle.scroll}`}> 
               <h2 id="one" className={appBurgerIngredientsStyle.default__title}>Булки</h2>
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-                {data.map(el=> {
+                {data.map((el, i) => {
                   if(el.type === "bun"){
+                    index = i
                     return(
                       <>
-                        <div className={appBurgerIngredientsStyle.card} key={el.id} href='#!' onClick={toggleModal}>
+                        <div className={appBurgerIngredientsStyle.card} key={el.id} href='#!' onClick={toggleModal} >
                           <div className={appBurgerIngredientsStyle.notice}/>
                           <img src={el.image}/>
                           <div className={appBurgerIngredientsStyle.price}>
@@ -33,8 +35,9 @@ const BurgerIngredients = () => {
                             <CurrencyIcon type="primary"/>
                           </div>
                           <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
+                          <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='ingredient' data={data}/>
                         </div>
-                   
+                        
                     </>
                   )
                   }
@@ -83,9 +86,15 @@ const BurgerIngredients = () => {
                 })}
               </div>
             </div>
-            <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='ingredient'/>
+
           </section>
         );
+}
+
+
+
+BurgerIngredients.propTypes = {
+  data: PropTypes.array.isRequired
 }
 
 

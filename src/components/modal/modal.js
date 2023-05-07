@@ -6,6 +6,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 
 
 const Modal = ({onCloseButtonClick, modalType, data}) => {
+
   if(modalType === 'order'){
     return (
       <>
@@ -38,7 +39,8 @@ const Modal = ({onCloseButtonClick, modalType, data}) => {
 
 
 Modal.propTypes = {
-  onCloseButtonClick: PropTypes.func.isRequired
+  onCloseButtonClick: PropTypes.func.isRequired,
+  modalType: PropTypes.string.isRequired
 }
 
 

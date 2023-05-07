@@ -1,10 +1,8 @@
 import appIngredientsDetailsStyle from './ingredient-details.module.css'
-import data from '../../utile/data.json'
 
 
 
-
-const IngredientDetails = () => {
+const IngredientDetails = ({data}) => {
     return (
         <div className={appIngredientsDetailsStyle.wrapper}>
             <div className={`mb-8 ${appIngredientsDetailsStyle.details}`}>

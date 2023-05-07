@@ -2,22 +2,46 @@ import appModalOverlayStyle from './modal-overlay.module.css'
 import ReactDOM from 'react-dom';
 import Modal from '../modal/modal';
 import PropTypes from 'prop-types';
+import {useEffect} from 'react'
+
 
 
 const modalRoot = document.getElementById("modals");
 
+/*modalRoot.addEventListener("keydown", (e) => {
+  if (e.code == "Escape") {
+    console.log("Closing window...");
+  }
+});*/
 
 
-const ModalOverlay = ({ show, onCloseButtonClick, modalType, data }) => {
+
+const ModalOverlay = ({ show, onCloseButtonClick, modalType, data}) => {
+
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.code == "Escape") {
+        onCloseButtonClick()
+      }
+    })
+    return (
+    document.removeEventListener("keydown", (e) => {
+      if (e.code == "Escape") {
+        onCloseButtonClick()
+      }
+    })
+    )
+},[])
 
   if (!show) {
     return null;
   }
 
+ 
     return ReactDOM.createPortal(
       (
         <>
-        <article className={appModalOverlayStyle.article}>
+        <article onClick={onCloseButtonClick} className={appModalOverlayStyle.article}>
           <Modal modalType={modalType} onCloseButtonClick={onCloseButtonClick} data={data}/>
         </article>
         </>
@@ -30,7 +54,8 @@ const ModalOverlay = ({ show, onCloseButtonClick, modalType, data }) => {
 
 ModalOverlay.propTypes = {
   show: PropTypes.bool.isRequired,
-  onCloseButtonClick: PropTypes.func.isRequired
+  onCloseButtonClick: PropTypes.func.isRequired,
+  modalType: PropTypes.string.isRequired
 }
 
 

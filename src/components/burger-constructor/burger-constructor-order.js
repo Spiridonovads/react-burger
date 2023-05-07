@@ -7,7 +7,7 @@ import {useState} from 'react'
 
 
 
-const BurgerConstructorOrder = ({total, data}) => {
+const BurgerConstructorOrder = ({total}) => {
 
   const [state, setState] = useState()
 
@@ -25,7 +25,7 @@ const BurgerConstructorOrder = ({total, data}) => {
           <Button htmlType="button" type="primary" size="medium" onClick={toggleModal}>
             Оформить заказ
           </Button>
-          <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='order' data={data}/>
+          <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='order'/>
         </div>
     </>
     );
