@@ -1,17 +1,17 @@
-import React from 'react';
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import BurgerConstructorOrder from './burger-constructor-order';
 
 
 
-
-const BurgerConstructorSelectedElements = (props) => {
+const BurgerConstructorElements = (props) => {
   let total = 0
   return (
     <>
       <div className='pl-8'>
+        {total += props.data[0].price}
         <ConstructorElement
           type="top"
           text={props.data[0].name}
@@ -35,7 +35,6 @@ const BurgerConstructorSelectedElements = (props) => {
             </div>
           )
           }
-         
         })}
       </div>
       
@@ -50,16 +49,17 @@ const BurgerConstructorSelectedElements = (props) => {
         </div>
       </div>
 
+      <BurgerConstructorOrder total={total}/>
     </>
   );
 };
 
 
 
-BurgerConstructorSelectedElements.propTypes = {
+BurgerConstructorElements.propTypes = {
   data: PropTypes.array.isRequired,
 }
 
 
 
-export default BurgerConstructorSelectedElements;
+export default BurgerConstructorElements;

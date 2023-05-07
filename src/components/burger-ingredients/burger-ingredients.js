@@ -1,4 +1,3 @@
-import React from 'react';
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
 import data from '../../utile/data.json';
 import Tabs from '../hocs/with-tabs';
@@ -8,8 +7,8 @@ import ModalOverlay from '../../modal-overlay/modal-overlay';
 
 
 
-class BurgerIngredients extends React.Component{
-  constructor(props) {
+const BurgerIngredients = () => { 
+  /*constructor(props) {
     super(props);
     this.state = {
       visible: false,
@@ -19,8 +18,7 @@ class BurgerIngredients extends React.Component{
   handleOpenModal = () => {
     this.setState({ visible: !this.state.visible });
   }
-
-    render() {
+*/
       return (
           <section className={appBurgerIngredientsStyle.ingredients__section}>
             <h1 className={`mt-10 mb-5 ${appBurgerIngredientsStyle.main__title}`}>Соберите бургер</h1>
@@ -38,10 +36,10 @@ class BurgerIngredients extends React.Component{
                         <p>{el.price}</p>
                         <CurrencyIcon type="primary"/>
                       </div>
-                      <a href='#!' onClick={this.handleOpenModal} className={appBurgerIngredientsStyle.links}>{el.name}</a>
-                      {this.state.visible && 
+                      <a href='#!' /*onClick={this.handleOpenModal*/ className={appBurgerIngredientsStyle.links}>{el.name}</a>
+                      {/*this.state.visible && 
                       <ModalOverlay data={el}/>
-                      }
+                    */}
                     </div>
                   )
                   }
@@ -60,7 +58,7 @@ class BurgerIngredients extends React.Component{
                         <p>{el.price}</p>
                         <CurrencyIcon type="primary"/>
                       </div>
-                      <a href='#!' onClick={this.handleOpenModal} className={appBurgerIngredientsStyle.links}>{el.name}</a>
+                      <a href='#!' /*onClick={this.handleOpenModal}*/ className={appBurgerIngredientsStyle.links}>{el.name}</a>
                     </div>
                   )
                   }
@@ -79,7 +77,7 @@ class BurgerIngredients extends React.Component{
                           <p>{el.price}</p>
                           <CurrencyIcon type="primary"/>
                         </div>
-                        <a href='#!' onClick={this.handleOpenModal} className={appBurgerIngredientsStyle.links}>{el.name}</a>
+                        <a href='#!' /*onClick={this.handleOpenModal}*/ className={appBurgerIngredientsStyle.links}>{el.name}</a>
                     </div>
                     
                   )
@@ -89,8 +87,6 @@ class BurgerIngredients extends React.Component{
             </div>
           </section>
         );
-    }
-    
 }
 
 

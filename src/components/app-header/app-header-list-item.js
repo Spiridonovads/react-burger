@@ -1,4 +1,3 @@
-import React from 'react';
 import appHeaderStyles from './app-header.module.css';
 import AppHeaderListItemIcon from './app-header-list-item-icon';
 import PropTypes from 'prop-types';
