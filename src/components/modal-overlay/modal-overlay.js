@@ -1,35 +1,44 @@
-import appModal from './modal-overlay.module.css'
+import appModalOverlayStyle from './modal-overlay.module.css'
 import ReactDOM from 'react-dom';
-import React from 'react';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-
-
-
+import Modal from '../modal/modal';
+import PropTypes from 'prop-types';
 
 
 const modalRoot = document.getElementById("modals");
 
-class ModalOverlay extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: true,
-    };
+
+const ModalOverlay = ({ show, onCloseButtonClick, modalType, data }) => {
+
+  if (!show) {
+    return null;
   }
 
-  handleCloseModal = () => {
-    this.setState({ visible: false });
-  } 
-
-  render() {
     return ReactDOM.createPortal(
       (
-
         <>
-        {this.state.visible &&
-        <article className={appModal.article}>
-          <div className={`pt-10 pb-15 pl-10 pr-10 ${appModal.modal}`}>
+        <article className={appModalOverlayStyle.article}>
+          <Modal modalType={modalType} onCloseButtonClick={onCloseButtonClick} data={data}/>
+        </article>
+        </>
+            ), 
+            modalRoot
+        );
+} 
+
+
+
+ModalOverlay.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onCloseButtonClick: PropTypes.func.isRequired
+}
+
+
+
+export default ModalOverlay;
+
+/*
+ <div className={`pt-10 pb-15 pl-10 pr-10 ${appModal.modal}`}>
             <a href='#!' onClick={this.handleCloseModal} className={appModal.close}>
             <CloseIcon/>
             </a>
@@ -59,14 +68,4 @@ class ModalOverlay extends React.Component {
             </div>
                  
           
-        </article>
-        }
-        </>
-            ), 
-            modalRoot
-        );
-  }
-} 
-
-
-export default ModalOverlay;
+*/

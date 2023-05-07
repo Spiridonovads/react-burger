@@ -5,7 +5,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 
 
-function App(){
+const App = () => {
   return (
     <>
       <AppHeader/>

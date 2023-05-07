@@ -1,29 +1,41 @@
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import appBurgerConstructorStyle from './burger-constructor.module.css';
-import Modal from '../modal/modal';
+import ModalOverlay from '../modal-overlay/modal-overlay';
+import PropTypes from 'prop-types';
+import {useState} from 'react'
 
 
 
-const BurgerConstructorOrder = (props) => {
-    const modal = (
-      <Modal/>)
-  
+const BurgerConstructorOrder = ({total, data}) => {
+
+  const [state, setState] = useState()
+
+  const toggleModal = () => {
+    setState(!state)
+  }
+
     return (
       <>
         <div className={`mr-4 ${appBurgerConstructorStyle.price}`}>
           <div className={appBurgerConstructorStyle.price__title}>
-            <p>{props.total}</p>
+            <p>{total}</p>
             <CurrencyIcon/>
           </div>
-          <Button htmlType="button" type="primary" size="medium" /*onClick={this.handleOpenModal}*/>
+          <Button htmlType="button" type="primary" size="medium" onClick={toggleModal}>
             Оформить заказ
           </Button>
-          {/*this.state.visible && modal*/}
+          <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='order' data={data}/>
         </div>
     </>
     );
 }; 
+
+
+
+BurgerConstructorOrder.propTypes = {
+  total: PropTypes.number.isRequired,
+}
 
 
 

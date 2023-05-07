@@ -6,22 +6,21 @@ import BurgerConstructorOrder from './burger-constructor-order';
 
 
 
-const BurgerConstructorElements = (props) => {
-  let total = 0
+const BurgerConstructorElements = ({data}) => {
+  let total = data[0].price
   return (
     <>
       <div className='pl-8'>
-        {total += props.data[0].price}
         <ConstructorElement
           type="top"
-          text={props.data[0].name}
-          price={props.data[0].price}
-          thumbnail={props.data[0].image}
+          text={data[0].name}
+          price={data[0].price}
+          thumbnail={data[0].image}
         />
       </div>
 
       <div className={appBurgerConstructorStyle.scroll}> 
-        {props.data.map(el => {
+        {data.map(el => {
           if(el.type != 'bun'){
             total += el.price
             return (
@@ -42,14 +41,14 @@ const BurgerConstructorElements = (props) => {
         <div className='mb-6'>
           <ConstructorElement
             type="bottom"
-            text={props.data[0].name}
-            price={props.data[0].price}
-            thumbnail={props.data[0].image}
+            text={data[0].name}
+            price={data[0].price}
+            thumbnail={data[0].image}
           />
         </div>
       </div>
 
-      <BurgerConstructorOrder total={total}/>
+      <BurgerConstructorOrder total={total} data={data}/>
     </>
   );
 };

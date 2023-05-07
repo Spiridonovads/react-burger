@@ -1,36 +1,55 @@
-import appModal from './modal.module.css'
-import ReactDOM from 'react-dom';
-import React from 'react';
+import appModalStyle from './modal.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from 'prop-types';
+import OrderDetails from '../order-details/order-details';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
 
-
-const modalRoot = document.getElementById("modals");
-
-class Modal extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: true,
-    };
-  }
-
-  handleCloseModal = () => {
-    this.setState({ visible: false });
-  } 
-
-  render() {
-    return ReactDOM.createPortal(
-      (
-
-        <>
-        {this.state.visible &&
-        <article className={appModal.article}>
-          <div className={`pt-30 pb-30 ${appModal.modal}`}>
-            <a href='#!' onClick={this.handleCloseModal} className={appModal.close}>
+const Modal = ({onCloseButtonClick, modalType, data}) => {
+  if(modalType === 'order'){
+    return (
+      <>
+        <div className={appModalStyle.modal}>
+          <a href='#!' onClick={onCloseButtonClick} className={appModalStyle.close}>
             <CloseIcon/>
-            </a>
+          </a>
+          <OrderDetails/>
+        </div>
+      </>
+  )
+  }
+  
+  if(modalType === 'ingredient'){
+    return (
+      <>
+        <div className={`pt-10 pl-10 ${appModalStyle.modal}`}>
+          <a href='#!' onClick={onCloseButtonClick} className={appModalStyle.close}>
+            <CloseIcon/>
+          </a>
+          <IngredientDetails data={data}/>
+        </div>
+      </>
+  )
+  }
+  
+    
+} 
+
+
+
+Modal.propTypes = {
+  onCloseButtonClick: PropTypes.func.isRequired
+}
+
+
+
+export default Modal;
+
+
+/*
+<div className={`${appModalStyle.details}`}>
+              Детали ингредиента
+            </div>
             <p className={`mb-8 ${appModal.id}`}>
               035678
             </p>
@@ -48,16 +67,4 @@ class Modal extends React.Component {
                 </span>
                 </p>
             </div>
-                 
-          </div>
-        </article>
-        }
-        </>
-            ), 
-            modalRoot
-        );
-  }
-} 
-
-
-export default Modal;
+*/

@@ -1,0 +1,37 @@
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	width: 720px;
+	height: 718px;
+}
+
+.img {
+	background-image: url('../../image/modal-done-img.svg');
+	background-repeat: no-repeat;
+	width: 120px;
+	height: 120px;
+}
+
+.id {
+	font-family: 'Iceland';
+	font-size: 144px;
+	line-height: 120px;
+	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+}
+
+.id__text {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.text {
+	text-align: center;
+}
+
+div p span {
+	color: #8585AD;
+}
