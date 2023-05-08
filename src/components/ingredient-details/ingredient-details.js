@@ -1,4 +1,5 @@
 import appIngredientsDetailsStyle from './ingredient-details.module.css'
+import PropTypes from 'prop-types';
 
 
 
@@ -31,6 +32,11 @@ const IngredientDetails = ({data}) => {
         </div>
     )
 } 
+
+
+IngredientDetails.propTypes = {
+  data: PropTypes.array.isRequired,
+}
 
 
 

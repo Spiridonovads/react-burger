@@ -4,16 +4,22 @@ import appBurgerConstructorStyle from './burger-constructor.module.css';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
 import {useState} from 'react'
+import OrderDetails from '../order-details/order-details';
 
 
 
-const BurgerConstructorOrder = ({total}) => {
+const BurgerConstructorOrder = ({total, data}) => {
 
   const [state, setState] = useState()
 
-  const toggleModal = () => {
-    setState(!state)
+  const openModal = () => {
+    setState(true);
   }
+  
+  const closeModal = () => {
+    setState(false);
+  }
+  
 
     return (
       <>
@@ -22,10 +28,10 @@ const BurgerConstructorOrder = ({total}) => {
             <p>{total}</p>
             <CurrencyIcon/>
           </div>
-          <Button htmlType="button" type="primary" size="medium" onClick={toggleModal}>
+          <Button htmlType="button" type="primary" size="medium" onClick={openModal}>
             Оформить заказ
           </Button>
-          <ModalOverlay show={state} onCloseButtonClick={toggleModal} modalType='order'/>
+         <ModalOverlay show={state} onCloseButtonClick={closeModal}>{<OrderDetails data={data}/>}</ModalOverlay>
         </div>
     </>
     );

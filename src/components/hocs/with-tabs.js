@@ -1,11 +1,11 @@
-import React from 'react';
+import {useState, useEffect, useRef} from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
 
 const Tabs = () => {
-  const [current, setCurrent] = React.useState('one');
-
+  const [current, setCurrent] = useState('one');
+  
   return (
     <div style={{ display: 'flex' }}>
       <a href="#one">

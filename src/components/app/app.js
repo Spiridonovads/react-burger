@@ -3,12 +3,11 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useState, useEffect } from 'react';
+import { getData } from '../../api';
 
 
 
 const App = () => {
-
-  const dataUrl = "https://norma.nomoreparties.space/api/ingredients";
 
   const [state, setState] = useState({ 
       data: [],
@@ -16,26 +15,15 @@ const App = () => {
       loading: false,
     })
   
-  const getData = async() => {
-     setState({ ...state, error: false, loading: true });
-     let res;
-     try {
-      res = await fetch(dataUrl)
-     }
-     catch(err) {
-        alert('Произошла ошибка')
-     }
-     const data = await res.json();
-     setState({data: data.data, error: false, loading: false });
-  }
-
   useEffect(() => {
      getData()
+     .then((data) => setState({data: data.data, error: false, loading: false }))
+     .catch((err) => setState({ ...state, error: true }))
   }, [])
 
   const { data, loading, error } = state;
 
-  return (
+  return ( 
     <>
       <AppHeader/>
       <main>
