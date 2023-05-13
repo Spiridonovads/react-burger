@@ -1,9 +1,13 @@
 import appOrderDetailsStyle from './order-details.module.css'
-import PropTypes from 'prop-types';
+import { OrderNumberContext } from '../../context/app-context';
+import { useContext } from 'react';
 
 
 
-const OrderDetails = ({orderNumber}) => {
+const OrderDetails = () => {
+  
+  let orderNumber = useContext(OrderNumberContext)
+
     return (
         <div className={`pt-30 pb-30 ${appOrderDetailsStyle.wrapper}`}>
           <p className={`mb-8 ${appOrderDetailsStyle.id}`}>
@@ -26,12 +30,6 @@ const OrderDetails = ({orderNumber}) => {
         </div>
     )
 } 
-
-
-
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired,
-}
 
 
 

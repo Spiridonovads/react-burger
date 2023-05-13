@@ -2,8 +2,7 @@ import appBurgerConstructorStyle from './burger-constructor.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorOrder from './burger-constructor-order';
-import { useMemo } from 'react'
-import { useContext } from 'react'
+import { useMemo, useContext } from 'react';
 import { DataContext } from '../../context/app-context';
 
 

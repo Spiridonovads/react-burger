@@ -6,6 +6,7 @@ import OrderDetails from '../order-details/order-details';
 import { getOrderNumberData } from '../../api';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { OrderNumberContext } from '../../context/app-context';
 
 
 
@@ -47,7 +48,9 @@ const BurgerConstructorOrder = ({total}) => {
             Оформить заказ
           </Button>
          <ModalOverlay show={modalState} onCloseButtonClick={closeModal}>{
-          <OrderDetails orderNumber={data}/>
+          <OrderNumberContext.Provider value={data}>
+            <OrderDetails/>
+          </OrderNumberContext.Provider>
           }</ModalOverlay>
         </div>
     </>
