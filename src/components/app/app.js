@@ -5,6 +5,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useState, useEffect } from 'react';
 import { getIngredientsData } from '../../api';
 import { DataContext } from '../../context/app-context.js';
+import { checkResponse } from '../../utile/res-ok';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
   useEffect(() => {
      setDataState({...dataState, loading: true})
      getIngredientsData()
+     .then((res) => checkResponse(res))
      .then((data) => setDataState({...dataState, data: data.data, error: false, loading: false }))
      .catch(() => setDataState({ ...dataState, loading: false, error: true }))
   }, [])
@@ -30,17 +32,17 @@ const App = () => {
      {loading && <h1>Загрузка...</h1>}
      {error && <h1>Произошла ошибка</h1>}
      {!loading && !error && data.length > 0 &&
+     <>
+        <AppHeader/>
         <main>
-          <AppHeader/>
           <div className={appStyles.wrapper}>
-              <>
                 <DataContext.Provider value={{data}}>
                     <BurgerIngredients/>
                     <BurgerConstructor/>
                 </DataContext.Provider>
-              </>
           </div>
         </main>
+      </>
       }
     </>
     )

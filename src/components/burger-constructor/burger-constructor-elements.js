@@ -11,17 +11,27 @@ const BurgerConstructorElements = () => {
   
   const {data} = useContext(DataContext);
 
-  let total = 0
+  let total = 0 
+
+  const burgerConstructorElements =[]
 
   const burgerFillingFilter = useMemo(() => {
-    data.filter(el => el.type != 'bun').forEach((el) => total += el.price)
+    data.filter(el => el.type != 'bun')
+    .forEach((el) => {
+      total += el.price
+      burgerConstructorElements.push(el._id)
+    })
     return data.filter(el => el.type != 'bun')
   }, [data]
   );
 
   const burgerBunsFilter = useMemo(() => {
-    data.filter(el => el.type === 'bun' && el.name === 'Флюоресцентная булка R2-D3').forEach((el) => total += el.price)
-    return data.filter(el => el.type === 'bun' && el.name === 'Флюоресцентная булка R2-D3')
+    data.filter(el => el.type === 'bun' && el.name !== 'Флюоресцентная булка R2-D3')
+    .forEach((el) => {
+      total += el.price
+      burgerConstructorElements.push(el._id)
+    })
+    return data.filter(el => el.type === 'bun' && el.name !== 'Флюоресцентная булка R2-D3')
   }, [data]
   );
   
@@ -29,10 +39,10 @@ const BurgerConstructorElements = () => {
     <>
     {burgerBunsFilter.map(el => {
       return (
-        <div className='pl-8'>
+        <div key={el._id} className='pl-8'>
         <ConstructorElement
           type="top"
-          text={el.name}
+          text={`${el.name} (верх)`}
           price={el.price}
           thumbnail={el.image}
         />
@@ -43,7 +53,7 @@ const BurgerConstructorElements = () => {
     <div className={appBurgerConstructorStyle.scroll}> 
         {burgerFillingFilter.map(el => {
             return (
-              <div className={appBurgerConstructorStyle.elementIcon} key={el.id}>
+              <div className={appBurgerConstructorStyle.elementIcon} key={el._id}>
                 <a href='#!'><DragIcon type="primary"/></a>
                 <ConstructorElement
                   text={el.name}
@@ -55,12 +65,12 @@ const BurgerConstructorElements = () => {
         })}
       </div>
 
-      {burgerBunsFilter.map(el => {
+      {burgerBunsFilter.map((el, i) => {
       return (
-        <div className='pl-8'>
+        <div key={el._id} className='pl-8'>
         <ConstructorElement
           type="bottom"
-          text={el.name}
+          text={`${el.name} (низ)`}
           price={el.price}
           thumbnail={el.image}
         />
@@ -68,7 +78,7 @@ const BurgerConstructorElements = () => {
       )
     })}
 
-      <BurgerConstructorOrder total={total}/>
+      <BurgerConstructorOrder orderProducts={burgerConstructorElements} total={total}/>
     </>
   );
 };

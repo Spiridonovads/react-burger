@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import withTabsStyle from './with-tabs.module.css'
 
 
 
@@ -7,7 +8,7 @@ const Tabs = () => {
   const [current, setCurrent] = useState('one');
   
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={withTabsStyle.wrapper}>
       <a href="#one">
         <Tab value="one" active={current === 'one'} onClick={setCurrent}>
         Булки

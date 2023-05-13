@@ -6,14 +6,12 @@ import PropTypes from 'prop-types';
 
 const AppHeaderListItem = (props) => {
 	return (
-	<>
 		<div className={appHeaderStyles.item}>
 			<AppHeaderListItemIcon icon ={props.icon}/>
 			<a href='#!' className={`pl-2 ${appHeaderStyles.button}`}>
 			{props.name}
 			</a>
 		</div>
-	</>
 	)
 }
 

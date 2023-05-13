@@ -1,8 +1,8 @@
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
 import Tabs from '../hocs/with-tabs';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, useMemo } from 'react';
-import ModalOverlay from '../modal-overlay/modal-overlay';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { useContext } from 'react';
 import { DataContext } from '../../context/app-context';
@@ -13,14 +13,14 @@ const BurgerIngredients = () => {
 
   const {data} = useContext(DataContext);
 
-  const [state, setState] = useState()
+  const [modalState, setModalState] = useState()
 
   const openModal = () => {
-    setState(true);
+    setModalState(true);
   }
   
   const closeModal = () => {
-    setState(false);
+    setModalState(false);
   }
 
   const burgerBuns = useMemo(() => {
@@ -47,8 +47,7 @@ const BurgerIngredients = () => {
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
                 {burgerBuns.map((el) => {
                     return(
-                      <>
-                        <div className={appBurgerIngredientsStyle.card} key={el.id} href='#!' onClick={openModal} >
+                        <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal} >
                           <div className={appBurgerIngredientsStyle.notice}/>
                           <img src={el.image}/>
                           <div className={appBurgerIngredientsStyle.price}>
@@ -57,8 +56,6 @@ const BurgerIngredients = () => {
                           </div>
                           <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
                         </div>
-                        
-                    </>
                   )
                 })}
               </div>
@@ -67,7 +64,7 @@ const BurgerIngredients = () => {
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
                 {burgerSauce.map(el=> {
                     return(
-                      <div className={appBurgerIngredientsStyle.card} key={el.id} href='#!' onClick={openModal}>
+                      <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal}>
                         <div className={appBurgerIngredientsStyle.notice}/>
                         <img src={el.image}/>
                         <div className={appBurgerIngredientsStyle.price}>
@@ -75,7 +72,6 @@ const BurgerIngredients = () => {
                           <CurrencyIcon type="primary"/>
                         </div>
                       <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
-
                     </div>
                   )
                 })}
@@ -85,8 +81,7 @@ const BurgerIngredients = () => {
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
                {burgerFillings.map(el=> {
                     return(
-                      <>
-                      <div className={appBurgerIngredientsStyle.card} key={el.id} href='#!' onClick={openModal}>
+                      <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal}>
                         <div className={appBurgerIngredientsStyle.notice}/>
                         <img src={el.image}/>
                         <div className={appBurgerIngredientsStyle.price}>
@@ -96,12 +91,14 @@ const BurgerIngredients = () => {
                         <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
                       </div>
                     
-                    </>
                   )
                 })}
               </div>
             </div>
-           <ModalOverlay show={state} onCloseButtonClick={closeModal}><IngredientDetails/></ModalOverlay>
+            {modalState &&
+             <Modal onCloseButtonClick={closeModal}><IngredientDetails/></Modal>
+            }
+          
           </section>
         );
 }
