@@ -3,7 +3,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-import { getOrderNumberData } from '../../api';
+import { getOrderNumberData } from '../../utile/api.js';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { checkResponse } from '../../utile/res-ok';
@@ -18,7 +18,6 @@ const BurgerConstructorOrder = ({total, orderProducts}) => {
     loading: false,
   })
 
-  console.log(orderProducts)
   const [modalState, setModalState] = useState()
 
   const openModal = () => {
@@ -56,6 +55,7 @@ const BurgerConstructorOrder = ({total, orderProducts}) => {
 
 BurgerConstructorOrder.propTypes = {
   total: PropTypes.number.isRequired,
+  orderProducts: PropTypes.array.isRequired
 }
 
 

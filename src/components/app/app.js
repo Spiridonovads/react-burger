@@ -3,7 +3,7 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useState, useEffect } from 'react';
-import { getIngredientsData } from '../../api';
+import { getIngredientsData } from '../../utile/api';
 import { DataContext } from '../../context/app-context.js';
 import { checkResponse } from '../../utile/res-ok';
 
