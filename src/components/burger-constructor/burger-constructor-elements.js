@@ -1,38 +1,45 @@
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorOrder from './burger-constructor-order';
 import { useMemo } from 'react'
+import { useContext } from 'react'
+import { DataContext } from '../../context/app-context';
 
 
 
-const BurgerConstructorElements = ({data}) => {
+const BurgerConstructorElements = () => {
   
+  const {data} = useContext(DataContext);
 
-  const findTotal = useMemo(() => {
-    let total = 0
-    data.filter(el => el.type != 'bun').forEach((el) => total += el.price)
-    return total
-  }, []
-  );
+  let total = 0
 
   const burgerFillingFilter = useMemo(() => {
+    data.filter(el => el.type != 'bun').forEach((el) => total += el.price)
     return data.filter(el => el.type != 'bun')
-  }, []
+  }, [data]
+  );
+
+  const burgerBunsFilter = useMemo(() => {
+    data.filter(el => el.type === 'bun' && el.name === 'Флюоресцентная булка R2-D3').forEach((el) => total += el.price)
+    return data.filter(el => el.type === 'bun' && el.name === 'Флюоресцентная булка R2-D3')
+  }, [data]
   );
   
-
   return (
     <>
-      <div className='pl-8'>
+    {burgerBunsFilter.map(el => {
+      return (
+        <div className='pl-8'>
         <ConstructorElement
           type="top"
-          text={data[0].name}
-          price={data[0].price}
-          thumbnail={data[0].image}
+          text={el.name}
+          price={el.price}
+          thumbnail={el.image}
         />
-      </div>
+        </div>
+      )
+    })}
 
     <div className={appBurgerConstructorStyle.scroll}> 
         {burgerFillingFilter.map(el => {
@@ -48,28 +55,24 @@ const BurgerConstructorElements = ({data}) => {
           )
         })}
       </div>
-      
-      <div className='pl-8'>
-        <div className='mb-6'>
-          <ConstructorElement
-            type="bottom"
-            text={data[0].name}
-            price={data[0].price}
-            thumbnail={data[0].image}
-          />
-        </div>
-      </div>
 
-      <BurgerConstructorOrder total={findTotal} data={data}/>
+      {burgerBunsFilter.map(el => {
+      return (
+        <div className='pl-8'>
+        <ConstructorElement
+          type="bottom"
+          text={el.name}
+          price={el.price}
+          thumbnail={el.image}
+        />
+        </div>
+      )
+    })}
+
+      <BurgerConstructorOrder total={total}/>
     </>
   );
 };
-
-
-
-BurgerConstructorElements.propTypes = {
-  data: PropTypes.array.isRequired,
-}
 
 
 

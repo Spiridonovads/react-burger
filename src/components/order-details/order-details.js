@@ -1,12 +1,13 @@
 import appOrderDetailsStyle from './order-details.module.css'
+import PropTypes from 'prop-types';
 
 
 
-const OrderDetails = () => {
+const OrderDetails = ({orderNumber}) => {
     return (
         <div className={`pt-30 pb-30 ${appOrderDetailsStyle.wrapper}`}>
           <p className={`mb-8 ${appOrderDetailsStyle.id}`}>
-              035678
+              {orderNumber.order.number}
             </p>
             <p className={`mb-15 ${appOrderDetailsStyle.id__text}`}>
               идентификатор заказа
@@ -25,6 +26,12 @@ const OrderDetails = () => {
         </div>
     )
 } 
+
+
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number.isRequired,
+}
 
 
 

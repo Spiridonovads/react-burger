@@ -18,9 +18,6 @@ const Modal = ({onCloseButtonClick, children}) => {
         </div>
       </>
   )
-
-  
-    
 } 
 
 

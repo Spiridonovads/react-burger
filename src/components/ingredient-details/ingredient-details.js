@@ -1,9 +1,13 @@
-import appIngredientsDetailsStyle from './ingredient-details.module.css'
-import PropTypes from 'prop-types';
+import appIngredientsDetailsStyle from './ingredient-details.module.css';
+import { useContext } from 'react';
+import { DataContext } from '../../context/app-context';
 
 
 
-const IngredientDetails = ({data}) => {
+const IngredientDetails = () => {
+  
+  const {data} = useContext(DataContext);
+
     return (
         <div className={appIngredientsDetailsStyle.wrapper}>
             <div className={`mb-8 ${appIngredientsDetailsStyle.details}`}>
@@ -32,11 +36,6 @@ const IngredientDetails = ({data}) => {
         </div>
     )
 } 
-
-
-IngredientDetails.propTypes = {
-  data: PropTypes.array.isRequired,
-}
 
 
 

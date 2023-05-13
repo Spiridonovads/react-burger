@@ -1,14 +1,17 @@
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
 import Tabs from '../hocs/with-tabs';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import {useState, useMemo} from 'react'
+import { useState, useMemo } from 'react';
 import ModalOverlay from '../modal-overlay/modal-overlay';
-import PropTypes from 'prop-types';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { useContext } from 'react';
+import { DataContext } from '../../context/app-context';
 
 
 
-const BurgerIngredients = ({data}) => { 
+const BurgerIngredients = () => { 
+
+  const {data} = useContext(DataContext);
 
   const [state, setState] = useState()
 
@@ -98,15 +101,9 @@ const BurgerIngredients = ({data}) => {
                 })}
               </div>
             </div>
-           <ModalOverlay show={state} onCloseButtonClick={closeModal}><IngredientDetails data={data}/></ModalOverlay>
+           <ModalOverlay show={state} onCloseButtonClick={closeModal}><IngredientDetails/></ModalOverlay>
           </section>
         );
-}
-
-
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.array.isRequired
 }
 
 

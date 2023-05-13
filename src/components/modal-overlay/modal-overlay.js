@@ -12,16 +12,15 @@ const modalRoot = document.getElementById("modals");
 
 const ModalOverlay = ({ show, onCloseButtonClick, children}) => {
  
-  const ecsKeyCode = 27
+  const ESC_KEY_CODE = 27
 
   useEffect(() => {
     const keyDown = (event) => {
-      if(event.keyCode === ecsKeyCode) {
+      if(event.keyCode === ESC_KEY_CODE) {
         onCloseButtonClick()
       }
     }
       document.addEventListener("keydown", keyDown)
-
     return () => {
       document.removeEventListener("keydown", keyDown)
     }
