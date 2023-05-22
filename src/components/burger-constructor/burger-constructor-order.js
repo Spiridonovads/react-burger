@@ -8,8 +8,6 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { checkResponse } from '../../utile/res-ok';
 
-
-
 const BurgerConstructorOrder = ({total, orderProducts}) => {
 
   const [orderState, setOrderState] = useState({
@@ -32,7 +30,9 @@ const BurgerConstructorOrder = ({total, orderProducts}) => {
   const closeModal = () => {
     setModalState(false);
   }
+
   const {data, loading, error} = orderState
+
     return (
         <div className={`mr-4 ${appBurgerConstructorStyle.price}`}>
           <div className={appBurgerConstructorStyle.price__title}>
@@ -50,8 +50,6 @@ const BurgerConstructorOrder = ({total, orderProducts}) => {
         </div>
     );
 }; 
-
-
 
 BurgerConstructorOrder.propTypes = {
   total: PropTypes.number.isRequired,

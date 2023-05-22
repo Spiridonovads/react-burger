@@ -35,9 +35,13 @@
 	height: 33px;
 }
 
-.elementIcon {
+.element {
 	display: flex;
 	column-gap: 8px;
 	align-items: center;
+}
+
+.icon {
+	cursor: grab;
 }
 

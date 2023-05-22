@@ -7,8 +7,6 @@ import { getIngredientsData } from '../../utile/api';
 import { DataContext } from '../../context/app-context.js';
 import { checkResponse } from '../../utile/res-ok';
 
-
-
 const App = () => {
 
   const [dataState, setDataState] = useState({ 
@@ -34,14 +32,12 @@ const App = () => {
      {!loading && !error && data.length > 0 &&
      <>
         <AppHeader/>
-        <main>
-          <div className={appStyles.wrapper}>
+          <main className={appStyles.wrapper}>
                 <DataContext.Provider value={{data}}>
                     <BurgerIngredients/>
                     <BurgerConstructor/>
                 </DataContext.Provider>
-          </div>
-        </main>
+          </main>
       </>
       }
     </>
