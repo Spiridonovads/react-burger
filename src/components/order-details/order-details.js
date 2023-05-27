@@ -1,10 +1,10 @@
 import appOrderDetailsStyle from './order-details.module.css'
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
+const OrderDetails = () => {
+  
+  const {data, loading, error} = useSelector(state => state.orderNumber)
 
-
-const OrderDetails = ({data, loading, error}) => {
-  console.log(data)
     return (
         <div className={`pt-30 pb-30 ${appOrderDetailsStyle.wrapper}`}>
           {loading && <h1>Загрузка...</h1>}
@@ -31,13 +31,5 @@ const OrderDetails = ({data, loading, error}) => {
         </div>
     )
 } 
-
-
-
-OrderDetails.propTypes = {
-  data: PropTypes.object.isRequired,
-}
-
-
 
 export default OrderDetails;

@@ -1,21 +1,23 @@
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
-import Tabs from './burger-ingredients-tabs'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import Tabs from './burger-ingredients-tabs';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-import { useContext } from 'react';
-import { DataContext } from '../../context/app-context';
+import BurgerIngredientsProduct from './burger-ingredients-products';
+import { useSelector, useDispatch } from 'react-redux';
 
 const BurgerIngredients = () => { 
+
   const [isIntersecting, setIsIntersecting] = useState('');
   const bunsRef = useRef(null);
   const sauceRef = useRef(null);
   const fillingsRef = useRef(null);
   let currentTab = isIntersecting;
-  const {data} = useContext(DataContext);
-  const [modalState, setModalState] = useState();
 
+  const dispatch = useDispatch();
+  const { data } = useSelector(state => state.ingredients);
+  const { modalState } = useSelector(state => state.ingredients);
+  
   useEffect(() => {
     const bunsObserver = new IntersectionObserver(
       ([entry]) => {
@@ -25,7 +27,6 @@ const BurgerIngredients = () => {
       },
     {root: document.getElementById('root'), rootMargin: "-500px" },
     );
-    
     bunsObserver.observe(bunsRef.current);
 
    const sauceObserver = new IntersectionObserver(
@@ -55,27 +56,24 @@ const BurgerIngredients = () => {
     };
   }, [isIntersecting]);
 
-  const openModal = () => {
-    setModalState(true);
-  }
-  
   const closeModal = () => {
-    setModalState(false);
+    dispatch({type: 'SET_MODAL_STATE', bool: false})
+    dispatch({type: 'DELETE_INGREDIENT_INFO'})
   }
 
   const burgerBuns = useMemo(() => {
     return data.filter(el => el.type === 'bun')
-  }, []
+  }, [data]
   );
 
   const burgerSauce = useMemo(() => {
     return data.filter(el => el.type === 'sauce')
-  }, []
+  }, [data]
   );
 
   const burgerFillings = useMemo(() => {
     return data.filter(el => el.type === 'main')
-  }, []
+  }, [data]
   );
   
       return (
@@ -86,17 +84,9 @@ const BurgerIngredients = () => {
             <div  id="one" ref={bunsRef}  >
               <h2 className={appBurgerIngredientsStyle.default__title}>Булки</h2>
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-                {burgerBuns.map((el) => {
-                    return(
-                        <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal} >
-                          <div className={appBurgerIngredientsStyle.notice}/>
-                          <img src={el.image}/>
-                          <div className={appBurgerIngredientsStyle.price}>
-                            <p>{el.price}</p>
-                            <CurrencyIcon type="primary"/>
-                          </div>
-                          <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
-                        </div>
+                {burgerBuns.map(el => {
+                  return (
+                    <BurgerIngredientsProduct elData={el} key={el._id} />
                   )
                 })}
               </div>
@@ -105,38 +95,22 @@ const BurgerIngredients = () => {
               <div id="two" ref={sauceRef} >
               <h2 className={`mt-10 ${appBurgerIngredientsStyle.default__title}`}>Соусы</h2>
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-                {burgerSauce.map(el=> {
-                    return(
-                      <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal}>
-                        <div className={appBurgerIngredientsStyle.notice}/>
-                        <img src={el.image}/>
-                        <div className={appBurgerIngredientsStyle.price}>
-                          <p>{el.price}</p>
-                          <CurrencyIcon type="primary"/>
-                        </div>
-                      <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
-                    </div>
-                  )
-                })}
+                {burgerSauce.map(el => {
+                    return (
+                      <BurgerIngredientsProduct elData={el} key={el._id}/>
+                    )
+                  })}
               </div>
               </div>
 
               <div id="three" ref={fillingsRef} >
               <h2 className={`mt-10 ${appBurgerIngredientsStyle.default__title}`}>Начинки</h2>
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-               {burgerFillings.map(el=> {
-                    return(
-                      <div className={appBurgerIngredientsStyle.card} key={el._id} href='#!' onClick={openModal}>
-                        <div className={appBurgerIngredientsStyle.notice}/>
-                        <img src={el.image}/>
-                        <div className={appBurgerIngredientsStyle.price}>
-                          <p>{el.price}</p>
-                          <CurrencyIcon type="primary"/>
-                        </div>
-                        <p className={appBurgerIngredientsStyle.name}>{el.name}</p>
-                      </div>
-                  )
-                })}
+                {burgerFillings.map(el => {
+                      return (
+                        <BurgerIngredientsProduct elData={el} key={el._id}/>
+                      )
+                    })}
               </div>
               </div>
 

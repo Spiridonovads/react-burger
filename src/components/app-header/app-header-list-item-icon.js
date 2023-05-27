@@ -3,8 +3,6 @@ import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
-
-
 const AppHeaderListItemIcon = (props) => {
   if(props.icon === 'burgerIcon'){
     return (
@@ -25,12 +23,8 @@ const AppHeaderListItemIcon = (props) => {
   }
 }
 
-
-
 AppHeaderListItemIcon.propTypes = {
   icon: PropTypes.string.isRequired,
 }
-
-
 
 export default AppHeaderListItemIcon;

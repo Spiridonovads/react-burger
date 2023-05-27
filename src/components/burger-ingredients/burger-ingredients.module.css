@@ -42,6 +42,11 @@
 }
 
 .notice {
+	font-size: 28px;
+	font-family: 'Iceland', cursive;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 32px;
 	width: 32px;
 	background-color: #4C4CFF;

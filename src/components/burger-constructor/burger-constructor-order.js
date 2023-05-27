@@ -3,35 +3,35 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-import { getOrderNumberData } from '../../utile/api.js';
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { checkResponse } from '../../utile/res-ok';
+import { useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrderNumber } from '../../services/actions/order-number';
 
-const BurgerConstructorOrder = ({total, orderProducts}) => {
+const BurgerConstructorOrder = () => {
 
-  const [orderState, setOrderState] = useState({
-    data: {},
-    error: false,
-    loading: false,
+  const [modalState, setModalState] = useState();
+
+  const {order} = useSelector(state => state.constructor);
+  const orderId = order.map(el => el._id)
+
+  let total = 0
+  
+  const dispatch = useDispatch();
+  
+  useMemo(() => {
+    order.forEach(el => {
+      total += el.price
+    });
   })
 
-  const [modalState, setModalState] = useState()
-
   const openModal = () => {
-    setOrderState({...orderState, loading: true})
-    getOrderNumberData(orderProducts)
-    .then((res) => checkResponse(res))
-    .then((data) => setOrderState({...orderState, data: data.order, loading: false}))
-    .catch(() => setOrderState({...orderState, error: true}))
+    dispatch(getOrderNumber(orderId))
     setModalState(true);
     }
 
   const closeModal = () => {
     setModalState(false);
   }
-
-  const {data, loading, error} = orderState
 
     return (
         <div className={`mr-4 ${appBurgerConstructorStyle.price}`}>
@@ -44,19 +44,12 @@ const BurgerConstructorOrder = ({total, orderProducts}) => {
           </Button>
         {modalState && 
           <Modal onCloseButtonClick={closeModal}>{
-              <OrderDetails data={data} error={loading} loading={error}/>
+              <OrderDetails/>
             }
           </Modal>}
         </div>
     );
 }; 
-
-BurgerConstructorOrder.propTypes = {
-  total: PropTypes.number.isRequired,
-  orderProducts: PropTypes.array.isRequired
-}
-
-
 
 export default BurgerConstructorOrder;
 

@@ -41,7 +41,7 @@ const Tabs = ({currentTab}) => {
 }
 
 Tabs.propTypes = {
-  currentTab: PropTypes.string
+  currentTab: PropTypes.string.isRequired
 }
 
 export default Tabs;

@@ -5,13 +5,9 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 import ReactDOM from 'react-dom';
 import {useEffect} from 'react'
 
-
-
 const modalRoot = document.getElementById("modals");
 
-
-
-const Modal = ({show, onCloseButtonClick, children}) => {
+const Modal = ({onCloseButtonClick, children}) => {
 
   const ESC_KEY_CODE = 27
 
@@ -26,8 +22,6 @@ const Modal = ({show, onCloseButtonClick, children}) => {
       document.removeEventListener("keydown", keyDown)
     }
 },[])
-
-
 
   return ReactDOM.createPortal(
     (
@@ -45,14 +39,10 @@ const Modal = ({show, onCloseButtonClick, children}) => {
       );
 } 
 
-
-
 Modal.propTypes = {
   onCloseButtonClick: PropTypes.func.isRequired,
   children: PropTypes.object,
 }
-
-
 
 export default Modal;
 

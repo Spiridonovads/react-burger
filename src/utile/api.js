@@ -1,7 +1,5 @@
 const BASE_URL = "https://norma.nomoreparties.space/api";
 
-
-
 export const getIngredientsData = () => {
 	const res = fetch(`${BASE_URL}/ingredients`)
 	return res

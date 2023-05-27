@@ -2,8 +2,6 @@ import appHeaderStyles from './app-header.module.css';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeaderListItem from './app-header-list-item';
 
-
-
 const AppHeader = () => {
     return (
         <header className={`pt-4 pb-4 ${appHeaderStyles.header}`}>
@@ -28,8 +26,6 @@ const AppHeader = () => {
         </header>
     );
 }
-
-
 
 export default AppHeader;
 

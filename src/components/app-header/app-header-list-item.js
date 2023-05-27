@@ -2,8 +2,6 @@ import appHeaderStyles from './app-header.module.css';
 import AppHeaderListItemIcon from './app-header-list-item-icon';
 import PropTypes from 'prop-types';
 
-
-
 const AppHeaderListItem = (props) => {
 	return (
 		<div className={appHeaderStyles.item}>
@@ -15,13 +13,9 @@ const AppHeaderListItem = (props) => {
 	)
 }
 
-
-
 AppHeaderListItem.propTypes = {
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 }
-
-
 
 export default AppHeaderListItem;
