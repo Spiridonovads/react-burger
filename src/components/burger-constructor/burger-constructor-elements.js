@@ -5,6 +5,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BurgerConstructorScrollElement from './burger-constructor-scroll-element';
 import { Reorder } from 'framer-motion';
+import { CONSTRUCTOR_ORDER_SORT } from '../../services/actions/constructor-data';
 
 const BurgerConstructorElements = () => {
 
@@ -27,10 +28,12 @@ const BurgerConstructorElements = () => {
   },[burgerFillingFilter]);
 
   useEffect(() => {
-    dispatch({type: 'CONSTRUCTOR_ORDER_SORT', value: [...burgerBunsFilter,...items]})
+    dispatch({type: CONSTRUCTOR_ORDER_SORT, value: [...burgerBunsFilter,...items]})
   },[items]);
   
   return (
+    <>
+    {order &&
     <>
       {burgerBunsFilter.map(el => {
         return (
@@ -47,10 +50,10 @@ const BurgerConstructorElements = () => {
       })}
       <Reorder.Group axis='y' values={items} onReorder={setItems}>
       <div className={appBurgerConstructorStyle.scroll} > 
-        {items.map((el, i) => {
+        {items.map(el => {
             return (
               <BurgerConstructorScrollElement 
-                key={el.index}
+                key={el.uniqueId}
                 data={el}
                 />
             )
@@ -71,6 +74,8 @@ const BurgerConstructorElements = () => {
       )
       })}
       <BurgerConstructorOrder/>
+    </>
+}
     </>
   );
 };

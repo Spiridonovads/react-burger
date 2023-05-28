@@ -10,7 +10,7 @@ const IngredientDetails = () => {
             <div className={`mb-8 ${appIngredientsDetailsStyle.details}`}>
               Детали ингредиента
             </div>
-              <img src={ingredient[0].image_large} className={appIngredientsDetailsStyle.img}/>
+              <img alt='product image' src={ingredient[0].image_large} className={appIngredientsDetailsStyle.img}/>
               <p className={`mb-8 mt-4 ${appIngredientsDetailsStyle.name}`}>{ingredient[0].name}</p>
               <div className={appIngredientsDetailsStyle.info}>
                 <div className={`mr-5 ${appIngredientsDetailsStyle.text}`}>

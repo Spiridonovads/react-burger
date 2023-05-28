@@ -1,32 +1,32 @@
-import { CONSTRUCTOR_ORDER, DELETE_ITEM, ADD_ITEM, ADD_ITEM_PROPERTIES, CONSTRUCTOR_ORDER_SORT } 
-from '../actions/constructor-data';
+import { DELETE_ITEM, ADD_ITEM, ADD_ITEM_PROPERTIES, CONSTRUCTOR_ORDER_SORT, GET_CONSTRUCTOR_INGREDIENTS_REQUEST, 
+GET_CONSTRUCTOR_INGREDIENTS_SUCCESS, GET_CONSTRUCTOR_INGREDIENTS_FAILED, BUN } from '../actions/constructor-data';
+
 
 const initialState = {
+  data: [],
+  error: false,
+  loading: false,
   order: [],
-  sortOrder: []
+  sortOrder: [],
+  dragIngredient: {}
 };
-
-let index = 15
-let bun 
 
 export const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CONSTRUCTOR_ORDER: {
+    case GET_CONSTRUCTOR_INGREDIENTS_REQUEST: {
       return {
         ...state,
-        order: [...action.value].map((el, i) => {
-          if(el.name !== 'Краторная булка N-200i' && el.type === 'bun'){
-            bun = el
-            el.qty = 2
-          } else if (el.name === 'Краторная булка N-200i') {
-            el.qty = 2
-          } else {
-            el.qty = 1
-          }
-          el.index = i
-          return el
-        }).filter(el => el.name !== 'Краторная булка N-200i')
+        loading: true
       };
+    }
+    case GET_CONSTRUCTOR_INGREDIENTS_SUCCESS: {
+      return { ...state, error: false, data: action.data.map(el => {
+        el.qty = 0
+        return el
+      }), loading: false };
+    }
+    case GET_CONSTRUCTOR_INGREDIENTS_FAILED: {
+      return { ...state, error: true, loading: false };
     }
     case CONSTRUCTOR_ORDER_SORT: {
       return {
@@ -34,44 +34,59 @@ export const constructorReducer = (state = initialState, action) => {
         sortOrder: [...action.value]
       };
     }
+    case ADD_ITEM: {
+      return {
+       ...state,
+       dragIngredient: action.payload,
+       order: state.order ? [...state.order, action.payload] : [action.payload]
+      }
+    };
+    case ADD_ITEM_PROPERTIES: {
+        return {
+         ...state,
+          data: [...state.data].map(el => {
+            if(el.name === state.dragIngredient.name) {
+              ++el.qty
+            }
+            return el
+          })
+      }
+    }
     case DELETE_ITEM: {     
+      console.log(state.sortOrder)
       return {
         ...state,
-        order: [...state.order].map(el => {
-          if(el._id === action.id){
-          if( el.qty != 0 ){
-            el.qty -= 1
-          } else {
-            el.qty = 0
-          }
-          }
-          return el
-        }).filter(el => el.index !== action.index)
+        data: [...state.data].map(el =>
+          el._id === action.id ? { ...el, qty: --el.qty } : el
+        ),
+        order: [...state.order].filter(el => el.uniqueId !== action.index)
       };
     }
-  case ADD_ITEM_PROPERTIES: {
+    case BUN: {
       return {
-        ...state,
-        order: [...state.order].reduce((acc, el) => {
-          if(el.type === 'bun'){
-              bun = el
-        } else {
-          acc.push(el)     
+       ...state,
+       data: [...state.data].map(el => {
+        if(el.name === action.ingredient.name){
+          el.qty = 2
+        } else if(el.type === 'bun'){
+          el.qty = 0
         }
+        return el
+      }),
+        order: state.order ? [...state.order].reduce((acc, el) => { 
+          if(el.type !== 'bun'){
+            acc.push(el)
+          } else {
+            el = action.ingredient
+            acc.push(el)
+          }
           return acc
-      }, []).map(el =>  el._id === action.ingredient._id ? {...el, qty: el.type === 'bun' ? el.qty : el.qty++ } && { ...el, index: ++index} : el)
+        },[]) : [action.ingredient]
     }
   }
-
-    case ADD_ITEM: {
-     return {
-        ...state,
-        order: action.ingredient.type === 'bun' ? [...state.order, action.ingredient] : [...state.order, action.ingredient, bun]
-      };
-      };
     default: {
       return state;
     }
   }
 };
-//
+

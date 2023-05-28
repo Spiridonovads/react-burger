@@ -45,3 +45,13 @@
 	cursor: grab;
 }
 
+.visible {
+	margin: auto;
+	text-align: center;
+
+	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+}
+
+.invisible {
+	display: none;
+}

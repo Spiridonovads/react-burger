@@ -28,9 +28,9 @@ const Modal = ({onCloseButtonClick, children}) => {
       <>
         <ModalOverlay onCloseButtonClick={onCloseButtonClick}/>
         <div className={`pt-10 pl-10 ${appModalStyle.modal}`}>
-          <a href='#!' onClick={onCloseButtonClick} className={appModalStyle.close}>
+          <button onClick={onCloseButtonClick} className={appModalStyle.close}>
             <CloseIcon/>
-          </a>
+          </button>
           {children}
         </div>
       </>

@@ -4,14 +4,14 @@ import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Reorder } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-
+import { DELETE_ITEM } from '../../services/actions/constructor-data';
 
 const BurgerConstructorScrollElement = ({data}) => {
   
   const dispatch = useDispatch()
 
   const handleClose = () => {
-    dispatch({type: 'DELETE_ITEM', id: data._id, index: data.index})    
+    dispatch({type: DELETE_ITEM, id: data._id, index: data.uniqueId})    
   }
 
   return (

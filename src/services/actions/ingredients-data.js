@@ -1,5 +1,4 @@
 import { getIngredientsData } from "../../utile/api";
-import { checkResponse } from "../../utile/res-ok";
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
@@ -15,7 +14,6 @@ export function getIngredients() {
       type: GET_INGREDIENTS_REQUEST
     });
     getIngredientsData()
-    .then(res => checkResponse(res))
     .then(data => dispatch({
       type: GET_INGREDIENTS_SUCCESS,
       data: data.data
@@ -25,3 +23,5 @@ export function getIngredients() {
     }))
     };
   };
+
+ 
