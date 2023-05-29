@@ -11,6 +11,8 @@ const initialState = {
   dragIngredient: {}
 };
 
+let bunCheking =false
+
 export const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CONSTRUCTOR_INGREDIENTS_REQUEST: {
@@ -59,7 +61,7 @@ export const constructorReducer = (state = initialState, action) => {
         data: [...state.data].map(el =>
           el._id === action.id ? { ...el, qty: --el.qty } : el
         ),
-        order: [...state.order].filter(el => el.uniqueId !== action.index)
+        order: [...state.sortOrder].filter(el => el.uniqueId !== action.index)
       };
     }
     case BUN: {
@@ -77,8 +79,12 @@ export const constructorReducer = (state = initialState, action) => {
           if(el.type !== 'bun'){
             acc.push(el)
           } else {
+            bunCheking = true
             el = action.ingredient
             acc.push(el)
+          }
+          if(acc.length === state.order.length && !bunCheking){
+            acc.push(action.ingredient)
           }
           return acc
         },[]) : [action.ingredient]
