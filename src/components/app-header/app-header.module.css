@@ -29,7 +29,7 @@
 }
 
 .button {
-	color: #8585AD;
+	color: white
 }
 
 .button__active {
@@ -45,6 +45,9 @@
 	justify-self: start;
 }
 
+.active__button {
+	color: white;
+}
 
 
 

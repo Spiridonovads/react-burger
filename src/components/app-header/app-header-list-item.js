@@ -15,7 +15,7 @@ const AppHeaderListItem = (props) => {
 
 AppHeaderListItem.propTypes = {
   icon: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default AppHeaderListItem;

@@ -23,7 +23,7 @@ const OrderDetails = () => {
                   Ваш заказ начали готовить
                 </p>
                 <p>
-                <span>
+                <span className={appOrderDetailsStyle.catching__text}>
                   Дождитесь готовности на орбитальной станции
                 </span>
                 </p>
