@@ -55,7 +55,6 @@ export const constructorReducer = (state = initialState, action) => {
       }
     }
     case DELETE_ITEM: {     
-      console.log(state.sortOrder)
       return {
         ...state,
         data: [...state.data].map(el =>

@@ -1,11 +1,11 @@
 import {GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED, GET_INGREDIENT_INFO, SET_MODAL_STATE, 
-DELETE_INGREDIENT_INFO} from '../actions/ingredients-data';
+SET_INGREDIENT_INFO} from '../actions/ingredients-data';
 
 const initialState = {
 	data: [],
   error: false,
   loading: false,
-  ingredient: [],
+  ingredient: {},
   modalState: null,
 };
 
@@ -26,13 +26,7 @@ export const ingredietsReducer = (state = initialState, action) => {
     case GET_INGREDIENT_INFO: {
       return {
         ...state,
-        ingredient: [...state.data].filter(el => el._id === action.id)
-      };
-    }
-    case DELETE_INGREDIENT_INFO: {
-      return {
-        ...state,
-        ingredient: []
+        ingredient: action.el
       };
     }
     case SET_MODAL_STATE: {

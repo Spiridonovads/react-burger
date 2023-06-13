@@ -1,5 +1,3 @@
-import appStyles from './app.module.css';
-import AppHeader from '../app-header/app-header';
 import BurgerSectors from '../burger-sectors/burger-sectors';
 import { useEffect } from 'react';
 import { DndProvider } from "react-dnd";
@@ -13,17 +11,23 @@ import RegisterScreen from '../../pages/register-screen/register-screen';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Profile from '../../pages/profile/profile';
+import NotFound from '../../pages/not-found/not-found';
+import { ProtectedRouteElementAuth, ProtectedRouteElementNotAuth, ProtectedRouteElementReset } 
+from '../protected-route-element/protected-route-element';
+import Ingredient from '../../pages/ingredient/ingredient';
+
 
 const App = () => {
 
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
       dispatch(getIngredients());
       dispatch(getConstructorIngredients());
     },[dispatch]);
 
   const { data, loading, error } = useSelector(state => state.ingredients);
+  const { modalState } = useSelector(state => state.ingredients);
   
   return ( 
      <>
@@ -31,23 +35,27 @@ const App = () => {
      {error && <h1>Произошла ошибка</h1>}
      {!loading && !error && data.length > 0 &&
      <>
-     <AppHeader/>
-     <main className={appStyles.wrapper}>
-        <DndProvider backend={HTML5Backend}>
-          <BrowserRouter>
-            <Routes>
-             <Route path="/" element={<BurgerSectors/>} />
-             <Route path="/login" element={<LoginScreen/>} />
-             <Route path="/register" element={<RegisterScreen/>} />
-             <Route path="/forgot-password" element={<ForgotPassword/>} />
-             <Route path="/reset-password" element={<ResetPassword/>} />
-             <Route path="/profile" element={<Profile/>} />
-            </Routes>
-          </BrowserRouter>
-        </DndProvider>
-      </main>
-      </>
-      }
+      <DndProvider backend={HTML5Backend}>
+        <BrowserRouter>
+          <Routes>
+             <Route path="/" element={<BurgerSectors/>}>
+             {modalState &&
+              <Route path="ingredients/:_id"/> }
+             </Route>
+              {!modalState &&
+              <Route path="/ingredients/:_id" element={<Ingredient/>}/>
+              }
+             <Route path="/login" element={<ProtectedRouteElementNotAuth element={<LoginScreen/>}/>}/>
+             <Route path="/register" element={<ProtectedRouteElementNotAuth element={<RegisterScreen/>}/>}/>
+             <Route path="/forgot-password" element={<ProtectedRouteElementNotAuth element={<ForgotPassword/>}/>}/>
+             <Route path="/reset-password" element={<ProtectedRouteElementReset element={<ResetPassword/>}/>} />
+             <Route path="/profile" element={<ProtectedRouteElementAuth element={<Profile/>}/>}/>
+             <Route path="*" element={<NotFound/>} />            
+          </Routes>
+        </BrowserRouter>
+      </DndProvider>
+    </>
+    }
     </>
     )
 }

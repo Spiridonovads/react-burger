@@ -6,6 +6,8 @@ import OrderDetails from '../order-details/order-details';
 import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrderNumber } from '../../services/actions/order-number';
+import { getCookie } from '../../utile/cookie';
+import { useNavigate } from "react-router-dom";
 
 const BurgerConstructorOrder = () => {
 
@@ -23,10 +25,16 @@ const BurgerConstructorOrder = () => {
       total += el.price
     });
   })
+  const auth = getCookie('accessToken')
+  const navigate = useNavigate();
 
   const openModal = () => {
-    dispatch(getOrderNumber(orderId))
-    setModalState(true);
+    if(auth) {
+      dispatch(getOrderNumber(orderId))
+      setModalState(true)
+    } else {
+      navigate('/login', { replace: true })
+    }
     }
 
   const closeModal = () => {

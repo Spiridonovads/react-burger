@@ -5,6 +5,8 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import BurgerIngredientsProduct from './burger-ingredients-products';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { SET_MODAL_STATE } from '../../services/actions/ingredients-data';
 
 const BurgerIngredients = () => { 
 
@@ -56,9 +58,11 @@ const BurgerIngredients = () => {
     };
   }, [isIntersecting]);
 
+  const navigate = useNavigate();
+
   const closeModal = () => {
-    dispatch({type: 'SET_MODAL_STATE', bool: false})
-    dispatch({type: 'DELETE_INGREDIENT_INFO'})
+    navigate('/', { replace: true })
+    dispatch({type: SET_MODAL_STATE, bool: false})
   }
 
   const burgerBuns = useMemo(() => {
@@ -86,7 +90,7 @@ const BurgerIngredients = () => {
               <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
                 {burgerBuns.map(el => {
                   return (
-                    <BurgerIngredientsProduct elData={el} key={el._id} />
+                    <BurgerIngredientsProduct elData={el} key={el._id}/>
                   )
                 })}
               </div>
@@ -115,9 +119,9 @@ const BurgerIngredients = () => {
               </div>
 
             </div>
-            {modalState &&
-             <Modal onCloseButtonClick={closeModal}><IngredientDetails/></Modal>
-            }
+          {modalState && 
+           <Modal onCloseButtonClick={closeModal}><IngredientDetails/></Modal>
+            } 
           </section>
         );
 }

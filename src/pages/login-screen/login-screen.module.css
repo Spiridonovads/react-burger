@@ -1,8 +1,10 @@
 .section {
-	position: absolute;
-	top: 288px;
-	left: 50%;
-	transform: translateX(-50%);
+	max-width: 1290px;
+	margin: 0 auto;
+	padding: 0 15px;
+	display: flex;
+	justify-content: center;
+	padding-top: 180px;
 }
 
 .form {
@@ -12,15 +14,15 @@
 	align-items: center;
 }
 
-p{
+.text{
 	color: #8585AD
 }
 
-p span {
+.span {
 	color: #4C4CFF
 }
 
-.text {
+.text__block {
 	display: flex;
 	flex-direction: column;
 	text-align: center;

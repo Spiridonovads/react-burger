@@ -1,6 +1,10 @@
-.wrapper {
+.section {
 	max-width: 1290px;
 	margin: 0 auto;
+	padding: 0 15px;
+	padding-top: 120px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
 .form {
@@ -8,18 +12,6 @@
 	flex-direction: column;
 	row-gap: 24px;
 	align-items: center;
-	position: absolute;
-	top: 200px;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-p{
-	color: #8585AD
-}
-
-p span {
-	color: #4C4CFF
 }
 
 .title {
@@ -28,13 +20,23 @@ p span {
 	line-height: 30px;
 }
 
+.list__item {
+	height: 64px;
+}
+
 .link {
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 30px;
-	height: 64px;
-	width: 320px;
+	color: #8585AD;
 }
+.active__link {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+	color: white;
+}
+
 
 .other__link {
 	color: #8585AD;

@@ -5,8 +5,6 @@ export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
 export const GET_INGREDIENT_INFO = 'GET_INGREDIENT_INFO';
 export const SET_MODAL_STATE = 'SET_MODAL_STATE';
-export const DELETE_INGREDIENT_INFO = 'DELETE_INGREDIENT_INFO';
-
 
 export function getIngredients() {
   return function(dispatch) {

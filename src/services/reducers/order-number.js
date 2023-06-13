@@ -6,7 +6,7 @@ const initialState = {
   loading: false
 };
 
-export const OrderNumberReducer = (state = initialState, action) => {
+export const orderNumberReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ORDER_NUMBER_REQUEST: {
       return {

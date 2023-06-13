@@ -29,13 +29,12 @@
 }
 
 .button {
+	color: #8585AD;
+}
+
+.active__button {
 	color: white
 }
-
-.button__active {
-	color: black;
-}
-
 
 .right__edge {
 	justify-self: end;
