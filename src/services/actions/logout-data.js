@@ -4,6 +4,7 @@ import { deleteCookie } from '../../utile/cookie';
 export const GET_LOGOUT_REQUEST = 'GET_LOGOUT_REQUEST';
 export const GET_LOGOUT_SUCCESS = 'GET_LOGOUT_SUCCESS';
 export const GET_LOGOUT_FAILED = 'GET_LOGOUT_FAILED';
+export const DELETE_LOGOUT = 'DELETE_LOGOUT';
 
 export function getLogout() {
   return function(dispatch) {
@@ -18,8 +19,7 @@ export function getLogout() {
     .then(() => {
       deleteCookie('accessToken');
 			deleteCookie('refreshToken');  
-    }
-    )
+    })
 		.catch(() =>  dispatch({
       type: GET_LOGOUT_FAILED
     }))

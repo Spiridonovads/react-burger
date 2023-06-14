@@ -15,12 +15,12 @@ import NotFound from '../../pages/not-found/not-found';
 import { ProtectedRouteElementAuth, ProtectedRouteElementNotAuth, ProtectedRouteElementReset } 
 from '../protected-route-element/protected-route-element';
 import Ingredient from '../../pages/ingredient/ingredient';
-
+import { err, forgot, home, ingredients, login, profile, register, reset } from '../../utile/routes';
 
 const App = () => {
 
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
       dispatch(getIngredients());
       dispatch(getConstructorIngredients());
@@ -38,19 +38,19 @@ const App = () => {
       <DndProvider backend={HTML5Backend}>
         <BrowserRouter>
           <Routes>
-             <Route path="/" element={<BurgerSectors/>}>
+             <Route path={home} element={<BurgerSectors/>}>
              {modalState &&
-              <Route path="ingredients/:_id"/> }
+              <Route path={ingredients}/> }
              </Route>
               {!modalState &&
-              <Route path="/ingredients/:_id" element={<Ingredient/>}/>
+              <Route path={ingredients} element={<Ingredient/>}/>
               }
-             <Route path="/login" element={<ProtectedRouteElementNotAuth element={<LoginScreen/>}/>}/>
-             <Route path="/register" element={<ProtectedRouteElementNotAuth element={<RegisterScreen/>}/>}/>
-             <Route path="/forgot-password" element={<ProtectedRouteElementNotAuth element={<ForgotPassword/>}/>}/>
-             <Route path="/reset-password" element={<ProtectedRouteElementReset element={<ResetPassword/>}/>} />
-             <Route path="/profile" element={<ProtectedRouteElementAuth element={<Profile/>}/>}/>
-             <Route path="*" element={<NotFound/>} />            
+             <Route path={login} element={<ProtectedRouteElementNotAuth element={<LoginScreen/>}/>}/>
+             <Route path={register} element={<ProtectedRouteElementNotAuth element={<RegisterScreen/>}/>}/>
+             <Route path={forgot} element={<ProtectedRouteElementNotAuth element={<ForgotPassword/>}/>}/>
+             <Route path={reset} element={<ProtectedRouteElementReset element={<ResetPassword/>}/>} />
+             <Route path={profile} element={<ProtectedRouteElementAuth element={<Profile/>}/>}/>
+             <Route path={err} element={<NotFound/>} />            
           </Routes>
         </BrowserRouter>
       </DndProvider>

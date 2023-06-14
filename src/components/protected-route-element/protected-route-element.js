@@ -1,15 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { getCookie } from '../../utile/cookie';
 import { useSelector } from 'react-redux';
+import { getCookie } from '../../utile/cookie';
 
 export const ProtectedRouteElementNotAuth = ({ element }) => {
-  const auth = getCookie('accessToken')
-  return !auth ? element : <Navigate to="/profile" replace/>;
+  return !getCookie('refreshToken') ? element : <Navigate to="/profile" replace/>;
 } 
 
 export const ProtectedRouteElementAuth = ({ element }) => {
-  const auth = getCookie('accessToken')
-  return auth ? element : <Navigate to="/login" replace/>;
+  return getCookie('refreshToken') ? element : <Navigate to="/login" replace/>;
 } 
 
 export const ProtectedRouteElementReset = ({ element }) => {

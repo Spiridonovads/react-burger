@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getPerson, getChangePerson } from '../../services/actions/person-data';
-import { getLogout } from '../../services/actions/logout-data';
+import { DELETE_LOGOUT, getLogout } from '../../services/actions/logout-data';
 
 const Profile = () => {
   const [form, setValue] = useState({ email: '', password: '', name: '' });
@@ -19,14 +19,14 @@ const Profile = () => {
 
 	const dispatch = useDispatch();
 	const logoutClick = () => {
-    dispatch(getLogout());
+		dispatch(getLogout());
   }
 	const logoutData = useSelector(state => state.logout.data);
   const navigate = useNavigate();
-	console.log(logoutData)
 
 	if (logoutData.success) {
 		navigate('/login', { replace: false })
+		dispatch({type: DELETE_LOGOUT})
 		} 
 
 	useEffect(() => {

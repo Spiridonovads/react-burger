@@ -1,16 +1,27 @@
 import appHeaderStyles from './app-header.module.css';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 const AppHeader = () => {
 
-  const [burgerState, setBurgerState] = useState(false)
-  const [listState, setListState] = useState(false)
-  const [profileState, setProfileState] = useState(false)
+  const location = useLocation()
+  const burgerClassName = clsx(
+    `pl-2 ${appHeaderStyles.button}`,
+    {[ `pl-2 ${appHeaderStyles.active__button}`]: location.pathname === '/' },
+  );
+  const listClassName = clsx(
+    `pl-2 ${appHeaderStyles.button}`,
+    {[ `pl-2 ${appHeaderStyles.active__button}`]: location.pathname === '*' },
+  );
+  const profileClassName = clsx(
+    `pl-2 ${appHeaderStyles.button}`,
+    {[ `pl-2 ${appHeaderStyles.active__button}`]: location.pathname === '/profile' },
+  );
 
     return (
         <header className={`pt-4 pb-4 ${appHeaderStyles.header}`}>
@@ -18,42 +29,19 @@ const AppHeader = () => {
             <nav className={appHeaderStyles.nav}>
              <ul className={`${appHeaderStyles.list} ${appHeaderStyles.left__edge}`}>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {burgerState ? <BurgerIcon/> : <BurgerIcon type="secondary"/>}
+                {location.pathname === '/' ? <BurgerIcon/> : <BurgerIcon type="secondary"/>}
                 <NavLink 
                   to={{ pathname: '/' }}
-                  className={({isActive }) => {
-                    if(isActive) {
-                      setBurgerState(true)
-                      return (
-                        `pl-2 ${appHeaderStyles.active__button}`
-                      )
-                    } else {
-                      setBurgerState(false)
-                      return (
-                        `pl-2 ${appHeaderStyles.button}`
-                      )
-                    }
-                  }}>
+                  className={burgerClassName}
+                  >
                 Конструктор
                 </NavLink>
                 </li>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {listState ? <ListIcon/> : <ListIcon type="secondary"/>}
+                {location.pathname ==='*' ? <ListIcon/> : <ListIcon type="secondary"/>}
                 <NavLink 
                   to={{ pathname: '*' }}
-                  className={({isActive }) => {
-                    if(isActive) {
-                      setListState(true)
-                      return (
-                        `pl-2 ${appHeaderStyles.active__button}`
-                      )
-                    } else {
-                      setListState(false)
-                      return (
-                        `pl-2 ${appHeaderStyles.button}`
-                      )
-                    }
-                  }}
+                  className={listClassName}
                   >
                   Лента заказов
                 </NavLink>
@@ -62,22 +50,10 @@ const AppHeader = () => {
               <Logo/>
               <ul className={`${appHeaderStyles.list} ${appHeaderStyles.right__edge}`}>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {profileState ? <ProfileIcon/> : <ProfileIcon type="secondary"/>}
+                {location.pathname ==='/profile' ? <ProfileIcon/> : <ProfileIcon type="secondary"/>}
                   <NavLink 
                     to={{ pathname: '/profile' }}
-                    className={({isActive }) => {
-                      if(isActive) {
-                        setProfileState(true)
-                        return (
-                          `pl-2 ${appHeaderStyles.active__button}`
-                        )
-                      } else {
-                        setProfileState(false)
-                        return (
-                          `pl-2 ${appHeaderStyles.button}`
-                        )
-                      }
-                    }}
+                    className={profileClassName}
                     >
                     Личный кабинет
                   </NavLink>

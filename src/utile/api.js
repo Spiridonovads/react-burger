@@ -120,9 +120,23 @@ export const getChangePersonData = (form) => {
 			Authorization: 'Bearer ' + getCookie('accessToken'),
 		},
 		body: JSON.stringify({
-			//email: form.email, 
   		name: form.name 
 			})
+	})
+	.then((res) => checkResponse(res))
+
+	return res
+}
+
+export const getUpdateTokenData = () => {
+	const res = fetch(`${BASE_URL}/auth/token`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			token: getCookie('refreshToken')
+			}),
 	})
 	.then((res) => checkResponse(res))
 

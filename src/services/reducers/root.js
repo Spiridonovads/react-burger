@@ -18,5 +18,5 @@ export const rootReducer = combineReducers({
   register: registerReducer,
   login: loginReducer,
   logout: logoutReducer,
-  person: personReducer
+  person: personReducer,
 });

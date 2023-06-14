@@ -1,4 +1,4 @@
-import {GET_LOGOUT_REQUEST, GET_LOGOUT_SUCCESS, GET_LOGOUT_FAILED} from '../actions/logout-data'
+import {GET_LOGOUT_REQUEST, GET_LOGOUT_SUCCESS, GET_LOGOUT_FAILED, DELETE_LOGOUT } from '../actions/logout-data'
 
 	const initialState = {
 		data: [],
@@ -19,6 +19,9 @@ import {GET_LOGOUT_REQUEST, GET_LOGOUT_SUCCESS, GET_LOGOUT_FAILED} from '../acti
 			}
 			case GET_LOGOUT_FAILED: {
 				return { ...state, error: true, loading: false };
+			}
+			case DELETE_LOGOUT : {
+				return { ...state, data: [] };
 			}
 			default: {
 				return state;

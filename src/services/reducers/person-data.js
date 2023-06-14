@@ -1,5 +1,5 @@
 import {GET_PERSON_REQUEST, GET_PERSON_SUCCESS, GET_PERSON_FAILED, GET_CHANGE_PERSON_REQUEST, GET_CHANGE_PERSON_SUCCESS, 
-GET_CHANGE_PERSON_FAILED} from '../actions/person-data'
+GET_CHANGE_PERSON_FAILED, DELETE_PERSON} from '../actions/person-data'
 
 	const initialState = {
 		data: [],
@@ -30,11 +30,14 @@ GET_CHANGE_PERSON_FAILED} from '../actions/person-data'
 				};
 			}
 			case GET_CHANGE_PERSON_SUCCESS: {
-				console.log(action.data)
 				return { ...state, changeError: false, data: action.data, changeLoading: false };
 			}
 			case GET_CHANGE_PERSON_FAILED: {
 				return { ...state, changeError: true, changeLoading: false };
+			}
+			case DELETE_PERSON: 
+			{
+				return { ...state, data: [] };
 			}
 			default: {
 				return state;

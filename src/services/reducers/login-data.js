@@ -1,4 +1,4 @@
-import {GET_LOGIN_REQUEST, GET_LOGIN_SUCCESS, GET_LOGIN_FAILED} from '../actions/login-data'
+import {GET_LOGIN_REQUEST, GET_LOGIN_SUCCESS, GET_LOGIN_FAILED, DELETE_LOGIN} from '../actions/login-data'
 	
 	const initialState = {
 		data: [],
@@ -19,6 +19,9 @@ import {GET_LOGIN_REQUEST, GET_LOGIN_SUCCESS, GET_LOGIN_FAILED} from '../actions
 			}
 			case GET_LOGIN_FAILED: {
 				return { ...state, error: true, loading: false };
+			}
+			case DELETE_LOGIN: {
+				return { ...state, data: [] };
 			}
 			default: {
 				return state;
