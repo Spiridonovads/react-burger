@@ -1,10 +1,9 @@
 import registerScreenStyles from './register-screen.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import AppHeader from '../../components/app-header/app-header';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { getRegister, DELETE_REGISTER } from '../../services/actions/register-data';
@@ -15,7 +14,7 @@ type Data = { email: string, password: string, name: string }
 const RegisterScreen = () => {
 
   const [form, setValue] = useState<Data>({ email: '', password: '', name: '' });
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -32,8 +31,6 @@ const RegisterScreen = () => {
   }
 
   return ( 
-    <>
-    <AppHeader/>
     <main>
     <section className={registerScreenStyles.section}>
       <form className={registerScreenStyles.form}>
@@ -70,7 +67,6 @@ const RegisterScreen = () => {
       </form>
     </section>
     </main>
-    </>
     )
 }
 

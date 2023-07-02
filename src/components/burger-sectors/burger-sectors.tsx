@@ -6,7 +6,6 @@ import burgerSectorsStyles from './burger-sectors.module.css'
 const BurgerSectors = () => {
   return ( 
      <>
-      <AppHeader/>
         <main className={burgerSectorsStyles.wrapper}>
           <BurgerIngredients/>
           <BurgerConstructor/>

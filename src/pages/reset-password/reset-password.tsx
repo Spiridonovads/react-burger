@@ -1,20 +1,20 @@
 import resetPasswordScreenStyles from './reset-password.module.css'
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import AppHeader from '../../components/app-header/app-header';
 import { useNavigate } from "react-router-dom";
 import { getReset, DELETE_RESET } from '../../services/actions/reset-password-data';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { DELETE_FORGOT } from '../../services/actions/forgot-password-data';
 
 type Data = { password: string, code: string }
 
 const ResetPassword = () => {
 
   const [form, setValue] = useState<Data>({ password: '', code: '' });
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -28,11 +28,10 @@ const ResetPassword = () => {
   if(data.success){
     navigate('/login', { replace: true })
     dispatch({type: DELETE_RESET})
+    dispatch({type: DELETE_FORGOT})
   }
 
   return ( 
-    <>
-    <AppHeader/>
     <main>
     <section className={resetPasswordScreenStyles.section}>
       <form className={resetPasswordScreenStyles.form}>
@@ -60,7 +59,6 @@ const ResetPassword = () => {
       </form>
     </section>
     </main>
-    </>
     )
 }
 

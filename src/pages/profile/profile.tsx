@@ -1,9 +1,8 @@
 import profileScreenStyles from './profile.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import AppHeader from '../../components/app-header/app-header';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,7 +14,7 @@ type Data = { email: string, password: string, name: string }
 const Profile = () => {
   const [form, setValue] = useState<Data>({ email: '', password: '', name: '' });
 
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -41,8 +40,6 @@ const Profile = () => {
 	}
 
   return ( 
-		<>
-		<AppHeader/>
 		<main>
     <section className={profileScreenStyles.section}>
 				<div>
@@ -90,7 +87,6 @@ const Profile = () => {
       	</form>
     </section>
 		</main>
-		</>
     )
 }
 

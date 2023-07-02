@@ -1,6 +1,6 @@
 import appHeaderStyles from './app-header.module.css';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -47,7 +47,9 @@ const AppHeader = () => {
                 </NavLink>
                 </li>
               </ul>
-              <Logo/>
+              <Link to='/'>
+                <Logo/>
+              </Link>
               <ul className={`${appHeaderStyles.list} ${appHeaderStyles.right__edge}`}>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
                 {location.pathname ==='/profile' ? <ProfileIcon type="primary"/> : <ProfileIcon type="secondary"/>}

@@ -1,5 +1,5 @@
 import { DELETE_ITEM, ADD_ITEM, ADD_ITEM_PROPERTIES, CONSTRUCTOR_ORDER_SORT, GET_CONSTRUCTOR_INGREDIENTS_REQUEST, 
-GET_CONSTRUCTOR_INGREDIENTS_SUCCESS, GET_CONSTRUCTOR_INGREDIENTS_FAILED, BUN } from '../actions/constructor-data';
+GET_CONSTRUCTOR_INGREDIENTS_SUCCESS, GET_CONSTRUCTOR_INGREDIENTS_FAILED, BUN, DELETE_CONSTRUCTOR } from '../actions/constructor-data';
 
 
 const initialState = {
@@ -61,6 +61,15 @@ export const constructorReducer = (state = initialState, action) => {
           el._id === action.id ? { ...el, qty: --el.qty } : el
         ),
         order: [...state.sortOrder].filter(el => el.uniqueId !== action.index)
+      };
+    }
+    case DELETE_CONSTRUCTOR: {     
+      return {
+        ...state, 
+        order: [],
+        data: [...state.data].map(el =>
+          el.qty > 0 ? { ...el, qty: 0 } : el
+        )
       };
     }
     case BUN: {

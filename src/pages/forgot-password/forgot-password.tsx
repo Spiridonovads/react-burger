@@ -1,10 +1,9 @@
 import forgotPasswordScreenStyles from './forgot-password.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState} from 'react';
+import { useState, ChangeEvent, FormEvent} from 'react';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import AppHeader from '../../components/app-header/app-header';
 import { Link } from 'react-router-dom';
-import { DELETE_FORGOT, getForgot } from '../../services/actions/forgot-password-data';
+import { getForgot } from '../../services/actions/forgot-password-data';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -12,13 +11,17 @@ type Data = { email: string }
 
 const ForgotPassword = () => {
 
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   const [form, setValue] = useState<Data>({ email: '' });
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, email: e.target.value });
   };
 
   const dispatch: any = useDispatch();
-  const onClick =() => {
+  const onClick = () => {
     dispatch(getForgot(form));
   }
 
@@ -26,15 +29,12 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   if(data.success){
     navigate('/reset-password', { replace: true })
-    dispatch({type: DELETE_FORGOT})
   }
 
   return ( 
-    <>
-    <AppHeader/>
     <main>
     <section className={forgotPasswordScreenStyles.section}>
-      <form className={forgotPasswordScreenStyles.form}>
+      <form onSubmit={handleFormSubmit} className={forgotPasswordScreenStyles.form}>
         <h2 className={forgotPasswordScreenStyles.title}>Восстановление пароля</h2>
         <EmailInput 
           onChange={onChange}
@@ -51,7 +51,6 @@ const ForgotPassword = () => {
       </form>
     </section>
     </main>
-    </>
     )
 }
 

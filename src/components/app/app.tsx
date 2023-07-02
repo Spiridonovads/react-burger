@@ -16,6 +16,7 @@ import { ProtectedRouteElementAuth, ProtectedRouteElementNotAuth, ProtectedRoute
 from '../protected-route-element/protected-route-element';
 import Ingredient from '../../pages/ingredient/ingredient';
 import { err, forgot, home, ingredients, login, profile, register, reset } from '../../utile/routes';
+import AppHeader from '../app-header/app-header';
 
 const App = () => {
 
@@ -38,6 +39,7 @@ const App = () => {
      <>
       <DndProvider backend={HTML5Backend}>
         <BrowserRouter>
+        <AppHeader/>
           <Routes>
              <Route path={home} element={<BurgerSectors/>}>
              {modalState &&

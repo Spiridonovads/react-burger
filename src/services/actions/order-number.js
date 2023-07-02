@@ -1,4 +1,5 @@
 import {getOrderNumberData } from "../../utile/api";
+import { DELETE_CONSTRUCTOR } from "../actions/constructor-data";
 
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
@@ -15,6 +16,7 @@ export function getOrderNumber(orderProducts) {
       type: GET_ORDER_NUMBER_SUCCESS,
       data: data.order
     }))
+    .then(() => dispatch({type: DELETE_CONSTRUCTOR}))
 		.catch(() =>  dispatch({
       type: GET_ORDER_NUMBER_FAILED
     }))

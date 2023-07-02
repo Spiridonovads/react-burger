@@ -59,7 +59,7 @@ const BurgerIngredients = () => {
 
   const navigate = useNavigate();
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     navigate('/', { replace: true })
     dispatch({type: SET_MODAL_STATE, bool: false})
   }

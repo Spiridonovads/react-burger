@@ -1,10 +1,13 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, FC} from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
 
-const Tabs = (currentTab: any ) => {
+type Data = { currentTab: string};
+
+const Tabs: FC<Data> = ({currentTab}) => {
   
   const [current, setCurrent] = useState<string>('one');
+  console.log(currentTab)
 
   useEffect(() => {
     if(currentTab == 'one'){

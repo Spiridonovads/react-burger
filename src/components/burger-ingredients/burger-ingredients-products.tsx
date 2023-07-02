@@ -7,9 +7,9 @@ import { SET_MODAL_STATE } from '../../services/actions/ingredients-data';
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
 
-type Data = { ref?: any; elData: {_id: string; name: string; image: string; price: number} };
+type Data = { elData: {_id: string; name: string; image: string; price: number} };
 
-const BurgerIngredientsProduct: FC<Data> = ({ref, elData}) => { 
+const BurgerIngredientsProduct: FC<Data> = ({elData}) => { 
 
   const { data, loading, error } = useSelector((state : any) => state.constructor);
 
@@ -28,7 +28,7 @@ const BurgerIngredientsProduct: FC<Data> = ({ref, elData}) => {
       return (
        
         <div ref={dragRef}>
-          <Link to={{pathname: `/ingredients/${elData._id}`}}className={appBurgerIngredientsStyle.card} onClick={openModal} ref={ref}> 
+          <Link to={{pathname: `/ingredients/${elData._id}`}}className={appBurgerIngredientsStyle.card} onClick={openModal} > 
             {loading && <h1>Загрузка...</h1>}
             {error && <h1>Произошла ошибка</h1>}
             {!loading && !error && data.length > 0 &&
