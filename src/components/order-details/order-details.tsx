@@ -1,9 +1,10 @@
 import appOrderDetailsStyle from './order-details.module.css'
 import { useSelector } from 'react-redux';
+import { store } from '../..';
 
 const OrderDetails = () => {
   
-  const {data, loading, error} = useSelector(state => state.orderNumber)
+  const { data, loading, error } = useSelector((state: any) => state.orderNumber)
 
     return (
         <div className={`pt-30 pb-30 ${appOrderDetailsStyle.wrapper}`}>

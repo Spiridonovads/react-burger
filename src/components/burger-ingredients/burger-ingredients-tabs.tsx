@@ -1,11 +1,10 @@
 import {useState, useEffect} from 'react'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import appBurgerIngredientsStyle from './burger-ingredients.module.css';
-import PropTypes from 'prop-types';
 
-const Tabs = ({currentTab}) => {
+const Tabs = (currentTab: any ) => {
   
-  const [current, setCurrent] = useState('one');
+  const [current, setCurrent] = useState<string>('one');
 
   useEffect(() => {
     if(currentTab == 'one'){
@@ -38,10 +37,6 @@ const Tabs = ({currentTab}) => {
       </a>
     </div>
   )
-}
-
-Tabs.propTypes = {
-  currentTab: PropTypes.string.isRequired
 }
 
 export default Tabs;

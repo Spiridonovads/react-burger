@@ -4,26 +4,29 @@ import { useState} from 'react';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeader from '../../components/app-header/app-header';
 import { Link } from 'react-router-dom';
-import { getForgot } from '../../services/actions/forgot-password-data';
+import { DELETE_FORGOT, getForgot } from '../../services/actions/forgot-password-data';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 
+type Data = { email: string }
+
 const ForgotPassword = () => {
 
-  const [form, setValue] = useState({ email: '' });
-  const onChange = e => {
+  const [form, setValue] = useState<Data>({ email: '' });
+  const onChange = (e: any) => {
     setValue({ ...form, email: e.target.value });
   };
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const onClick =() => {
     dispatch(getForgot(form));
   }
 
-  const { data } = useSelector(state => state.forgot);
+  const { data } = useSelector((state: any) => state.forgot);
   const navigate = useNavigate();
   if(data.success){
     navigate('/reset-password', { replace: true })
+    dispatch({type: DELETE_FORGOT})
   }
 
   return ( 
@@ -39,9 +42,7 @@ const ForgotPassword = () => {
           name={'email'}
           placeholder="Укажите e-mail"
           isIcon={false}/>
-        <Link>
           <Button htmlType="button" onClick={onClick} type="primary" size="large">Восстановить</Button>
-         </Link>
         <p className={`mt-15 ${forgotPasswordScreenStyles.text}`}>Вспомнили пароль? 
           <Link
             to={{ pathname: '/login' }}

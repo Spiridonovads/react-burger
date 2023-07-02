@@ -10,18 +10,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPerson, getChangePerson } from '../../services/actions/person-data';
 import { DELETE_LOGOUT, getLogout } from '../../services/actions/logout-data';
 
-const Profile = () => {
-  const [form, setValue] = useState({ email: '', password: '', name: '' });
+type Data = { email: string, password: string, name: string }
 
-  const onChange = e => {
+const Profile = () => {
+  const [form, setValue] = useState<Data>({ email: '', password: '', name: '' });
+
+  const onChange = (e: any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-	const dispatch = useDispatch();
+	const dispatch: any = useDispatch();
 	const logoutClick = () => {
 		dispatch(getLogout());
   }
-	const logoutData = useSelector(state => state.logout.data);
+	const logoutData = useSelector((state: any) => state.logout.data);
   const navigate = useNavigate();
 
 	if (logoutData.success) {
@@ -32,7 +34,7 @@ const Profile = () => {
 	useEffect(() => {
 			dispatch(getPerson());
 	},[]);
-	const { data } = useSelector(state => state.person);
+	const { data } = useSelector((state: any) => state.person);
 
 	const onClick =() => {
 		dispatch(getChangePerson(form))
@@ -73,7 +75,7 @@ const Profile = () => {
 						value={form.email}
 						name={'email'}
 						placeholder={data.success ? data.user.email : 'Логин'}
-						icon={'EditIcon'}
+						//icon={'EditIcon'}
 						/>
 					<PasswordInput
 						onChange={onChange}

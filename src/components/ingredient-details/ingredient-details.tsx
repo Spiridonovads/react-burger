@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 const IngredientDetails = () => {
   
-  const {ingredient} = useSelector(state => state.ingredients);
+  const { ingredient } = useSelector((state: any) => state.ingredients);
 
     return (
       ingredient &&

@@ -1,4 +1,4 @@
-import {GET_RESET_REQUEST, GET_RESET_SUCCESS, GET_RESET_FAILED} from '../actions/reset-password-data'
+import {GET_RESET_REQUEST, GET_RESET_SUCCESS, GET_RESET_FAILED, DELETE_RESET} from '../actions/reset-password-data'
 	
 	const initialState = {
 		data: [],
@@ -19,6 +19,9 @@ import {GET_RESET_REQUEST, GET_RESET_SUCCESS, GET_RESET_FAILED} from '../actions
 			}
 			case GET_RESET_FAILED: {
 				return { ...state, error: true, loading: false };
+			}
+			case DELETE_RESET: {
+				return { ...state, data: [] };
 			}
 			default: {
 				return state;

@@ -10,19 +10,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLogin } from '../../services/actions/login-data';
 import { DELETE_LOGIN } from '../../services/actions/login-data';
 
+type Data = { email: string, password: string }
+
 const LoginScreen = () => {
 
-  const [form, setValue] = useState({ email: '', password: '' });
-  const onChange = e => {
+  const [form, setValue] = useState<Data>({ email: '', password: '' });
+  const onChange = (e: any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const onClick =() => {
     dispatch(getLogin(form));
   }
   
-  const { data } = useSelector(state => state.login);
+  const { data } = useSelector((state: any) => state.login);
   const navigate = useNavigate();
 
   if (data.success) {

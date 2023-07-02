@@ -8,16 +8,18 @@ import { rootReducer } from './services/reducers/root';
 import thunk from 'redux-thunk';
 
 const composeEnhancers =
+  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+/*const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
+    : compose;*/
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(rootReducer, enhancer);
+export const store = createStore(rootReducer, enhancer);
 
+const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLElement);
 
-const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>

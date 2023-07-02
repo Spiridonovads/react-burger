@@ -2,21 +2,23 @@ import appBurgerIngredientsStyle from './burger-ingredients.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag } from "react-dnd";
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import { GET_INGREDIENT_INFO } from '../../services/actions/ingredients-data';
 import { SET_MODAL_STATE } from '../../services/actions/ingredients-data';
 import { Link } from 'react-router-dom';
+import { FC } from 'react';
 
-const BurgerIngredientsProduct = ({ref, elData}) => { 
+type Data = { ref?: any; elData: {_id: string; name: string; image: string; price: number} };
 
-  const {  data, loading, error  } = useSelector(state => state.constructor);
+const BurgerIngredientsProduct: FC<Data> = ({ref, elData}) => { 
+
+  const { data, loading, error } = useSelector((state : any) => state.constructor);
 
   const [, dragRef] = useDrag({
     type: "ingredient",
     item: elData
 });
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch()
 
   const openModal = () => {
     dispatch({type: GET_INGREDIENT_INFO, el: elData})
@@ -30,9 +32,9 @@ const BurgerIngredientsProduct = ({ref, elData}) => {
             {loading && <h1>Загрузка...</h1>}
             {error && <h1>Произошла ошибка</h1>}
             {!loading && !error && data.length > 0 &&
-              data.map((el, i) => {
+              data.map((el: {name: string; qty: number; _id: string}) => {
                 if(el.name === elData.name && el.qty > 0){
-                  return <div key={i} className={appBurgerIngredientsStyle.notice}>{el.qty}</div>
+                  return <div key={el._id} className={appBurgerIngredientsStyle.notice}>{el.qty}</div>
                 }
               })}
               <img src={elData.image} alt='product image'/>
@@ -45,11 +47,6 @@ const BurgerIngredientsProduct = ({ref, elData}) => {
         </div> 
          
       )
-}
-
-BurgerIngredientsProduct.propTypes = {
-  ref: PropTypes.string,
-  elData: PropTypes.object.isRequired,
 }
 
 export default BurgerIngredientsProduct;

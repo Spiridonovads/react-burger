@@ -29,7 +29,7 @@ const AppHeader = () => {
             <nav className={appHeaderStyles.nav}>
              <ul className={`${appHeaderStyles.list} ${appHeaderStyles.left__edge}`}>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {location.pathname === '/' ? <BurgerIcon/> : <BurgerIcon type="secondary"/>}
+                {location.pathname === '/' ? <BurgerIcon type="primary"/> : <BurgerIcon type="secondary"/>}
                 <NavLink 
                   to={{ pathname: '/' }}
                   className={burgerClassName}
@@ -38,7 +38,7 @@ const AppHeader = () => {
                 </NavLink>
                 </li>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {location.pathname ==='*' ? <ListIcon/> : <ListIcon type="secondary"/>}
+                {location.pathname ==='*' ? <ListIcon type="primary"/> : <ListIcon type="secondary"/>}
                 <NavLink 
                   to={{ pathname: '*' }}
                   className={listClassName}
@@ -50,7 +50,7 @@ const AppHeader = () => {
               <Logo/>
               <ul className={`${appHeaderStyles.list} ${appHeaderStyles.right__edge}`}>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {location.pathname ==='/profile' ? <ProfileIcon/> : <ProfileIcon type="secondary"/>}
+                {location.pathname ==='/profile' ? <ProfileIcon type="primary"/> : <ProfileIcon type="secondary"/>}
                   <NavLink 
                     to={{ pathname: '/profile' }}
                     className={profileClassName}

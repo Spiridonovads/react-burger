@@ -5,26 +5,29 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeader from '../../components/app-header/app-header';
 import { useNavigate } from "react-router-dom";
-import { getReset } from '../../services/actions/reset-password-data';
+import { getReset, DELETE_RESET } from '../../services/actions/reset-password-data';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+type Data = { password: string, code: string }
+
 const ResetPassword = () => {
 
-  const [form, setValue] = useState({ password: '', code: '' });
-  const onChange = e => {
+  const [form, setValue] = useState<Data>({ password: '', code: '' });
+  const onChange = (e: any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const onClick =() => {
     dispatch(getReset(form))
 	}
   
   const navigate = useNavigate();
-  const { data } = useSelector(state => state.reset);
+  const { data } = useSelector((state: any) => state.reset);
   if(data.success){
     navigate('/login', { replace: true })
+    dispatch({type: DELETE_RESET})
   }
 
   return ( 
@@ -45,15 +48,9 @@ const ResetPassword = () => {
 					type={'text'}
 					placeholder={'Введите код из письма'}
 					onChange={onChange}
-					//icon={'CurrencyIcon'}
 					value={form.code}
 					name={'code'}
-					//error={false}
-					//ref={inputRef}
-					//onIconClick={onIconClick}
 					errorText={'Ошибка'}
-					//size={'default'}
-					//extraClass="ml-1"
 				/>
         <Button htmlType="button" type="primary" size="large" onClick={onClick}>
           Сохранить

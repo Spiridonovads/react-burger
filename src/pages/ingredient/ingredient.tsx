@@ -6,18 +6,19 @@ import AppHeader from '../../components/app-header/app-header';
 const Ingredient = () => {
   const location = useLocation()
 
-  const { modalState } = useSelector(state => state.ingredients);
-  const {data} = useSelector(state => state.constructor);
+  const { modalState } = useSelector((state: any) => state.ingredients);
+  const {data} = useSelector((state: any) => state.constructor);
   let ingredient 
 
   if(!modalState && location.pathname.split('/')[2] && data){
-    ingredient = data.find(el => el._id === location.pathname.split('/')[2])
+    ingredient = data.find((el: {_id: string}) => el._id === location.pathname.split('/')[2])
   }
 
-    return (
+  return (
 		ingredient &&
 		<>
 		<AppHeader/>
+		<main>
 		<section className={appIngredientStyle.section}>
 			<div className={`mt-20 ${appIngredientStyle.wrapper}`}>
 			<div className={`mb-8 ${appIngredientStyle.details}`}>
@@ -45,6 +46,7 @@ const Ingredient = () => {
 				</div>
 	</div>
 	</section>
+	</main>
 	</>
     )
 } 

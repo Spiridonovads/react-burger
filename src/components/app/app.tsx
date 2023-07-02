@@ -19,15 +19,16 @@ import { err, forgot, home, ingredients, login, profile, register, reset } from 
 
 const App = () => {
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch()
 
   useEffect(() => {
       dispatch(getIngredients());
       dispatch(getConstructorIngredients());
     },[dispatch]);
 
-  const { data, loading, error } = useSelector(state => state.ingredients);
-  const { modalState } = useSelector(state => state.ingredients);
+  const { data, loading, error }= useSelector((state: any) => state.ingredients);
+
+  const { modalState} = useSelector((state: any) => state.ingredients);
   
   return ( 
      <>

@@ -1,4 +1,4 @@
-import {GET_FORGOT_REQUEST, GET_FORGOT_SUCCESS, GET_FORGOT_FAILED} from '../actions/forgot-password-data'
+import {GET_FORGOT_REQUEST, GET_FORGOT_SUCCESS, GET_FORGOT_FAILED, DELETE_FORGOT} from '../actions/forgot-password-data'
 	
 	const initialState = {
 		data: [],
@@ -19,6 +19,9 @@ import {GET_FORGOT_REQUEST, GET_FORGOT_SUCCESS, GET_FORGOT_FAILED} from '../acti
 			}
 			case GET_FORGOT_FAILED: {
 				return { ...state, error: true, loading: false };
+			}
+			case DELETE_FORGOT: {
+				return { ...state, data: [] };
 			}
 			default: {
 				return state;

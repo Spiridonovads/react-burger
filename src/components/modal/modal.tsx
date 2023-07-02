@@ -1,19 +1,19 @@
 import appModalStyle from './modal.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 import ReactDOM from 'react-dom';
-import {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import {useEffect, FC} from 'react';
 
-const modalRoot = document.getElementById("modals");
+const modalRoot: any = document.getElementById("modals");
 
-const Modal = ({onCloseButtonClick, children}) => {
+type Data = {onCloseButtonClick: any, children: any}
+
+const Modal: FC<Data> = ({onCloseButtonClick, children}) => {
 
   const ESC_KEY_CODE = 27
 
   useEffect(() => {
-    const keyDown = (event) => {
+    const keyDown = (event:any) => {
       if(event.keyCode === ESC_KEY_CODE) {
         onCloseButtonClick()
       }
@@ -30,7 +30,7 @@ const Modal = ({onCloseButtonClick, children}) => {
         <ModalOverlay onCloseButtonClick={onCloseButtonClick}/>
         <div className={`pt-10 pl-10 ${appModalStyle.modal}`}>
           <button onClick={onCloseButtonClick} className={appModalStyle.close}>
-            <CloseIcon/>
+            <CloseIcon type='primary'/>
           </button>
           {children}
         </div>
@@ -39,11 +39,6 @@ const Modal = ({onCloseButtonClick, children}) => {
           modalRoot
       );
 } 
-
-Modal.propTypes = {
-  onCloseButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.object,
-}
 
 export default Modal;
 

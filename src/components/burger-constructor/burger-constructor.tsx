@@ -9,16 +9,16 @@ const BurgerConstructor = () => {
 
   const [, dropTarget] = useDrop({
     accept: "ingredient",
-    drop(item) {
+    drop(item: any) {
       handleDrop(item)
     },
   });
 
-  const { order } = useSelector(state => state.constructor);
+  const { order } = useSelector((state: any) => state.constructor);
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch()
 
-  const handleDrop = (item) => {
+  const handleDrop = (item: {type: string}) => {
     if(item.type !== 'bun'){
       dispatch(addIngridient(item)); 
       dispatch({

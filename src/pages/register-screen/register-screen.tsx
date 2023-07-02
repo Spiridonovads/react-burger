@@ -7,25 +7,28 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeader from '../../components/app-header/app-header';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { getRegister } from '../../services/actions/register-data';
+import { getRegister, DELETE_REGISTER } from '../../services/actions/register-data';
 import { useSelector, useDispatch } from 'react-redux';
+
+type Data = { email: string, password: string, name: string }
 
 const RegisterScreen = () => {
 
-  const [form, setValue] = useState({ email: '', password: '', name: '' });
-  const onChange = e => {
+  const [form, setValue] = useState<Data>({ email: '', password: '', name: '' });
+  const onChange = (e: any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
 	const onClick =() => {
     dispatch(getRegister(form));
   }
  
   const navigate = useNavigate();
-  const { data } = useSelector(state => state.register);
+  const { data } = useSelector((state: any) => state.register);
   if(data.success){
     navigate('/login', { replace: true })
+    dispatch({type: DELETE_REGISTER})
   }
 
   return ( 
@@ -39,15 +42,9 @@ const RegisterScreen = () => {
 					type={'text'}
 					placeholder={'Имя'}
 					onChange={onChange}
-					//icon={'CurrencyIcon'}
 					value={form.name}
 					name={'name'}
-					//error={false}
-					//ref={inputRef}
-					//onIconClick={onIconClick}
 					errorText={'Ошибка'}
-					//size={'default'}
-					//extraClass="ml-1"
 				/>
         <EmailInput 
           onChange={onChange}

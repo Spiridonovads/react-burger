@@ -3,28 +3,26 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-import { useState, useMemo } from 'react';
+import { useState, FC, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrderNumber } from '../../services/actions/order-number';
 import { getCookie } from '../../utile/cookie';
 import { useNavigate } from "react-router-dom";
 
-const BurgerConstructorOrder = () => {
+type Price = { total: number};
 
-  const [modalState, setModalState] = useState();
+const BurgerConstructorOrder: FC<Price> = ({total}) => {
 
-  const {order} = useSelector(state => state.constructor);
-  const orderId = order.map(el => el._id)
+  const [modalState, setModalState] = useState<boolean>(false);
 
-  let total = 0
+  const { order } = useSelector((state: any) => state.constructor);
+
+  const orderId = useMemo<number>(() => {
+    return order.map((el: {_id: string}) => el._id)
+  }, [order]);
   
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch()
   
-  useMemo(() => {
-    order.forEach(el => {
-      total += el.price
-    });
-  })
   const auth = getCookie('accessToken')
   const navigate = useNavigate();
 
@@ -45,7 +43,7 @@ const BurgerConstructorOrder = () => {
         <div className={`mr-4 ${appBurgerConstructorStyle.price}`}>
           <div className={appBurgerConstructorStyle.price__title}>
             <p>{total}</p>
-            <CurrencyIcon/>
+            <CurrencyIcon type="primary" />
           </div>
           <Button htmlType="button" type="primary" size="medium" onClick={openModal}>
             Оформить заказ

@@ -8,7 +8,7 @@ export const getIngredientsData = () => {
 	return res
 }
 
-export const getForgotPasswordData = (form) => {
+export const getForgotPasswordData = (form: {email: string}) => {
 	const res = fetch(`${BASE_URL}/password-reset`, {
 		method: 'POST',
 		headers: {
@@ -22,7 +22,7 @@ export const getForgotPasswordData = (form) => {
 	return res
 }
 
-export const getResetPasswordData = (form) => {
+export const getResetPasswordData = (form: {password: string; code: string}) => {
 	const res = fetch(`${BASE_URL}/password-reset/reset`, {
 		method: 'POST',
 		headers: {
@@ -37,7 +37,7 @@ export const getResetPasswordData = (form) => {
 	return res
 }
 
-export const getRegistrationData = (form) => {
+export const getRegistrationData = (form: {email: string; password: string; name: string}) => {
 	const res = fetch(`${BASE_URL}/auth/register`, {
 		method: 'POST',
 		headers: {
@@ -53,7 +53,7 @@ export const getRegistrationData = (form) => {
 	return res
 }
 
-export const getOrderNumberData = (orderProducts) => {
+export const getOrderNumberData = (orderProducts: []) => {
 	const res = fetch(`${BASE_URL}/orders`, {
 		method: 'POST',
 		headers: {
@@ -67,7 +67,7 @@ export const getOrderNumberData = (orderProducts) => {
 	return res
 }
 
-export const getLoginData = (form) => {
+export const getLoginData = (form: {email: string; password: string}) => {
 	const res = fetch(`${BASE_URL}/auth/login`, {
 		method: 'POST',
 		headers: {
@@ -111,8 +111,7 @@ export const getPersonData = () => {
 	return res
 }
 
-export const getChangePersonData = (form) => {
-	console.log(form)
+export const getChangePersonData = (form: {name: string}) => {
 	const res = fetch(`${BASE_URL}/auth/user`, {
 		method: 'PATCH',
 		headers: {

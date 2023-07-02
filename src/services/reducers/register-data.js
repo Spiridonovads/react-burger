@@ -1,4 +1,4 @@
-import {GET_REGISTER_REQUEST, GET_REGISTER_SUCCESS, GET_REGISTER_FAILED} from '../actions/register-data'
+import {GET_REGISTER_REQUEST, GET_REGISTER_SUCCESS, GET_REGISTER_FAILED, DELETE_REGISTER} from '../actions/register-data'
 	
 	const initialState = {
 		data: [],
@@ -20,6 +20,9 @@ import {GET_REGISTER_REQUEST, GET_REGISTER_SUCCESS, GET_REGISTER_FAILED} from '.
 			}
 			case GET_REGISTER_FAILED: {
 				return { ...state, error: true, loading: false };
+			}
+			case DELETE_REGISTER: {
+				return { ...state, DATA: []};
 			}
 			default: {
 				return state;
