@@ -1,6 +1,6 @@
 import loginScreenStyles from './login-screen.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
@@ -19,10 +19,12 @@ const LoginScreen = () => {
   };
 
   const dispatch: any = useDispatch();
-  const onClick =() => {
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(getLogin(form));
-  }
-  
+  };
+
   const { data } = useSelector((state: any) => state.login);
   const navigate = useNavigate();
 
@@ -34,22 +36,23 @@ const LoginScreen = () => {
   return ( 
     <main>
     <section className={loginScreenStyles.section}>
-      <form className={loginScreenStyles.form}>
+      <form onSubmit={handleFormSubmit} className={loginScreenStyles.form}>
         <h2 className={loginScreenStyles.title}>Вход</h2>
         <EmailInput 
           onChange={onChange}
           value={form.email}
           name={'email'}
           placeholder="Логин"
-          isIcon={false}/>
+          isIcon={false}
+          />
         <PasswordInput
           onChange={onChange}
           value={form.password}
           name={'password'}
           icon="ShowIcon"
           placeholder="Пароль"
-        />
-        <Button htmlType="button" type="primary" size="large" onClick={onClick}>
+         />
+        <Button htmlType="submit" type="primary" size="large">
           Войти
         </Button>
         <div className={`mt-15 ${loginScreenStyles.text__block}`}>

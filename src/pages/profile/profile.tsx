@@ -1,6 +1,6 @@
 import profileScreenStyles from './profile.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
@@ -35,9 +35,10 @@ const Profile = () => {
 	},[]);
 	const { data } = useSelector((state: any) => state.person);
 
-	const onClick =() => {
-		dispatch(getChangePerson(form))
-	}
+	const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(getChangePerson(form));
+  };
 
   return ( 
 		<main>
@@ -59,7 +60,7 @@ const Profile = () => {
 					В этом разделе вы можете изменить свои персональные данные</li>
 				</ul>
 				</div>
-				<form className={profileScreenStyles.form}>
+				<form onSubmit={handleFormSubmit} className={profileScreenStyles.form}>
 					<Input
 						placeholder={data.success ? data.user.name : 'Имя'}
 						onChange={onChange}
@@ -81,7 +82,7 @@ const Profile = () => {
 						icon={'EditIcon'}
 						placeholder={'***********'}
 					/>
-					<Button htmlType="button" type="primary" size="large" onClick={onClick}>
+					<Button htmlType="submit" type="primary" size="large">
           Сохранить
         </Button>
       	</form>

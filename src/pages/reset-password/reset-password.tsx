@@ -1,5 +1,5 @@
 import resetPasswordScreenStyles from './reset-password.module.css'
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -19,9 +19,10 @@ const ResetPassword = () => {
   };
 
   const dispatch: any = useDispatch();
-  const onClick =() => {
-    dispatch(getReset(form))
-	}
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(getReset(form));
+  };
   
   const navigate = useNavigate();
   const { data } = useSelector((state: any) => state.reset);
@@ -34,7 +35,7 @@ const ResetPassword = () => {
   return ( 
     <main>
     <section className={resetPasswordScreenStyles.section}>
-      <form className={resetPasswordScreenStyles.form}>
+      <form onSubmit={handleFormSubmit} className={resetPasswordScreenStyles.form}>
         <h2 className={resetPasswordScreenStyles.title}>Восстановление пароля</h2>
 				<PasswordInput
           onChange={onChange}
@@ -51,7 +52,7 @@ const ResetPassword = () => {
 					name={'code'}
 					errorText={'Ошибка'}
 				/>
-        <Button htmlType="button" type="primary" size="large" onClick={onClick}>
+        <Button htmlType="submit" type="primary" size="large">
           Сохранить
         </Button>
         <p className={`mt-15 ${resetPasswordScreenStyles.text}`}>Вспомнили пароль? 

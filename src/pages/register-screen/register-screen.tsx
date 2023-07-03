@@ -1,6 +1,6 @@
 import registerScreenStyles from './register-screen.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -19,9 +19,10 @@ const RegisterScreen = () => {
   };
 
   const dispatch: any = useDispatch();
-	const onClick =() => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(getRegister(form));
-  }
+  };
  
   const navigate = useNavigate();
   const { data } = useSelector((state: any) => state.register);
@@ -33,7 +34,7 @@ const RegisterScreen = () => {
   return ( 
     <main>
     <section className={registerScreenStyles.section}>
-      <form className={registerScreenStyles.form}>
+      <form onSubmit={handleFormSubmit} className={registerScreenStyles.form}>
         <h2 className={registerScreenStyles.title}>Регистрация</h2>
 				<Input
 					type={'text'}
@@ -56,7 +57,7 @@ const RegisterScreen = () => {
           icon="ShowIcon"
           placeholder="Пароль"
         />
-        <Button htmlType="button" type="primary" size="large" onClick={onClick}>
+        <Button htmlType="submit" type="primary" size="large">
           Зарегистрироваться
         </Button>
         <p className={`mt-15 ${registerScreenStyles.text}`}>Уже зарегистрированы?

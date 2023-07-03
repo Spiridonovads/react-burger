@@ -1,6 +1,6 @@
 import forgotPasswordScreenStyles from './forgot-password.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, ChangeEvent, FormEvent} from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { getForgot } from '../../services/actions/forgot-password-data';
@@ -11,19 +11,16 @@ type Data = { email: string }
 
 const ForgotPassword = () => {
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   const [form, setValue] = useState<Data>({ email: '' });
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, email: e.target.value });
   };
 
   const dispatch: any = useDispatch();
-  const onClick = () => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(getForgot(form));
-  }
+  };
 
   const { data } = useSelector((state: any) => state.forgot);
   const navigate = useNavigate();
@@ -42,7 +39,7 @@ const ForgotPassword = () => {
           name={'email'}
           placeholder="Укажите e-mail"
           isIcon={false}/>
-          <Button htmlType="button" onClick={onClick} type="primary" size="large">Восстановить</Button>
+          <Button htmlType="submit" type="primary" size="large">Восстановить</Button>
         <p className={`mt-15 ${forgotPasswordScreenStyles.text}`}>Вспомнили пароль? 
           <Link
             to={{ pathname: '/login' }}
