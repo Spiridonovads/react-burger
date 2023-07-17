@@ -21,7 +21,6 @@ const FeedOrderProducts: FC<Data> = ({children}) => {
 	const dispatch = useDispatch()
 
 	const openModal = () => {
-		console.log('hi')
     dispatch(getFeedOrder(children))
     dispatch(setFeedModalState(true))
   }

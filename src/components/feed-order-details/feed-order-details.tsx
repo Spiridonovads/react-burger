@@ -3,7 +3,6 @@ import { useSelector } from '../../services/types/types';
 import { FC, useMemo } from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import clsx from 'clsx';
-import { object } from 'prop-types';
 
 type Data = { route?: object}
 
@@ -19,17 +18,6 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
     orderData = order
   }
 
-  const imageFilter = useMemo(() => {
-		return data.reduce((acc: any, el: any) => { 
-			orderData.ingredients.map((element:any) => {
-				if(el._id === element){
-					acc.push(el)
-				}
-			}) 
-			return acc
-		},[])
-	}, [orderData])
-
   const qty = useMemo(() => {
 		return orderData.ingredients.reduce((acc: any, el: any) => { 
 			acc[el] = (acc[el] || 0) + 1
@@ -43,10 +31,6 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
 				if(el._id === element){
 					acc += el.price
 				}
-        for( const key in qty) {
-          if(el == key)
-          console.log(key)
-        }
 			}) 
      
 			return acc
@@ -58,19 +42,11 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
         for( const key in qty) {
           if(el._id == key){   
             acc.push({...el, qty: qty[key]})
-          }
-          
+          }      
         }
-     console.log(acc)
 			return acc
 		}, [])
 	}, [orderData])
-
-  
-
- 
-
-
 
   const className = clsx(
     `mb-15 ${styles.created}`,
