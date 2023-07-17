@@ -1,13 +1,13 @@
 import appIngredientsDetailsStyle from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/types/types';
 import { FC } from 'react'
 
 type Data = { ingredientRoute?: object}
 
 const IngredientDetails: FC<Data> = ({ingredientRoute}) => {
 
-  let ingredient
-  let data = useSelector((state: any) => state.ingredients.ingredient)
+  let ingredient: any
+  let data = useSelector(state => state.ingredients.ingredient)
 
   if(ingredientRoute) {
     ingredient = ingredientRoute

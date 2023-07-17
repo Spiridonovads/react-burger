@@ -1,6 +1,5 @@
 import appOrderDetailsStyle from './order-details.module.css'
-import { useSelector } from 'react-redux';
-import { store } from '../..';
+import { useSelector } from '../../services/types/types';
 
 const OrderDetails = () => {
   

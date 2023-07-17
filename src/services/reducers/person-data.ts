@@ -1,15 +1,24 @@
 import {GET_PERSON_REQUEST, GET_PERSON_SUCCESS, GET_PERSON_FAILED, GET_CHANGE_PERSON_REQUEST, GET_CHANGE_PERSON_SUCCESS, 
 GET_CHANGE_PERSON_FAILED, DELETE_PERSON} from '../actions/person-data'
+import { TPersonActions } from '../actions/person-data';
+
+	type TState = {
+		data: object,
+		error: boolean,
+		loading: boolean,
+		changeError: boolean,
+		changeLoading: boolean
+	}
 
 	const initialState = {
-		data: [],
+		data: {},
 		error: false,
 		loading: false,
 		changeError: false,
 		changeLoading: false
 	};
 	
-	export const personReducer = (state = initialState, action) => {
+	export const personReducer = (state = initialState, action:TPersonActions):TState => {
 		switch (action.type) {
 			case GET_PERSON_REQUEST: {
 				return {
@@ -37,7 +46,7 @@ GET_CHANGE_PERSON_FAILED, DELETE_PERSON} from '../actions/person-data'
 			}
 			case DELETE_PERSON: 
 			{
-				return { ...state, data: [] };
+				return { ...state, data: {} };
 			}
 			default: {
 				return state;

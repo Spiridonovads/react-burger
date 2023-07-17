@@ -2,7 +2,7 @@
 	max-width: 1290px;
 	margin: 0 auto;
 	padding: 0 15px;
-	padding-top: 120px;
+	padding-top: 40px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 }
@@ -37,8 +37,16 @@
 	color: white;
 }
 
-
 .other__link {
 	color: #8585AD;
 	max-width: 320px;
+}
+
+.block {
+	grid-column: span 2;
+}
+
+.scroll {
+	overflow-y: scroll;
+	max-height: 868px;
 }

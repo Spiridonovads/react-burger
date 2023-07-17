@@ -6,8 +6,8 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useNavigate } from "react-router-dom";
 import { getReset, DELETE_RESET } from '../../services/actions/reset-password-data';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { DELETE_FORGOT } from '../../services/actions/forgot-password-data';
+import { useSelector, useDispatch } from '../../services/types/types';
+import { deleteForgot } from '../../services/actions/forgot-password-data';
 
 type Data = { password: string, code: string }
 
@@ -18,7 +18,7 @@ const ResetPassword = () => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getReset(form));
@@ -29,7 +29,7 @@ const ResetPassword = () => {
   if(data.success){
     navigate('/login', { replace: true })
     dispatch({type: DELETE_RESET})
-    dispatch({type: DELETE_FORGOT})
+    dispatch(deleteForgot())
   }
 
   return ( 

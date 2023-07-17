@@ -9,8 +9,7 @@ const modalRoot: any = document.getElementById("modals");
 type Data = {onCloseButtonClick: ()=> void, children: ReactNode}
 
 const Modal: FC<Data> = ({onCloseButtonClick, children}) => {
-
-  console.log(children)
+  
   const ESC_KEY_CODE = 27
 
   useEffect(() => {
@@ -29,7 +28,7 @@ const Modal: FC<Data> = ({onCloseButtonClick, children}) => {
     (
       <>
         <ModalOverlay onCloseButtonClick={onCloseButtonClick}/>
-        <div className={`pt-10 pl-10 ${appModalStyle.modal}`}>
+        <div className={`pt-10 pl-10 pr-10 ${appModalStyle.modal}`}>
           <button onClick={onCloseButtonClick} className={appModalStyle.close}>
             <CloseIcon type='primary'/>
           </button>

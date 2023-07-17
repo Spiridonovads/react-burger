@@ -2,18 +2,18 @@ import appBurgerConstructorStyle from './burger-constructor.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Reorder } from 'framer-motion';
-import { useDispatch } from 'react-redux';
-import { DELETE_ITEM } from '../../services/actions/constructor-data';
+import { useDispatch } from '../../services/types/types';
+import { deleteItem } from '../../services/actions/constructor-data';
 import { FC } from 'react';
 
-type Data = { data: {_id: string; uniqueId: number; name: string; price: number; image: string} };
+type Data = { data: {_id: string; uniqueId: string; name: string; price: number; image: string} };
 
 const BurgerConstructorScrollElement: FC<Data> = ({data}) => {
   
-  const dispatch: any = useDispatch()
+  const dispatch = useDispatch()
 
   const handleClose = () => {
-    dispatch({type: DELETE_ITEM, id: data._id, index: data.uniqueId})    
+    dispatch(deleteItem(data))    
   }
 
   return (

@@ -6,8 +6,8 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { getRegister, DELETE_REGISTER } from '../../services/actions/register-data';
-import { useSelector, useDispatch } from 'react-redux';
+import { getRegister, deleteRegister } from '../../services/actions/register-data';
+import { useSelector, useDispatch } from '../../services/types/types';
 
 type Data = { email: string, password: string, name: string }
 
@@ -18,7 +18,7 @@ const RegisterScreen = () => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getRegister(form));
@@ -28,7 +28,7 @@ const RegisterScreen = () => {
   const { data } = useSelector((state: any) => state.register);
   if(data.success){
     navigate('/login', { replace: true })
-    dispatch({type: DELETE_REGISTER})
+    dispatch(deleteRegister())
   }
 
   return ( 

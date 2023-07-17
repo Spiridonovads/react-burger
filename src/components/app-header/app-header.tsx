@@ -16,7 +16,7 @@ const AppHeader = () => {
   );
   const listClassName = clsx(
     `pl-2 ${appHeaderStyles.button}`,
-    {[ `pl-2 ${appHeaderStyles.active__button}`]: location.pathname === '*' },
+    {[ `pl-2 ${appHeaderStyles.active__button}`]: location.pathname === '/feed' },
   );
   const profileClassName = clsx(
     `pl-2 ${appHeaderStyles.button}`,
@@ -38,9 +38,9 @@ const AppHeader = () => {
                 </NavLink>
                 </li>
                 <li className={`pr-5 pt-4 pb-4 mr-2 ${appHeaderStyles.item}`}>
-                {location.pathname ==='*' ? <ListIcon type="primary"/> : <ListIcon type="secondary"/>}
+                {location.pathname ==='/feed' ? <ListIcon type="primary"/> : <ListIcon type="secondary"/>}
                 <NavLink 
-                  to={{ pathname: '*' }}
+                  to={{ pathname: '/feed' }}
                   className={listClassName}
                   >
                   Лента заказов

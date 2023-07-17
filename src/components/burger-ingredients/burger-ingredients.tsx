@@ -4,20 +4,20 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import BurgerIngredientsProduct from './burger-ingredients-products';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/types/types';
 import { useNavigate } from 'react-router-dom';
-import { SET_MODAL_STATE } from '../../services/actions/ingredients-data';
+import { setModalState } from '../../services/actions/ingredients-data';
 
 const BurgerIngredients = () => { 
 
   const [isIntersecting, setIsIntersecting] = useState<string>('');
-  const bunsRef = useRef<any>(null);
-  const sauceRef = useRef<any>(null);
-  const fillingsRef = useRef<any>(null);
+  const bunsRef = useRef<HTMLDivElement>(null);
+  const sauceRef = useRef<HTMLDivElement>(null);
+  const fillingsRef = useRef<HTMLDivElement>(null);
   let currentTab = isIntersecting;
 
-  const dispatch: any = useDispatch()
-  const { data, modalState } = useSelector((state: any) => state.ingredients);
+  const dispatch = useDispatch()
+  const { data, modalState } = useSelector(state => state.ingredients);
   
   useEffect(() => {
     const bunsObserver = new IntersectionObserver(
@@ -28,7 +28,10 @@ const BurgerIngredients = () => {
       },
     {root: document.getElementById('root'), rootMargin: "-500px" },
     );
-    bunsObserver.observe(bunsRef.current);
+    if (null !== bunsRef.current) {
+      bunsObserver.observe(bunsRef.current);
+    }
+    
 
    const sauceObserver = new IntersectionObserver(
       ([entry]) => {
@@ -38,8 +41,10 @@ const BurgerIngredients = () => {
       },
     {root: document.getElementById('root'), rootMargin: "-500px" },
     );
-    sauceObserver.observe(sauceRef.current);
-
+    if (null !== sauceRef.current) {
+      sauceObserver.observe(sauceRef.current);
+    }
+    
     const fillingsObserver = new IntersectionObserver(
       ([entry]) => {
         if(entry.isIntersecting) {
@@ -48,8 +53,10 @@ const BurgerIngredients = () => {
       },
     {root: document.getElementById('root'), rootMargin: "-500px" },
     );
-    fillingsObserver.observe(fillingsRef.current);
-    
+    if (null !== fillingsRef.current) {
+      fillingsObserver.observe(fillingsRef.current);
+    }
+
     return () => {
       bunsObserver.disconnect(); 
       sauceObserver.disconnect(); 
@@ -61,27 +68,27 @@ const BurgerIngredients = () => {
 
   const closeModal = (): void => {
     navigate('/', { replace: true })
-    dispatch({type: SET_MODAL_STATE, bool: false})
+    dispatch(setModalState(false))
   }
 
-  const burgerBuns = useMemo(() => {
-    return data.filter((el: {type: string}) => el.type === 'bun')
+  const burgerBuns = useMemo<object[]>(() => {
+    return data.filter((el: any) => el.type === 'bun')
   }, [data]
   );
 
-  const burgerSauce = useMemo(() => {
-    return data.filter((el: {type: string}) => el.type === 'sauce')
+  const burgerSauce = useMemo<object[]>(() => {
+    return data.filter((el: any) => el.type === 'sauce')
   }, [data]
   );
 
-  const burgerFillings = useMemo(() => {
-    return data.filter((el: {type: string}) => el.type === 'main')
+  const burgerFillings = useMemo<object[]>(() => {
+    return data.filter((el: any) => el.type === 'main')
   }, [data]
   );
   
       return (
           <section className={appBurgerIngredientsStyle.ingredients__section}>
-            <h1  className={`mt-10 mb-5 ${appBurgerIngredientsStyle.main__title}`}>Соберите бургер</h1>
+            <h1 className={`mt-10 mb-5 ${appBurgerIngredientsStyle.main__title}`}>Соберите бургер</h1>
             <Tabs currentTab={currentTab} />
             <div className={`mt-10 ${appBurgerIngredientsStyle.scroll}`}> 
             <div  id="one" ref={bunsRef}  >

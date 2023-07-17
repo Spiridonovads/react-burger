@@ -1,0 +1,50 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+	max-width: 1290px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.main__title {
+	font-size: 36px;
+	font-weight: 700;
+	line-height: 40px;
+}
+
+.section {
+	max-height: 912px;
+	max-width: 600px;
+}
+
+.flex {
+	display: flex;
+	column-gap: 36px;
+}
+
+.title {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	min-width: 272px;
+	max-height: 412px;
+}
+
+.li {
+	font-size: 28px;
+	font-family: 'Iceland', cursive;
+	color: #00CCCC;
+}
+
+.neon {
+	font-family: 'Iceland';
+	font-size: 144px;
+	line-height: 120px;
+	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+}

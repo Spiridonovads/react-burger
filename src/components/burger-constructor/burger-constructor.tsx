@@ -1,34 +1,29 @@
 import appBurgerConstructorStyle from './burger-constructor.module.css';
 import BurgerConstructorElements from './burger-constructor-elements';
 import { useDrop } from "react-dnd";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/types/types';
 import { addIngridient } from '../../services/actions/constructor-data';
-import { ADD_ITEM_PROPERTIES, BUN } from '../../services/actions/constructor-data';
+import { addItemProperties, Bun } from '../../services/actions/constructor-data';
 
 const BurgerConstructor = () => {
 
   const [, dropTarget] = useDrop({
     accept: "ingredient",
-    drop(item: any) {
+    drop(item: {type: string}) {
       handleDrop(item)
     },
   });
 
-  const { order } = useSelector((state: any) => state.constructor);
+  const { order } = useSelector(state => state.constructor);
 
-  const dispatch: any = useDispatch()
+  const dispatch = useDispatch()
 
   const handleDrop = (item: {type: string}) => {
     if(item.type !== 'bun'){
       dispatch(addIngridient(item)); 
-      dispatch({
-        type: ADD_ITEM_PROPERTIES
-      });  
+      dispatch(addItemProperties());  
     } else {
-      dispatch({
-        type: BUN, 
-        ingredient: item
-      });  
+      dispatch(Bun(item));  
     }
 };
   const isVisible = order ? `${appBurgerConstructorStyle.invisible}` :  `${appBurgerConstructorStyle.visible}`

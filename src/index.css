@@ -149,6 +149,15 @@ body {
   background-color: #131316;
 }
 
+.feed-order_scroll__SZCiS::-webkit-scrollbar-button:end:increment{
+  height: 52px;
+  background-color: #131316;
+}
+.feed-order_scroll__SZCiS::-webkit-scrollbar-thumb {
+  height: 600px;
+}
+
+
 .app-burger-constructor_scroll__KS6iB::-webkit-scrollbar-thumb {
   height: 292px;
 }
@@ -162,6 +171,14 @@ body {
   height: 22px;
 }
 
+.profile_scroll__Og9PJ::-webkit-scrollbar-button:end:increment{
+  height: 52px;
+  background-color: #131316;
+}
+
+.profile_scroll__Og9PJ::-webkit-scrollbar-thumb {
+  height: 600px;
+}
 
 
 

@@ -7,7 +7,6 @@ type Data = { currentTab: string};
 const Tabs: FC<Data> = ({currentTab}) => {
   
   const [current, setCurrent] = useState<string>('one');
-  console.log(currentTab)
 
   useEffect(() => {
     if(currentTab == 'one'){

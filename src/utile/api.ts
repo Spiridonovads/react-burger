@@ -53,7 +53,7 @@ export const getRegistrationData = (form: {email: string; password: string; name
 	return res
 }
 
-export const getOrderNumberData = (orderProducts: []) => {
+export const getOrderNumberData = (orderProducts: object[]) => {
 	const res = fetch(`${BASE_URL}/orders`, {
 		method: 'POST',
 		headers: {
@@ -141,3 +141,9 @@ export const getUpdateTokenData = () => {
 
 	return res
 }
+
+export const getFeedData = () => {
+	const res = fetch(`${BASE_URL}/orders/all`).then((res) => checkResponse(res))
+	return res
+}
+

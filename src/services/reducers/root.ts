@@ -8,6 +8,8 @@ import { loginReducer } from './login-data';
 import { logoutReducer } from './logout-data';
 import { personReducer } from './person-data';
 import { combineReducers } from 'redux';
+import { feedReducer } from './feed-data';
+import { wsReducer } from './socket-data';
 
 export const rootReducer = combineReducers({
   ingredients: ingredietsReducer,
@@ -19,4 +21,6 @@ export const rootReducer = combineReducers({
   login: loginReducer,
   logout: logoutReducer,
   person: personReducer,
+  feed: feedReducer,
+  socket: wsReducer
 });

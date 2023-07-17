@@ -5,7 +5,7 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { getForgot } from '../../services/actions/forgot-password-data';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/types/types';
 
 type Data = { email: string }
 
@@ -16,13 +16,14 @@ const ForgotPassword = () => {
     setValue({ ...form, email: e.target.value });
   };
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getForgot(form));
   };
 
   const { data } = useSelector((state: any) => state.forgot);
+  
   const navigate = useNavigate();
   if(data.success){
     navigate('/reset-password', { replace: true })

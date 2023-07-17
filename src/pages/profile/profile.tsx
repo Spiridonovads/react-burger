@@ -3,11 +3,17 @@ import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-comp
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { getPerson, getChangePerson } from '../../services/actions/person-data';
-import { DELETE_LOGOUT, getLogout } from '../../services/actions/logout-data';
+import { useSelector, useDispatch } from '../../services/types/types';
+import { getPerson, getChangePerson, deletePerson } from '../../services/actions/person-data';
+import { deleteLogout, getLogout } from '../../services/actions/logout-data';
+import clsx from 'clsx';
+import FeedOrderProducts from '../../components/feed-order/feed-order-products';
+import { WS_CONNECTION_START } from '../../services/actions/socket-data';
+import { setFeedModalState } from '../../services/actions/feed-data';
+import Modal from '../../components/modal/modal';
+import FeedOrderDetails from '../../components/feed-order-details/feed-order-details';
 
 type Data = { email: string, password: string, name: string }
 
@@ -18,7 +24,7 @@ const Profile = () => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-	const dispatch: any = useDispatch();
+	const dispatch = useDispatch();
 	const logoutClick = () => {
 		dispatch(getLogout());
   }
@@ -27,40 +33,66 @@ const Profile = () => {
 
 	if (logoutData.success) {
 		navigate('/login', { replace: false })
-		dispatch({type: DELETE_LOGOUT})
+		dispatch(deleteLogout())
+		dispatch(deletePerson())
 		} 
 
 	useEffect(() => {
 			dispatch(getPerson());
+			dispatch({ type: WS_CONNECTION_START })
 	},[]);
+
 	const { data } = useSelector((state: any) => state.person);
+	const orders = useSelector((state: any) => state.socket.data);
 
 	const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getChangePerson(form));
   };
+	const location = useLocation()
 
+	const profileActive = clsx(
+    ` ${profileScreenStyles.link}`,
+    {[ `${profileScreenStyles.active__link}`]: location.pathname === '/profile' },
+  );
+	const orderActive = clsx(
+    ` ${profileScreenStyles.link}`,
+    {[ ` ${profileScreenStyles.active__link}`]: location.pathname === '/profile/orders' },
+  );
+
+	const closeModal = (): void => {
+    navigate('/profile/orders', { replace: true })
+    dispatch(setFeedModalState(false))
+  }
+
+	const { modalState } = useSelector(state => state.feed);
   return ( 
+		<>
 		<main>
     <section className={profileScreenStyles.section}>
 				<div>
-				<ul>
+				<ul className='mt-20'>
 					<li className={profileScreenStyles.list__item}>
-						<Link to={{ pathname: '/profile' }}
-							className={profileScreenStyles.active__link}>Профиль</Link>
-					</li>
-					<li  className={profileScreenStyles.list__item}>
-						<Link	to={{ pathname: '/profile' }}
-							className={profileScreenStyles.link}>История заказов</Link>
+						<NavLink 
+              to={{ pathname: '/profile' }}
+              className={profileActive}
+            > Профиль </NavLink>
 					</li>
 					<li className={profileScreenStyles.list__item}>
-						<Link to={{ pathname: '/profile' }} className={profileScreenStyles.link} onClick={logoutClick}>Выход</Link>
+						<NavLink 
+              to={{ pathname: '/profile/orders' }}
+              className={orderActive}
+            > История заказов </NavLink>
+					</li>
+					<li className={profileScreenStyles.list__item}>
+						<NavLink to={{ pathname: '/profile' }} className={profileScreenStyles.link} onClick={logoutClick}>Выход</NavLink>
 					</li>
 					<li className={` mt-20 ${profileScreenStyles.other__link}`}>
 					В этом разделе вы можете изменить свои персональные данные</li>
 				</ul>
 				</div>
-				<form onSubmit={handleFormSubmit} className={profileScreenStyles.form}>
+				{ location.pathname === '/profile' &&
+				<form onSubmit={handleFormSubmit} className={`mt-20 ${profileScreenStyles.form}`}>
 					<Input
 						placeholder={data.success ? data.user.name : 'Имя'}
 						onChange={onChange}
@@ -73,21 +105,36 @@ const Profile = () => {
 						value={form.email}
 						name={'email'}
 						placeholder={data.success ? data.user.email : 'Логин'}
-						//icon={'EditIcon'}
 						/>
 					<PasswordInput
 						onChange={onChange}
 						value={form.password}
 						name={'password'}
-						icon={'EditIcon'}
 						placeholder={'***********'}
 					/>
 					<Button htmlType="submit" type="primary" size="large">
           Сохранить
         </Button>
-      	</form>
+      	</form> 
+				}
+				{ location.pathname !== '/profile' &&
+				<div className={profileScreenStyles.block}>
+					<div className={`pr-2 ${profileScreenStyles.scroll}`}>
+					{orders.orders?.map((el:any) => {
+						return(
+								<FeedOrderProducts>{el}</FeedOrderProducts>
+						)
+					})}
+					</div>
+				</div>
+					
+				}
     </section>
 		</main>
+		{modalState && 
+			<Modal onCloseButtonClick={closeModal}><FeedOrderDetails/></Modal>
+			 } 
+		</>	 
     )
 }
 

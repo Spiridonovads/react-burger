@@ -1,8 +1,16 @@
 import { DELETE_ITEM, ADD_ITEM, ADD_ITEM_PROPERTIES, CONSTRUCTOR_ORDER_SORT, GET_CONSTRUCTOR_INGREDIENTS_REQUEST, 
 GET_CONSTRUCTOR_INGREDIENTS_SUCCESS, GET_CONSTRUCTOR_INGREDIENTS_FAILED, BUN, DELETE_CONSTRUCTOR } from '../actions/constructor-data';
+import { TConstructorActions } from '../actions/constructor-data';
 
-
-const initialState = {
+export type TState = {
+  data: object[] ,
+  error: boolean,
+  loading: boolean,
+  order: object[],
+  sortOrder: object[],
+  dragIngredient: any
+}
+const initialState: TState = {
   data: [],
   error: false,
   loading: false,
@@ -13,7 +21,7 @@ const initialState = {
 
 let bunCheking =false
 
-export const constructorReducer = (state = initialState, action) => {
+export const constructorReducer = (state = initialState, action: TConstructorActions): TState => {
   switch (action.type) {
     case GET_CONSTRUCTOR_INGREDIENTS_REQUEST: {
       return {
@@ -22,7 +30,7 @@ export const constructorReducer = (state = initialState, action) => {
       };
     }
     case GET_CONSTRUCTOR_INGREDIENTS_SUCCESS: {
-      return { ...state, error: false, data: action.data.map(el => {
+      return { ...state, error: false, data: action.data.map((el: any)=> {
         el.qty = 0
         return el
       }), loading: false };
@@ -40,13 +48,13 @@ export const constructorReducer = (state = initialState, action) => {
       return {
        ...state,
        dragIngredient: action.payload,
-       order: state.order ? [...state.order, action.payload] : [action.payload]
+       order: state.order ? [...state.sortOrder, action.payload] : [action.payload]
       }
     };
     case ADD_ITEM_PROPERTIES: {
         return {
          ...state,
-          data: [...state.data].map(el => {
+          data: [...state.data].map((el: any) => {
             if(el.name === state.dragIngredient.name) {
               ++el.qty
             }
@@ -57,17 +65,17 @@ export const constructorReducer = (state = initialState, action) => {
     case DELETE_ITEM: {     
       return {
         ...state,
-        data: [...state.data].map(el =>
+        data: [...state.data].map((el:any) =>
           el._id === action.id ? { ...el, qty: --el.qty } : el
         ),
-        order: [...state.sortOrder].filter(el => el.uniqueId !== action.index)
+        order: [...state.sortOrder].filter((el: any) => el.uniqueId !== action.index)
       };
     }
     case DELETE_CONSTRUCTOR: {     
       return {
         ...state, 
         order: [],
-        data: [...state.data].map(el =>
+        data: [...state.data].map((el: any) =>
           el.qty > 0 ? { ...el, qty: 0 } : el
         )
       };
@@ -75,7 +83,7 @@ export const constructorReducer = (state = initialState, action) => {
     case BUN: {
       return {
        ...state,
-       data: [...state.data].map(el => {
+       data: [...state.data].map((el: any) => {
         if(el.name === action.ingredient.name){
           el.qty = 2
         } else if(el.type === 'bun'){
@@ -83,7 +91,7 @@ export const constructorReducer = (state = initialState, action) => {
         }
         return el
       }),
-        order: state.order ? [...state.order].reduce((acc, el) => { 
+        order: state.order && state.order?.length > 0 ? [...state.sortOrder].reduce((acc: any, el: any) => { 
           if(el.type !== 'bun'){
             acc.push(el)
           } else {

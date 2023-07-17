@@ -1,12 +1,19 @@
 import {GET_LOGIN_REQUEST, GET_LOGIN_SUCCESS, GET_LOGIN_FAILED, DELETE_LOGIN} from '../actions/login-data'
-	
+import { TLoginActions } from '../actions/login-data';
+
+	type TState = {
+		data: object,
+		error: boolean,
+		loading: boolean
+	}
+
 	const initialState = {
-		data: [],
+		data: {},
 		error: false,
 		loading: false
 	};
 	
-	export const loginReducer = (state = initialState, action) => {
+	export const loginReducer = (state = initialState, action: TLoginActions): TState => {
 		switch (action.type) {
 			case GET_LOGIN_REQUEST: {
 				return {

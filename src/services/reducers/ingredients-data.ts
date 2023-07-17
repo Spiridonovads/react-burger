@@ -1,15 +1,23 @@
-import {GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED, GET_INGREDIENT_INFO, SET_MODAL_STATE, 
-SET_INGREDIENT_INFO} from '../actions/ingredients-data';
+import {GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED, GET_INGREDIENT_INFO, SET_MODAL_STATE} from '../actions/ingredients-data';
+import { TIngredientsActions } from '../actions/ingredients-data';
 
-const initialState = {
+type TState = {
+  data: object[],
+  error: boolean,
+  loading: boolean,
+  ingredient: object,
+  modalState: boolean,
+}
+
+const initialState: TState = {
 	data: [],
   error: false,
   loading: false,
   ingredient: {},
-  modalState: null,
+  modalState: false,
 };
 
-export const ingredietsReducer = (state = initialState, action) => {
+export const ingredietsReducer = (state = initialState, action: TIngredientsActions):TState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

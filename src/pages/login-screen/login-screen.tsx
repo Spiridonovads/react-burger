@@ -1,13 +1,13 @@
 import loginScreenStyles from './login-screen.module.css'
 import { EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/types/types';
 import { getLogin } from '../../services/actions/login-data';
-import { DELETE_LOGIN } from '../../services/actions/login-data';
+import { deleteLogin } from '../../services/actions/login-data';
 
 type Data = { email: string, password: string }
 
@@ -18,7 +18,7 @@ const LoginScreen = () => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const LoginScreen = () => {
 
   if (data.success) {
     navigate('/', { replace: true })
-    dispatch({type: DELETE_LOGIN})
+    dispatch(deleteLogin())
   }
   
   return ( 

@@ -1,12 +1,19 @@
 import {GET_FORGOT_REQUEST, GET_FORGOT_SUCCESS, GET_FORGOT_FAILED, DELETE_FORGOT} from '../actions/forgot-password-data'
-	
-	const initialState = {
-		data: [],
+import { TForgotPasswordActions } from '../actions/forgot-password-data';
+
+	export type TState ={
+		data: object,
+		error: boolean,
+		loading: boolean
+	}
+
+	const initialState: TState = {
+		data: {},
 		error: false,
 		loading: false
 	};
 	
-	export const forgotReducer = (state = initialState, action) => {
+	export const forgotReducer = (state = initialState, action: TForgotPasswordActions):TState => {
 		switch (action.type) {
 			case GET_FORGOT_REQUEST: {
 				return {
