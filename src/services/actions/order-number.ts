@@ -1,10 +1,10 @@
 import {getOrderNumberData } from "../../utile/api";
 import { AppDispatch } from "../types/types";
-import { deleteConctructor } from "./constructor-data";
 
 export const GET_ORDER_NUMBER_REQUEST: 'GET_ORDER_NUMBER_REQUEST' = 'GET_ORDER_NUMBER_REQUEST';
 export const GET_ORDER_NUMBER_SUCCESS: 'GET_ORDER_NUMBER_SUCCESS' = 'GET_ORDER_NUMBER_SUCCESS';
 export const GET_ORDER_NUMBER_FAILED: 'GET_ORDER_NUMBER_FAILED' = 'GET_ORDER_NUMBER_FAILED';
+export const ORDER_NUMBER_DELETE: 'ORDER_NUMBER_DELETE' = 'ORDER_NUMBER_DELETE';
 
 export interface IGetOrderNumberRequest {
   readonly type: typeof GET_ORDER_NUMBER_REQUEST
@@ -25,21 +25,28 @@ export const getOrderNumberSuccess = (data: any): IGetOrderNumberSuccess => ({
 export interface IGetOrderNumberFailed {
   readonly type: typeof GET_ORDER_NUMBER_FAILED
 }
-export const getLoginFailed = (): IGetOrderNumberFailed => ({
+export const getOrderNumberFailed = (): IGetOrderNumberFailed => ({
   type: GET_ORDER_NUMBER_FAILED
+})
+
+export interface IOrderNumberDelete {
+  readonly type: typeof ORDER_NUMBER_DELETE
+}
+export const orderNumberDelete = (): IOrderNumberDelete => ({
+  type: ORDER_NUMBER_DELETE
 })
 
 export type TOrderActions = 
 |IGetOrderNumberRequest
 |IGetOrderNumberSuccess
 |IGetOrderNumberFailed
+|IOrderNumberDelete
 
 export function getOrderNumber(orderProducts: object[]) {
   return function(dispatch: AppDispatch) {
     dispatch(getOrderNumberRequest);
     getOrderNumberData(orderProducts)
     .then(data => dispatch(getOrderNumberSuccess(data)))
-    .then(() => dispatch(deleteConctructor()))
-		.catch(() =>  dispatch(getLoginFailed()))
+		.catch(() =>  dispatch(getOrderNumberFailed()))
     };
   };

@@ -57,7 +57,8 @@ export const getOrderNumberData = (orderProducts: object[]) => {
 	const res = fetch(`${BASE_URL}/orders`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			Authorization: 'Bearer ' + getCookie('accessToken')
 		},
 		body: JSON.stringify({
 			ingredients: orderProducts

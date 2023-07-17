@@ -4,10 +4,10 @@ import { useSelector } from '../../services/types/types';
 const OrderDetails = () => {
   
   const { data, loading, error } = useSelector((state: any) => state.orderNumber)
-
+  
     return (
         <div className={`pt-30 pb-30 ${appOrderDetailsStyle.wrapper}`}>
-          {loading && <h1>Загрузка...</h1>}
+          {loading || data.length == 0 && <h1>Загрузка...</h1>}
           {error && <h1>Произошла ошибка</h1>}
           {!loading && !error && 
           <p className={`mb-8 ${appOrderDetailsStyle.id}`}>

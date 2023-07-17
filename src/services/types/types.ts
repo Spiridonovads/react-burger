@@ -30,7 +30,7 @@ export type TApplicationActions =
 |TFeedActions
 |TSocketActions
 
-export const wsUrl: string = 'wss://norma.nomoreparties.space/orders/all';
+export const wsUrl: string = 'wss://norma.nomoreparties.space/orders';
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ThunkDispatch<RootState, unknown, TApplicationActions>;

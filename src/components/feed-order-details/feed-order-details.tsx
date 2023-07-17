@@ -3,6 +3,7 @@ import { useSelector } from '../../services/types/types';
 import { FC, useMemo } from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import clsx from 'clsx';
+import { object } from 'prop-types';
 
 type Data = { route?: object}
 
@@ -29,16 +30,47 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
 		},[])
 	}, [orderData])
 
+  const qty = useMemo(() => {
+		return orderData.ingredients.reduce((acc: any, el: any) => { 
+			acc[el] = (acc[el] || 0) + 1
+			return acc
+		}, {})
+	}, [orderData])
+
   const priceFilter = useMemo(() => {
 		return data.reduce((acc: any, el: any) => { 
 			orderData.ingredients.map((element:any) => {
 				if(el._id === element){
 					acc += el.price
 				}
+        for( const key in qty) {
+          if(el == key)
+          console.log(key)
+        }
 			}) 
+     
 			return acc
 		}, 0)
 	}, [orderData])
+
+  const filter = useMemo(() => {
+		return data.reduce((acc: any, el: any) => { 
+        for( const key in qty) {
+          if(el._id == key){   
+            acc.push({...el, qty: qty[key]})
+          }
+          
+        }
+     console.log(acc)
+			return acc
+		}, [])
+	}, [orderData])
+
+  
+
+ 
+
+
 
   const className = clsx(
     `mb-15 ${styles.created}`,
@@ -55,8 +87,10 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
 			: 'Создан'}</p>
            <p className={`mb-6 ${styles.title}`}>Состав:</p>
            <div className={`mb-10 pr-6 ${styles.scroll}`}>
-            {imageFilter.map((el:any) => {
+            {filter.map((el:any) => {
+
               return (
+                
                 <div key={el._id} className={`mb-4 ${styles.ingredient}`}>
                   <div className={styles.ingredient__name}>
                       <div className={`mr-4 ${styles.border}`}>
@@ -67,7 +101,7 @@ const FeedOrderDetails: FC<Data> = ({route}) => {
                       <p>{el.name}</p>
                   </div>
                   <div className={styles.full__price}>
-                    <p className={`pr-2 pl-4 ${styles.price}`}>{`${el.type === 'bun' ? 2 : 1} x ${el.price}`}</p>
+                    <p className={`pr-2 pl-4 ${styles.price}`}>{`${el.qty} x ${el.price}`}</p>
                     <CurrencyIcon type="primary"/>
                   </div>
                 </div>

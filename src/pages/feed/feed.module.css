@@ -20,7 +20,9 @@
 
 .flex {
 	display: flex;
-	column-gap: 36px;
+	/*flex-direction: column;*/
+	flex-wrap: wrap;
+	/*overflow: hidden;*/
 }
 
 .title {
@@ -29,22 +31,19 @@
 	line-height: 30px;
 }
 
-.list {
-	display: flex;
-	flex-direction: column;
-	min-width: 272px;
-	max-height: 412px;
-}
-
-.li {
-	font-size: 28px;
-	font-family: 'Iceland', cursive;
-	color: #00CCCC;
-}
-
 .neon {
 	font-family: 'Iceland';
 	font-size: 144px;
 	line-height: 120px;
 	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+}
+
+.ul {
+	min-width: 287px;
+	max-height: 325px;
+	/*columns: 5;
+	-webkit-columns: 5;*/
+	font-size: 28px;
+	font-family: 'Iceland', cursive;
+	color: #00CCCC;
 }

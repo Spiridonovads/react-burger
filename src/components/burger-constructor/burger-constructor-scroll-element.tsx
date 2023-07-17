@@ -12,7 +12,7 @@ const BurgerConstructorScrollElement: FC<Data> = ({data}) => {
   
   const dispatch = useDispatch()
 
-  const handleClose = () => {
+  const handleDelete = () => {
     dispatch(deleteItem(data))    
   }
 
@@ -24,7 +24,7 @@ const BurgerConstructorScrollElement: FC<Data> = ({data}) => {
           text={data.name}
           price={data.price}
           thumbnail={data.image}
-          handleClose={handleClose}
+          handleClose={handleDelete}
         />
       </div> 
       </Reorder.Item>

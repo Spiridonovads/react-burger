@@ -5,10 +5,10 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import { useState, FC, useMemo } from 'react';
 import { useSelector, useDispatch } from '../../services/types/types';
-import { getOrderNumber } from '../../services/actions/order-number';
+import { getOrderNumber, orderNumberDelete } from '../../services/actions/order-number';
 import { getCookie } from '../../utile/cookie';
 import { useNavigate } from "react-router-dom";
-import { WS_SEND_MESSAGE } from '../../services/actions/socket-data';
+import { deleteConctructor } from '../../services/actions/constructor-data';
 
 type Price = { total: number};
 
@@ -30,7 +30,6 @@ const BurgerConstructorOrder: FC<Price> = ({total}) => {
   const openModal = () => {
     if(auth) {
       dispatch(getOrderNumber(orderId))
-      dispatch({ type: WS_SEND_MESSAGE, payload: order })
       setModalState(true)
     } else {
       navigate('/login', { replace: true })
@@ -39,6 +38,8 @@ const BurgerConstructorOrder: FC<Price> = ({total}) => {
 
   const closeModal = () => {
     setModalState(false);
+    dispatch(orderNumberDelete())
+    dispatch(deleteConctructor())
   }
 
     return (

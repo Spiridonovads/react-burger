@@ -40,30 +40,28 @@ const Feed = () => {
           <div className={`mt-25 mb-15 ${appFeedStyle.flex}`}>
             <div className={appFeedStyle.list}>
             <h3 className={`mb-6 ${appFeedStyle.title}`}>Готовы:</h3>
-            <div className={appFeedStyle.li}>
+            <ul className={appFeedStyle.ul}>
               {dataDoneFilter.map((el: any, i: any) => {
                 while(i < 5){
                   return (
-                    <div key={i} className='mb-2'>{el}</div>
+                      <li key={i} className='mb-2'>{el}</li>
                   )
-                }
-               
+                }    
               })}
 
+            </ul>
             </div>
-            </div>
-            <div className={appFeedStyle.list}>
+            <div className={`${appFeedStyle.list}`}>
             <h3 className={`mb-6 ${appFeedStyle.title}`}>В работе:</h3>
-            <div className={appFeedStyle.li}>
+            <ul className={appFeedStyle.ul}>
               {dataNotDoneFilter.map((el: any, i: any) => {
                 while(i < 5){
                   return (
-                    <p key={i} className='mb-2'>{el}</p>
+                      <li key={i} className='mb-2'>{el}</li>  
                   )
                 }
-               
               })}
-            </div>
+            </ul>
             </div>
           </div>
           <div className='mb-15 mt-15'>

@@ -3,7 +3,7 @@ import BurgerConstructorElements from './burger-constructor-elements';
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from '../../services/types/types';
 import { addIngridient } from '../../services/actions/constructor-data';
-import { addItemProperties, Bun } from '../../services/actions/constructor-data';
+import { addItemProperties, Bun } from '../../services/actions/constructor-data'
 
 const BurgerConstructor = () => {
 
@@ -26,13 +26,15 @@ const BurgerConstructor = () => {
       dispatch(Bun(item));  
     }
 };
-  const isVisible = order ? `${appBurgerConstructorStyle.invisible}` :  `${appBurgerConstructorStyle.visible}`
   return (
-    
     <section className={`pt-25 pl-4 ${appBurgerConstructorStyle.constructor__section}`} ref={dropTarget}>
-    <h1 className={isVisible}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</h1>
-     {order && 
+    {order && order.length === 0 &&
+    <h1 className={appBurgerConstructorStyle.visible}>Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа</h1>
+    }
+     {order && order.length > 0 &&
+       <>
        <BurgerConstructorElements/> 
+       </>
      }
     </section>
   );

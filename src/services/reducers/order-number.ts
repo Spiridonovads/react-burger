@@ -1,4 +1,4 @@
-import {GET_ORDER_NUMBER_REQUEST, GET_ORDER_NUMBER_SUCCESS, GET_ORDER_NUMBER_FAILED} from '../actions/order-number';
+import {GET_ORDER_NUMBER_REQUEST, GET_ORDER_NUMBER_SUCCESS, GET_ORDER_NUMBER_FAILED, ORDER_NUMBER_DELETE} from '../actions/order-number';
 import { TOrderActions } from '../actions/order-number';
 
 type TState = {
@@ -26,6 +26,9 @@ export const orderNumberReducer = (state = initialState, action:TOrderActions):T
     }
     case GET_ORDER_NUMBER_FAILED: {
       return { ...state, error: true, loading: false };
+    }
+    case ORDER_NUMBER_DELETE: {
+      return { ...state, data: [] };
     }
     default: {
       return state;

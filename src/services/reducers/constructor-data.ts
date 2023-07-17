@@ -75,6 +75,7 @@ export const constructorReducer = (state = initialState, action: TConstructorAct
       return {
         ...state, 
         order: [],
+        sortOrder: [],
         data: [...state.data].map((el: any) =>
           el.qty > 0 ? { ...el, qty: 0 } : el
         )
