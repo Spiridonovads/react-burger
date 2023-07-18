@@ -1,94 +1,97 @@
 .wrapper {
-	max-width: 620px;
-	max-height: 640px;
-	margin: 0 auto;
+  max-width: 620px;
+  max-height: 640px;
+  margin: 0 auto;
 }
 
 .scroll {
-	overflow-y: auto;
-	max-height: 312px;
+  overflow-y: auto;
+  max-height: 312px;
 }
 
 .border {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 64px;
-	width: 64px;
-	border-radius: 100px;
-	background: linear-gradient(90deg, rgba(128,26,178,1) 0%, rgba(76,76,255,1) 100%)
-} 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  width: 64px;
+  border-radius: 100px;
+  background: linear-gradient(
+    90deg,
+    rgba(128, 26, 178, 1) 0%,
+    rgba(76, 76, 255, 1) 100%
+  );
+}
 
 .image {
-	display: flex;
-	justify-content: center;
-	height: 60px;
-	width: 60px;
-	border-radius: 100px;
-	background-color: #131316;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 100px;
+  background-color: #131316;
 }
 
 .size {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;	
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .done {
-	color: #00CCCC
+  color: #00cccc;
 }
 
 .pending {
-	color: #FCF240
+  color: #fcf240;
 }
 
 .full__price {
-	display: flex;
-
+  display: flex;
 }
 
 .price {
-	font-family: 'Iceland', cursive;
-	font-size: 28px;
-	color: white
+  font-family: "Iceland", cursive;
+  font-size: 28px;
+  color: white;
 }
 
 .number {
-	font-size: 28px;
-	font-family: 'Iceland', cursive;
-	text-align: center;
+  font-size: 28px;
+  font-family: "Iceland", cursive;
+  text-align: center;
 }
 
 .name {
-	font-size: 24px;
-	overflow: hidden;
-	white-space: nowrap;
+  font-size: 24px;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
-	color: white
+  color: white;
 }
 
 .date {
-	color: #8585AD
+  color: #8585ad;
 }
 
 .flex {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
-	font-size: 24px;
-	line-height: 30px;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .ingredient {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .ingredient__name {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }

@@ -1,52 +1,52 @@
 .section {
-	max-width: 1290px;
-	margin: 0 auto;
-	padding: 0 15px;
-	padding-top: 40px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: 0 15px;
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .form {
-	display: flex;
-	flex-direction: column;
-	row-gap: 24px;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  align-items: center;
 }
 
 .title {
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 30px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .list__item {
-	height: 64px;
+  height: 64px;
 }
 
 .link {
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 30px;
-	color: #8585AD;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #8585ad;
 }
 .active__link {
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 30px;
-	color: white;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: white;
 }
 
 .other__link {
-	color: #8585AD;
-	max-width: 320px;
+  color: #8585ad;
+  max-width: 320px;
 }
 
 .block {
-	grid-column: span 2;
+  grid-column: span 2;
 }
 
 .scroll {
-	overflow-y: scroll;
-	max-height: 868px;
+  overflow-y: scroll;
+  max-height: 868px;
 }

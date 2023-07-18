@@ -1,52 +1,52 @@
 .constructor__section {
-	display: flex;
-	flex-direction: column;
-	row-gap: 16px;
-	max-height: 912px;
-	max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  max-height: 912px;
+  max-width: 600px;
 }
 
 .scroll {
-	overflow-y: auto;
-	max-height: 464px;
-	display: flex;
-	flex-direction: column;
-	row-gap: 16px;
+  overflow-y: auto;
+  max-height: 464px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
 }
 
 .price {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	column-gap: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 40px;
 }
 
 .price__title {
-	font-size: 48px;
-	line-height: 36px;
-	font-family: 'Iceland', cursive;
-	display: flex;
-	align-items: center;
-	column-gap: 9.5px;
+  font-size: 48px;
+  line-height: 36px;
+  font-family: "Iceland", cursive;
+  display: flex;
+  align-items: center;
+  column-gap: 9.5px;
 }
 
 .price__title > svg {
-	width: 33px;
-	height: 33px;
+  width: 33px;
+  height: 33px;
 }
 
 .element {
-	display: flex;
-	column-gap: 8px;
-	align-items: center;
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
 }
 
 .visible {
-	margin: auto;
-	text-align: center;
-	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+  margin: auto;
+  text-align: center;
+  text-shadow: 0 4px 32px #3333ff, 0 0 8px #3333ff, 0 0 16px #3333ff;
 }
 
 .invisible {
-	display: none;
+  display: none;
 }

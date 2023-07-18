@@ -1,71 +1,70 @@
 .ingredients__section {
-	max-height: 912px;
-	max-width: 600px;
+  max-height: 912px;
+  max-width: 600px;
 }
 
 .scroll {
-	overflow-y: scroll;
-	max-height: 716px;
+  overflow-y: scroll;
+  max-height: 716px;
 }
 
 .main__title {
-	font-size: 36px;
-	line-height: 40px;
-	font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
 }
 
 .default__title {
-	font-size: 24px;
-	line-height: 30px;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .cards {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	column-gap: 24px;
-	row-gap: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 24px;
+  row-gap: 32px;
 }
 
 .card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	row-gap: 4px;
-	text-align: center;
-	height: 208px;
-	position: relative;
-	cursor: pointer; 
-	color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  text-align: center;
+  height: 208px;
+  position: relative;
+  cursor: pointer;
+  color: white;
 }
 
 .notice {
-	font-size: 28px;
-	font-family: 'Iceland', cursive;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 32px;
-	width: 32px;
-	background-color: #4C4CFF;
-	border-radius: 16px;
-	position: absolute;
-	top: 0;
-	right: 0;
+  font-size: 28px;
+  font-family: "Iceland", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  background-color: #4c4cff;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .price {
-	display: flex;
-	align-items: center;
-	column-gap: 9px;
-	font-size: 28px;
-	font-family: 'Iceland', cursive;
+  display: flex;
+  align-items: center;
+  column-gap: 9px;
+  font-size: 28px;
+  font-family: "Iceland", cursive;
 }
 
 .visible {
-	position: relative;
+  position: relative;
 }
 
 .tabs {
-	display: flex;
+  display: flex;
 }
-

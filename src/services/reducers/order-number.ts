@@ -1,24 +1,32 @@
-import {GET_ORDER_NUMBER_REQUEST, GET_ORDER_NUMBER_SUCCESS, GET_ORDER_NUMBER_FAILED, ORDER_NUMBER_DELETE} from '../actions/order-number';
-import { TOrderActions } from '../actions/order-number';
+import {
+  GET_ORDER_NUMBER_REQUEST,
+  GET_ORDER_NUMBER_SUCCESS,
+  GET_ORDER_NUMBER_FAILED,
+  ORDER_NUMBER_DELETE,
+} from "../actions/order-number";
+import { TOrderActions } from "../actions/order-number";
 
 type TState = {
-  data: object[],
-  error: boolean,
-  loading: boolean
-}
-
-const initialState = {
-	data: [],
-  error: false,
-  loading: false
+  data: object[];
+  error: boolean;
+  loading: boolean;
 };
 
-export const orderNumberReducer = (state = initialState, action:TOrderActions):TState => {
+const initialState = {
+  data: [],
+  error: false,
+  loading: false,
+};
+
+export const orderNumberReducer = (
+  state = initialState,
+  action: TOrderActions
+): TState => {
   switch (action.type) {
     case GET_ORDER_NUMBER_REQUEST: {
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     }
     case GET_ORDER_NUMBER_SUCCESS: {

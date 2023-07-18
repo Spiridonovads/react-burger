@@ -1,25 +1,22 @@
-import { useSelector } from '../../services/types/types';
-import { useLocation } from 'react-router-dom';
-import IngredientDetails from '../../components/ingredient-details/ingredient-details';
+import { useSelector } from "../../services/types/types";
+import IngredientDetails from "../../components/ingredient-details/ingredient-details";
+import { useLocation, useParams } from "react-router-dom";
 
 const Ingredient = () => {
-  const location = useLocation()
+  const { data } = useSelector((state) => state.constructor);
 
-  const { modalState } = useSelector(state => state.ingredients);
-  const {data} = useSelector(state => state.constructor);
-  let ingredient: any
+  let ingredient: any;
+  const params = useParams();
 
-  if(!modalState && location.pathname.split('/')[2] && data){
-    ingredient = data.find((el: any) => el._id === location.pathname.split('/')[2])
-  }
+  ingredient = data?.find((el: any) => el._id === Object.values(params)[0]);
 
   return (
-		<main>
-		<section className='mt-30'>
-			<IngredientDetails ingredientRoute={ingredient}></IngredientDetails>
-	</section>
-	</main>
-    )
-} 
+    <main>
+      <section className="mt-30">
+        <IngredientDetails ingredientRoute={ingredient}></IngredientDetails>
+      </section>
+    </main>
+  );
+};
 
 export default Ingredient;

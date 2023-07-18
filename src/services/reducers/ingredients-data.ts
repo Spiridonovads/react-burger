@@ -1,28 +1,37 @@
-import {GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED, GET_INGREDIENT_INFO, SET_MODAL_STATE} from '../actions/ingredients-data';
-import { TIngredientsActions } from '../actions/ingredients-data';
+import {
+  GET_INGREDIENTS_REQUEST,
+  GET_INGREDIENTS_SUCCESS,
+  GET_INGREDIENTS_FAILED,
+  GET_INGREDIENT_INFO,
+  SET_MODAL_STATE,
+} from "../actions/ingredients-data";
+import { TIngredientsActions } from "../actions/ingredients-data";
 
 type TState = {
-  data: object[],
-  error: boolean,
-  loading: boolean,
-  ingredient: object,
-  modalState: boolean,
-}
+  data: object[];
+  error: boolean;
+  loading: boolean;
+  ingredient: object;
+  modalState: boolean;
+};
 
 const initialState: TState = {
-	data: [],
+  data: [],
   error: false,
   loading: false,
   ingredient: {},
   modalState: false,
 };
 
-export const ingredietsReducer = (state = initialState, action: TIngredientsActions):TState => {
+export const ingredietsReducer = (
+  state = initialState,
+  action: TIngredientsActions
+): TState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     }
     case GET_INGREDIENTS_SUCCESS: {
@@ -34,13 +43,13 @@ export const ingredietsReducer = (state = initialState, action: TIngredientsActi
     case GET_INGREDIENT_INFO: {
       return {
         ...state,
-        ingredient: action.el
+        ingredient: action.el,
       };
     }
     case SET_MODAL_STATE: {
       return {
         ...state,
-        modalState: action.bool
+        modalState: action.bool,
       };
     }
     default: {

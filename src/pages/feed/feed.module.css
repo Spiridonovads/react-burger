@@ -1,49 +1,49 @@
 .wrapper {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 40px;
-	max-width: 1290px;
-	margin: 0 auto;
-	padding: 0 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .main__title {
-	font-size: 36px;
-	font-weight: 700;
-	line-height: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
 }
 
 .section {
-	max-height: 912px;
-	max-width: 600px;
+  max-height: 912px;
+  max-width: 600px;
 }
 
 .flex {
-	display: flex;
-	/*flex-direction: column;*/
-	flex-wrap: wrap;
-	/*overflow: hidden;*/
+  display: flex;
+  /*flex-direction: column;*/
+  flex-wrap: wrap;
+  /*overflow: hidden;*/
 }
 
 .title {
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 30px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .neon {
-	font-family: 'Iceland';
-	font-size: 144px;
-	line-height: 120px;
-	text-shadow: 0 4px 32px #3333FF, 0 0 8px #3333FF, 0 0 16px #3333FF
+  font-family: "Iceland";
+  font-size: 144px;
+  line-height: 120px;
+  text-shadow: 0 4px 32px #3333ff, 0 0 8px #3333ff, 0 0 16px #3333ff;
 }
 
 .ul {
-	min-width: 287px;
-	max-height: 325px;
-	/*columns: 5;
+  min-width: 287px;
+  max-height: 325px;
+  /*columns: 5;
 	-webkit-columns: 5;*/
-	font-size: 28px;
-	font-family: 'Iceland', cursive;
-	color: #00CCCC;
+  font-size: 28px;
+  font-family: "Iceland", cursive;
+  color: #00cccc;
 }

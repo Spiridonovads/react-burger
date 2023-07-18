@@ -1,20 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './components/app/app';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import { rootReducer } from './services/reducers/root';
-import thunkMiddleware from 'redux-thunk';
-import { socketMiddleware } from './services/socket/middleware';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { wsUrl } from './services/types/types';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./components/app/app";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import { rootReducer } from "./services/reducers/root";
+import thunkMiddleware from "redux-thunk";
+import { socketMiddleware } from "./services/socket/middleware";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { wsUrl } from "./services/types/types";
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware, socketMiddleware(wsUrl))))
+  composeWithDevTools(applyMiddleware(thunkMiddleware, socketMiddleware(wsUrl)))
+);
 
-const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.querySelector("#root") as HTMLElement
+);
 
 root.render(
   <React.StrictMode>
@@ -22,4 +25,4 @@ root.render(
       <App />
     </Provider>
   </React.StrictMode>
-)
+);

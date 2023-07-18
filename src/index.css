@@ -1,21 +1,19 @@
-
 @font-face {
-  font-family: 'Iceland';
+  font-family: "Iceland";
   src: url("./fonts/iceland/Iceland-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'JetBrains Mono';
+  font-family: "JetBrains Mono";
   font-weight: 400;
   src: url("./fonts/jetbrains/JetBrainsMono-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'JetBrains Mono';
+  font-family: "JetBrains Mono";
   font-weight: 700;
   src: url("./fonts/jetbrains/JetBrainsMono-Bold.woff") format("woff");
 }
-
 
 * {
   padding: 0px;
@@ -40,7 +38,9 @@ a:active {
 }
 
 /* Links */
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   /* color: inherit; */
   text-decoration: none;
   /* display: inline-block; */
@@ -52,16 +52,28 @@ a:hover {
 }
 
 /* Common */
-aside, nav, footer, header, section, main {
+aside,
+nav,
+footer,
+header,
+section,
+main {
   display: block;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   font-size: inherit;
   font-weight: inherit;
 }
 
-ul, ul li {
+ul,
+ul li {
   list-style: none;
 }
 
@@ -69,7 +81,8 @@ img {
   vertical-align: top;
 }
 
-img, svg {
+img,
+svg {
   max-width: 100%;
   height: auto;
 }
@@ -79,7 +92,10 @@ address {
 }
 
 /* Form */
-input, textarea, button, select {
+input,
+textarea,
+button,
+select {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -90,7 +106,8 @@ input::-ms-clear {
   display: none;
 }
 
-button, input[type=submit] {
+button,
+input[type="submit"] {
   display: inline-block;
   box-shadow: none;
   background-color: transparent;
@@ -98,8 +115,10 @@ button, input[type=submit] {
   cursor: pointer;
 }
 
-input:focus, input:active,
-button:focus, button:active {
+input:focus,
+input:active,
+button:focus,
+button:active {
   outline: none;
 }
 
@@ -117,7 +136,7 @@ legend {
 }
 
 body {
-	font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-weight: 400;
   font-size: 16px;
   font-weight: 400;
@@ -125,38 +144,37 @@ body {
 }
 
 ::-webkit-scrollbar {
-	/*стилизация места для полосы прокрутки*/
-	width: 8px;
-	background: #2F2F37;
+  /*стилизация места для полосы прокрутки*/
+  width: 8px;
+  background: #2f2f37;
 }
 
 ::-webkit-scrollbar-track {
-	/*стилизация подложки под элементом управления*/
-	border: 1px solid #4C4CFF;
+  /*стилизация подложки под элементом управления*/
+  border: 1px solid #4c4cff;
 }
 
 ::-webkit-scrollbar-thumb {
-	/*стилизация ползунка*/
-	background-color: #8585AD;
+  /*стилизация ползунка*/
+  background-color: #8585ad;
 }
 
 .burger-ingredients_scroll__8Mw9j::-webkit-scrollbar-thumb {
   height: 492px;
 }
 
-.burger-ingredients_scroll__8Mw9j::-webkit-scrollbar-button:end:increment{
+.burger-ingredients_scroll__8Mw9j::-webkit-scrollbar-button:end:increment {
   height: 52px;
   background-color: #131316;
 }
 
-.feed-order_scroll__SZCiS::-webkit-scrollbar-button:end:increment{
+.feed-order_scroll__SZCiS::-webkit-scrollbar-button:end:increment {
   height: 52px;
   background-color: #131316;
 }
 .feed-order_scroll__SZCiS::-webkit-scrollbar-thumb {
   height: 600px;
 }
-
 
 .app-burger-constructor_scroll__KS6iB::-webkit-scrollbar-thumb {
   height: 292px;
@@ -171,7 +189,7 @@ body {
   height: 22px;
 }
 
-.profile_scroll__Og9PJ::-webkit-scrollbar-button:end:increment{
+.profile_scroll__Og9PJ::-webkit-scrollbar-button:end:increment {
   height: 52px;
   background-color: #131316;
 }
@@ -179,6 +197,3 @@ body {
 .profile_scroll__Og9PJ::-webkit-scrollbar-thumb {
   height: 600px;
 }
-
-
-
