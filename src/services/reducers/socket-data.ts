@@ -8,14 +8,14 @@ import { TSocketActions } from "../actions/socket-data";
 
 type TState = {
   wsConnected: boolean;
-  data: object[];
+  data: { orders?: object[]; total?: number; totalToday?: number };
 
   error?: Event;
 };
 
 const initialState: TState = {
   wsConnected: false,
-  data: [],
+  data: {},
 };
 
 export const wsReducer = (state = initialState, action: TSocketActions) => {
@@ -37,7 +37,7 @@ export const wsReducer = (state = initialState, action: TSocketActions) => {
     case WS_CONNECTION_CLOSED:
       return {
         ...state,
-        data: [],
+        data: {},
         error: undefined,
         wsConnected: false,
       };

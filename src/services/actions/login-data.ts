@@ -1,5 +1,6 @@
 import { getLoginData } from "../../utile/api";
 import { setCookie } from "../../utile/cookie";
+import { AppDispatch } from "../types/types";
 
 export const GET_LOGIN_REQUEST: "GET_LOGIN_REQUEST" = "GET_LOGIN_REQUEST";
 export const GET_LOGIN_SUCCESS: "GET_LOGIN_SUCCESS" = "GET_LOGIN_SUCCESS";
@@ -43,7 +44,7 @@ export type TLoginActions =
   | IDeleteLogin;
 
 export function getLogin(form: { email: string; password: string }) {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     dispatch(getLoginRequest());
     getLoginData(form)
       .then((data) => {
@@ -51,6 +52,6 @@ export function getLogin(form: { email: string; password: string }) {
         setCookie("refreshToken", data.refreshToken);
         setCookie("accessToken", data.accessToken.split("Bearer ")[1]);
       })
-      .catch(() => dispatch(getLoginFailed));
+      .catch(() => dispatch(getLoginFailed()));
   };
 }

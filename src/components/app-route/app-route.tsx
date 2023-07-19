@@ -1,5 +1,4 @@
 import BurgerSectors from "../burger-sectors/burger-sectors";
-import { useEffect } from 'react'
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginScreen from "../../pages/login-screen/login-screen";
 import RegisterScreen from "../../pages/register-screen/register-screen";
@@ -28,21 +27,19 @@ import Feed from "../../pages/feed/feed";
 import FeedOrderPage from "../../pages/feed-order/feed-order";
 import { useSelector } from "../../services/types/types";
 
-
 const AppRoute = () => {
   const location = useLocation();
   let background = location.state?.background;
-  const {modalState} = useSelector((state) => state.ingredients);
-  console.log(modalState)
+  const { modalState } = useSelector((state) => state.ingredients);
+  const feedModalState = useSelector((state) => state.feed.modalState);
 
   return (
-    <Routes location={background || location}>
+    <Routes>
       <Route path={home} element={<BurgerSectors />}>
-        {background && <Route path={ingredients} />}
+        {modalState && <Route path={ingredients} />}
       </Route>
-      {!modalState
-      }
-      <Route path={ingredients} element={<Ingredient />}/> 
+      {!modalState && <Route path={ingredients} element={<Ingredient />} />}
+
       <Route
         path={login}
         element={
@@ -71,21 +68,23 @@ const AppRoute = () => {
       ></Route>
       <Route path={err} element={<NotFound />} />
       <Route path={feed} element={<Feed />}>
-        {background && <Route path={feedID} />}
+        {feedModalState && <Route path={feedID} />}
       </Route>
-      <Route path={feedID} element={<FeedOrderPage />} />
+      {!feedModalState && <Route path={feedID} element={<FeedOrderPage />} />}
       <Route
         path={`${profile}/orders`}
         element={<ProtectedRouteElement element={<Profile />} auth={true} />}
       >
-        {background && <Route path={`${profile}/orders/:id`} />}
+        {feedModalState && <Route path={`${profile}/orders/:id`} />}
       </Route>
-      <Route
-        path={`${profile}/orders/:id`}
-        element={
-          <ProtectedRouteElement element={<FeedOrderPage />} auth={true} />
-        }
-      />
+      {!feedModalState && (
+        <Route
+          path={`${profile}/orders/:id`}
+          element={
+            <ProtectedRouteElement element={<FeedOrderPage />} auth={true} />
+          }
+        />
+      )}
     </Routes>
   );
 };

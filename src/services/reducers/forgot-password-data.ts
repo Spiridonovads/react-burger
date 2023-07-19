@@ -7,7 +7,7 @@ import {
 import { TForgotPasswordActions } from "../actions/forgot-password-data";
 
 export type TState = {
-  data: object;
+  data: {success?: boolean};
   error: boolean;
   loading: boolean;
 };
@@ -36,7 +36,7 @@ export const forgotReducer = (
       return { ...state, error: true, loading: false };
     }
     case DELETE_FORGOT: {
-      return { ...state, data: [] };
+      return { ...state, data: {} };
     }
     default: {
       return state;

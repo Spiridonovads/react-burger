@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 const FeedOrderPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   
   useEffect(() => {
     if(location.pathname.split("/")[2] === "orders"){
@@ -19,15 +20,15 @@ const FeedOrderPage = () => {
     }
   }, []);
  
-  const location = useLocation();
-  const orders = useSelector((state: any) => state.socket.data);
-  let order: any;
+  
+  const { data } = useSelector((state) => state.socket);
+  let order: object | undefined;
   const params = useParams();
 
-  order = orders.orders?.find((el: any) => el._id === Object.values(params)[0])
+  order = data.orders?.find((el: any) => el._id === Object.values(params)[0])
 
   return (
-    order && (
+    data && (
       <main>
         <section className="mt-30">
           <FeedOrderDetails route={order} />

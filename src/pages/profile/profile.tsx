@@ -39,7 +39,7 @@ const Profile = () => {
   const logoutClick = () => {
     dispatch(getLogout());
   };
-  const logoutData = useSelector((state: any) => state.logout.data);
+  const logoutData = useSelector((state) => state.logout.data);
   const navigate = useNavigate();
 
   if (logoutData.success) {
@@ -52,14 +52,12 @@ const Profile = () => {
     dispatch(getPerson());
     dispatch(getSocketStartProfile());
     return () => {
-      console.log('profile out')
       dispatch(getSocketClose())
     }
   }, [dispatch]);
 
-  const { data } = useSelector((state: any) => state.person);
-  const orders = useSelector((state: any) => state.socket.data);
-  console.log(orders)
+  const { data } = useSelector((state) => state.person);
+  const orders = useSelector((state) => state.socket.data);
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -125,7 +123,7 @@ const Profile = () => {
               className={`mt-20 ${profileScreenStyles.form}`}
             >
               <Input
-                placeholder={data.success ? data.user.name : "Имя"}
+                placeholder={data.success ? data.user?.name : "Имя"}
                 onChange={onChange}
                 icon={"EditIcon"}
                 value={form.name}
@@ -135,7 +133,7 @@ const Profile = () => {
                 onChange={onChange}
                 value={form.email}
                 name={"email"}
-                placeholder={data.success ? data.user.email : "Логин"}
+                placeholder={data.success ? data.user?.email : "Логин"}
               />
               <PasswordInput
                 onChange={onChange}

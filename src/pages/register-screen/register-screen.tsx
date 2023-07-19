@@ -31,7 +31,7 @@ const RegisterScreen = () => {
   };
 
   const navigate = useNavigate();
-  const { data } = useSelector((state: any) => state.register);
+  const { data } = useSelector((state) => state.register);
   if (data.success) {
     navigate("/login", { replace: true });
     dispatch(deleteRegister());

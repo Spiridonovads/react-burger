@@ -32,7 +32,7 @@ export interface IGetSocketError {
 
 export interface IGetSocketMessage {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload?: object[];
+  readonly payload: object;
 }
 
 export interface IGetSocketClosed {

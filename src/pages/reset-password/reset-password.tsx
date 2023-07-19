@@ -6,7 +6,7 @@ import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate } from "react-router-dom";
 import {
   getReset,
-  DELETE_RESET,
+  deleteReset,
 } from "../../services/actions/reset-password-data";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "../../services/types/types";
@@ -27,10 +27,10 @@ const ResetPassword = () => {
   };
 
   const navigate = useNavigate();
-  const { data } = useSelector((state: any) => state.reset);
+  const { data } = useSelector((state) => state.reset);
   if (data.success) {
     navigate("/login", { replace: true });
-    dispatch({ type: DELETE_RESET });
+    dispatch(deleteReset());
     dispatch(deleteForgot());
   }
 

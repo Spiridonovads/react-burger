@@ -108,7 +108,6 @@ export const getLogoutData = () => {
 
 export const getPersonData = () => {
   const res = fetch(`${BASE_URL}/auth/user`, {
-    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + getCookie("accessToken"),
@@ -142,12 +141,7 @@ export const getUpdateTokenData = () => {
     body: JSON.stringify({
       token: getCookie("refreshToken"),
     }),
-  }).then((res) => checkResponse(res));
+  } ).then((res) => checkResponse(res));
 
-  return res;
-};
-
-export const getFeedData = () => {
-  const res = fetch(`${BASE_URL}/orders/all`).then((res) => checkResponse(res));
   return res;
 };

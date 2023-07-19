@@ -89,9 +89,9 @@ export const getConstructorIngredientsFailed =
 
 export interface IBun {
   readonly type: typeof BUN;
-  readonly ingredient: any;
+  readonly ingredient: {name: string};
 }
-export const Bun = (item: object): IBun => ({
+export const Bun = (item: any): IBun => ({
   type: BUN,
   ingredient: item,
 });

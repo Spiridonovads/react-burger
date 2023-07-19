@@ -8,8 +8,8 @@ type Data = { route?: object };
 
 const FeedOrderDetails: FC<Data> = ({ route }) => {
   let orderData: any;
-  const { order } = useSelector((state: any) => state.feed);
-  const { data } = useSelector((state: any) => state.ingredients);
+  const { order } = useSelector((state) => state.feed);
+  const { data } = useSelector((state) => state.ingredients);
   
   if (route) {
     orderData = route;
@@ -18,15 +18,15 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
   }
 
   const qty = useMemo(() => {
-    return orderData.ingredients.reduce((acc: any, el: any) => {
+    return orderData.ingredients?.reduce((acc: any, el: string) => {
       acc[el] = (acc[el] || 0) + 1;
       return acc;
     }, {});
   }, [orderData]);
 
   const priceFilter = useMemo(() => {
-    return data.reduce((acc: any, el: any) => {
-      orderData.ingredients.map((element: any) => {
+    return data?.reduce((acc: number, el: any) => {
+      orderData.ingredients?.map((element: string) => {
         if (el._id === element) {
           acc += el.price;
         }
@@ -37,7 +37,7 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
   }, [orderData]);
 
   const filter = useMemo(() => {
-    return data.reduce((acc: any, el: any) => {
+    return data.reduce((acc: object[], el: any) => {
       for (const key in qty) {
         if (el._id == key) {
           acc.push({ ...el, qty: qty[key] });
@@ -54,7 +54,7 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
   );
 
   return (
-    orderData && (
+    orderData._id && (
       <div className={styles.wrapper}>
         <p className={`mb-10 ${styles.number}`}>{`#${orderData.number}`}</p>
         <h3 className={`mb-3 ${styles.name}`}>{orderData.name}</h3>

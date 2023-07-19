@@ -85,11 +85,13 @@ export function getPerson() {
     getPersonData()
       .then((data) => dispatch(getPersonSuccess(data)))
       .catch((err) => {
-        if (err.message === "jwt expired") {
-          getUpdateTokenData().then((data) => {
-            setCookie("refreshToken", data.data.refreshToken);
-            setCookie("accessToken", data.data.accessToken.split("Bearer ")[1]);
-          });
+        if (err.message === "jwt expired") {  
+          getUpdateTokenData()
+          .then((data) => {
+            setCookie("refreshToken", data.refreshToken);
+            setCookie("accessToken", data.accessToken.split("Bearer ")[1]);
+          })
+          .catch((err) => console.log(err));
         } else {
           dispatch(getPersonFailed());
         }

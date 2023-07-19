@@ -24,7 +24,7 @@ const LoginScreen = () => {
     dispatch(getLogin(form));
   };
 
-  const { data } = useSelector((state: any) => state.login);
+  const { data } = useSelector((state) => state.login);
   const navigate = useNavigate();
 
   if (data.success) {

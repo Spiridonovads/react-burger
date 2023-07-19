@@ -8,11 +8,11 @@ import { rootReducer } from "./services/reducers/root";
 import thunkMiddleware from "redux-thunk";
 import { socketMiddleware } from "./services/socket/middleware";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { wsUrl } from "./services/types/types";
+import { wsUrl, wsActions } from "./services/types/types";
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware, socketMiddleware(wsUrl)))
+  composeWithDevTools(applyMiddleware(thunkMiddleware, socketMiddleware(wsUrl, wsActions )))
 );
 
 const root = ReactDOM.createRoot(

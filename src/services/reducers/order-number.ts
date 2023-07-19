@@ -7,13 +7,13 @@ import {
 import { TOrderActions } from "../actions/order-number";
 
 type TState = {
-  data: object[];
+  data: {number?: number};
   error: boolean;
   loading: boolean;
 };
 
 const initialState = {
-  data: [],
+  data: {},
   error: false,
   loading: false,
 };
@@ -36,7 +36,7 @@ export const orderNumberReducer = (
       return { ...state, error: true, loading: false };
     }
     case ORDER_NUMBER_DELETE: {
-      return { ...state, data: [] };
+      return { ...state, data: {} };
     }
     default: {
       return state;

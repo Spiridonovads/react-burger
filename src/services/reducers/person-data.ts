@@ -10,7 +10,7 @@ import {
 import { TPersonActions } from "../actions/person-data";
 
 type TState = {
-  data: object;
+  data: {success?: boolean, user?:{name: string, email: string}};
   error: boolean;
   loading: boolean;
   changeError: boolean;

@@ -5,7 +5,7 @@ import { useLocation, useParams } from "react-router-dom";
 const Ingredient = () => {
   const { data } = useSelector((state) => state.constructor);
 
-  let ingredient: any;
+  let ingredient: object | undefined;
   const params = useParams();
 
   ingredient = data?.find((el: any) => el._id === Object.values(params)[0]);

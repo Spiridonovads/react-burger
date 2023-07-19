@@ -7,7 +7,7 @@ import FeedOrderDetails from "../feed-order-details/feed-order-details";
 import { setFeedModalState } from "../../services/actions/feed-data";
 
 const FeedOrder = () => {
-  const orders = useSelector((state: any) => state.socket.data);
+  const { data } = useSelector((state) => state.socket);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const FeedOrder = () => {
   return (
     <>
       <div className={`pr-2 ${appFeedOrderStyle.scroll}`}>
-        {orders.orders.map((el: any, i: any) => {
+        {data.orders?.map((el: any, i: number) => {
           return <FeedOrderProducts key={i}>{el}</FeedOrderProducts>;
         })}
       </div>

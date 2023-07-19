@@ -1,7 +1,7 @@
 import { FC } from "react";
 import appModalOverlayStyle from "./modal-overlay.module.css";
 
-type State = { onCloseButtonClick: any };
+type State = { onCloseButtonClick: () => void };
 
 const ModalOverlay: FC<State> = ({ onCloseButtonClick }) => {
   return (

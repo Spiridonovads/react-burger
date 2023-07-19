@@ -24,7 +24,7 @@ type Data = {
 const FeedOrderProducts: FC<Data> = ({ children }) => {
   const location = useLocation();
 
-  const { data } = useSelector((state: any) => state.ingredients);
+  const { data } = useSelector((state) => state.ingredients);
 
   const dispatch = useDispatch();
 
@@ -34,8 +34,8 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
   };
 
   const imageFilter = useMemo(() => {
-    return data.reduce((acc: any, el: any) => {
-      children.ingredients.map((element: any) => {
+    return data.reduce((acc: object[], el: any) => {
+      children.ingredients.map((element: object) => {
         if (el._id === element) {
           acc.push(el.image);
         }
@@ -45,8 +45,8 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
   }, [children]);
 
   const priceFilter = useMemo(() => {
-    return data.reduce((acc: any, el: any) => {
-      children.ingredients.map((element: any) => {
+    return data.reduce((acc: number, el: any) => {
+      children.ingredients.map((element: object) => {
         if (el._id === element) {
           acc += el.price;
         }
@@ -94,7 +94,7 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
         )}
 
         <div className={`mt-6 ${appOrderProductsStyle.products}`}>
-          {imageFilter?.map((el: any, i: any) => {
+          {imageFilter?.map((el: any, i: number) => {
             while (i < 6) {
               return (
                 <div

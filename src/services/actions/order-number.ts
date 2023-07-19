@@ -18,9 +18,9 @@ export const getOrderNumberRequest = (): IGetOrderNumberRequest => ({
 
 export interface IGetOrderNumberSuccess {
   readonly type: typeof GET_ORDER_NUMBER_SUCCESS;
-  readonly data: object[];
+  readonly data: object;
 }
-export const getOrderNumberSuccess = (data: any): IGetOrderNumberSuccess => ({
+export const getOrderNumberSuccess = (data: {order: {}}): IGetOrderNumberSuccess => ({
   type: GET_ORDER_NUMBER_SUCCESS,
   data: data.order,
 });

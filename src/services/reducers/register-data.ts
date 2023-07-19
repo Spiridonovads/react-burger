@@ -7,7 +7,7 @@ import {
 import { TRegisterActions } from "../actions/register-data";
 
 type TState = {
-  data: object;
+  data: {success?: boolean};
   error: boolean;
   loading: boolean;
 };

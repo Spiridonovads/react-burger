@@ -14,34 +14,32 @@ const Feed = () => {
   useEffect(() => {
     dispatch(getSocketStartFeed());
     return () => {
-      console.log('feed out')
       dispatch(getSocketClose())
     };
   }, [dispatch]);
-  const orders = useSelector((state: any) => state.socket.data);
-  console.log(orders)
+  const { data } = useSelector((state) => state.socket);
 
-  const ordersDoneFilter = useMemo(() => {
-    return orders.orders?.reduce((acc: any, el: any) => {
+  const ordersDoneFilter = useMemo<number[] | undefined>(() => {
+    return data.orders?.reduce((acc: number[], el: any) => {
       if (el.status === "done") {
         acc.push(el.number);
       }
       return acc;
     }, []);
-  }, [orders]);
+  }, [data]);
 
-  const ordersNotDoneFilter = useMemo(() => {
-    return orders.orders?.reduce((acc: any, el: any) => {
+  const ordersNotDoneFilter = useMemo<number[] | undefined>(() => {
+    return data.orders?.reduce((acc: number[], el: any) => {
       if (el.status !== "done") {
         acc.push(el.number);
       }
       return acc;
     }, []);
-  }, [orders]);
+  }, [data]);
 
   return (
     <>
-      {orders.orders?.length > 0 && (
+      {data.orders && (
         <main>
           <div className={appFeedStyle.wrapper}>
             <section className={appFeedStyle.section}>
@@ -55,7 +53,7 @@ const Feed = () => {
                 <div className={appFeedStyle.list}>
                   <h3 className={`mb-6 ${appFeedStyle.title}`}>Готовы:</h3>
                   <ul className={appFeedStyle.ul}>
-                    {ordersDoneFilter.map((el: any, i: any) => {
+                    {ordersDoneFilter?.map((el: number, i: number) => {
                       while (i < 5) {
                         return (
                           <li key={i} className="mb-2">
@@ -69,7 +67,7 @@ const Feed = () => {
                 <div className={`${appFeedStyle.list}`}>
                   <h3 className={`mb-6 ${appFeedStyle.title}`}>В работе:</h3>
                   <ul className={appFeedStyle.ul}>
-                    {ordersNotDoneFilter.map((el: any, i: any) => {
+                    {ordersNotDoneFilter?.map((el: number, i: number) => {
                       while (i < 5) {
                         return (
                           <li key={i} className="mb-2">
@@ -83,11 +81,11 @@ const Feed = () => {
               </div>
               <div className="mb-15 mt-15">
                 <h3 className={appFeedStyle.title}>Выполнено за все время:</h3>
-                <p className={appFeedStyle.neon}>{orders.total}</p>
+                <p className={appFeedStyle.neon}>{data.total}</p>
               </div>
               <div className="mb-15">
                 <h3 className={appFeedStyle.title}>Выполнено за сегодня:</h3>
-                <p className={appFeedStyle.neon}>{orders.totalToday}</p>
+                <p className={appFeedStyle.neon}>{data.totalToday}</p>
               </div>
             </section>
           </div>

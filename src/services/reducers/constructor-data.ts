@@ -17,7 +17,7 @@ export type TState = {
   loading: boolean;
   order: object[];
   sortOrder: object[];
-  dragIngredient: any;
+  dragIngredient: {name?: string};
 };
 const initialState: TState = {
   data: [],
@@ -45,7 +45,7 @@ export const constructorReducer = (
       return {
         ...state,
         error: false,
-        data: action.data.map((el: any) => {
+        data: action.data.map((el: {qty: number}) => {
           el.qty = 0;
           return el;
         }),
@@ -115,7 +115,7 @@ export const constructorReducer = (
         }),
         order:
           state.order && state.order?.length > 0
-            ? [...state.sortOrder].reduce((acc: any, el: any) => {
+            ? [...state.sortOrder].reduce((acc: object[], el: any) => {
                 if (el.type !== "bun") {
                   acc.push(el);
                 } else {

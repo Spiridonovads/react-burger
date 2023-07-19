@@ -21,7 +21,7 @@ const ForgotPassword = () => {
     dispatch(getForgot(form));
   };
 
-  const { data } = useSelector((state: any) => state.forgot);
+  const { data } = useSelector((state) => state.forgot);
 
   const navigate = useNavigate();
   if (data.success) {

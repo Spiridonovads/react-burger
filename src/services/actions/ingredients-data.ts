@@ -1,4 +1,3 @@
-import { type } from "os";
 import { getIngredientsData } from "../../utile/api";
 import { AppDispatch } from "../types/types";
 

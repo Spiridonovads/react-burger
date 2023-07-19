@@ -21,10 +21,10 @@ const BurgerConstructorElements = () => {
   }, [order]);
 
   const total = useMemo<number>(() => {
-    return order.reduce((sum: any, current: any) => sum + current.price, 0);
+    return order.reduce((sum: number, current: any) => sum + current.price, 0);
   }, [burgerBunsFilter, burgerFillingFilter]);
 
-  const [items, setItems] = useState<any>(burgerFillingFilter);
+  const [items, setItems] = useState<object[]>(burgerFillingFilter);
 
   useEffect(() => {
     setItems(burgerFillingFilter);

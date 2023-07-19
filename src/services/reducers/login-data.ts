@@ -7,7 +7,7 @@ import {
 import { TLoginActions } from "../actions/login-data";
 
 type TState = {
-  data: object;
+  data: {success?: boolean};
   error: boolean;
   loading: boolean;
 };
@@ -36,7 +36,7 @@ export const loginReducer = (
       return { ...state, error: true, loading: false };
     }
     case DELETE_LOGIN: {
-      return { ...state, data: [] };
+      return { ...state, data: {} };
     }
     default: {
       return state;

@@ -49,6 +49,15 @@ export type TWSStoreActions = {
   onMessage: typeof WS_GET_MESSAGE;
 };
 
+export const wsActions: TWSStoreActions = {
+  wsInitFeed: WS_CONNECTION_START_FEED,
+  wsInitProfile: WS_CONNECTION_START_PROFILE,
+  onOpen: WS_CONNECTION_SUCCESS,
+  onClose: WS_CONNECTION_CLOSED,
+  onError: WS_CONNECTION_ERROR,
+  onMessage: WS_GET_MESSAGE
+};
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ThunkDispatch<
   RootState,

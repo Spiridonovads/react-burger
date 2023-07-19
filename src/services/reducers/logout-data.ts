@@ -7,7 +7,7 @@ import {
 import { TLogoutActions } from "../actions/logout-data";
 
 type TState = {
-  data: object;
+  data: {success?: boolean};
   error: boolean;
   loading: boolean;
 };
@@ -35,7 +35,7 @@ export const logoutReducer = (
       return { ...state, error: true, loading: false };
     }
     case DELETE_LOGOUT: {
-      return { ...state, data: [] };
+      return { ...state, data: {} };
     }
     default: {
       return state;

@@ -7,7 +7,7 @@ import {
 import { TResetActions } from "../actions/reset-password-data";
 
 type TState = {
-  data: object;
+  data: {success?: boolean};
   error: boolean;
   loading: boolean;
 };

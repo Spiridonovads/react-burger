@@ -1,6 +1,3 @@
-import { getFeedData } from "../../utile/api";
-import { AppDispatch } from "../types/types";
-
 export const SET_FEED_MODAL_STATE: "SET_MODAL_STATE" = "SET_MODAL_STATE";
 export const GET_FEED_ORDER: "GET_FEED_ORDER" = "GET_FEED_ORDER";
 
