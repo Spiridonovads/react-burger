@@ -6,7 +6,7 @@ import { FC } from "react";
 type State = { element: any; auth?: boolean };
 
 export const ProtectedRouteElementReset: FC<State> = ({ element }) => {
-  const { data } = useSelector((state: any) => state.forgot);
+  const { data } = useSelector((state) => state.forgot);
   return data.success ? element : <Navigate to="/forgot-password" replace />;
 };
 

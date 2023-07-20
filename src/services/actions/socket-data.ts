@@ -1,5 +1,4 @@
-export const WS_CONNECTION_START_FEED: "WS_CONNECTION_START_FEED" = "WS_CONNECTION_START_FEED";
-export const WS_CONNECTION_START_PROFILE: "WS_CONNECTION_START_PROFILE" = "WS_CONNECTION_START_PROFILE";
+export const WS_CONNECTION_START: "WS_CONNECTION_START_FEED" = "WS_CONNECTION_START_FEED";
 export const WS_CONNECTION_SUCCESS: "WS_CONNECTION_SUCCESS" =
   "WS_CONNECTION_SUCCESS";
 export const WS_CONNECTION_ERROR: "WS_CONNECTION_ERROR" = "WS_CONNECTION_ERROR";
@@ -7,17 +6,13 @@ export const WS_GET_MESSAGE: "WS_GET_MESSAGE" = "WS_GET_MESSAGE";
 export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" =
   "WS_CONNECTION_CLOSED";
 
-export interface IGetSocketStartFeed {
-  readonly type: typeof WS_CONNECTION_START_FEED;
+export interface IGetSocketStart {
+  readonly type: typeof WS_CONNECTION_START;
+  readonly wsUrl: string;
 }
-export const getSocketStartFeed = (): IGetSocketStartFeed => ({
-  type: WS_CONNECTION_START_FEED,
-});
-export interface IGetSocketStartProfile {
-  readonly type: typeof WS_CONNECTION_START_PROFILE;
-}
-export const getSocketStartProfile= (): IGetSocketStartProfile => ({
-  type: WS_CONNECTION_START_PROFILE,
+export const getSocketStart = (wsUrl: string): IGetSocketStart => ({
+  type: WS_CONNECTION_START,
+  wsUrl: wsUrl
 });
 
 export interface IGetSocketSuccess {
@@ -45,8 +40,7 @@ export const getSocketClose = (): IGetSocketClosed => ({
 });
 
 export type TSocketActions =
-  | IGetSocketStartProfile
-  | IGetSocketStartFeed
+  | IGetSocketStart
   | IGetSocketSuccess
   | IGetSocketError
   | IGetSocketMessage

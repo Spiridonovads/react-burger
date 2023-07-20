@@ -18,11 +18,10 @@ import {
 import { TFeedActions } from "../actions/feed-data";
 import {
   WS_CONNECTION_CLOSED,
-  WS_CONNECTION_START_FEED,
+  WS_CONNECTION_START,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_SUCCESS,
   WS_GET_MESSAGE,
-  WS_CONNECTION_START_PROFILE
 } from "../actions/socket-data";
 
 export type TApplicationActions =
@@ -41,8 +40,7 @@ export type TApplicationActions =
 export const wsUrl: string = 'wss://norma.nomoreparties.space/orders';
 
 export type TWSStoreActions = {
-  wsInitFeed: typeof WS_CONNECTION_START_FEED;
-  wsInitProfile: typeof WS_CONNECTION_START_PROFILE;
+  wsInit: typeof WS_CONNECTION_START;
   onOpen: typeof WS_CONNECTION_SUCCESS;
   onClose: typeof WS_CONNECTION_CLOSED;
   onError: typeof WS_CONNECTION_ERROR;
@@ -50,8 +48,7 @@ export type TWSStoreActions = {
 };
 
 export const wsActions: TWSStoreActions = {
-  wsInitFeed: WS_CONNECTION_START_FEED,
-  wsInitProfile: WS_CONNECTION_START_PROFILE,
+  wsInit: WS_CONNECTION_START,
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,
   onError: WS_CONNECTION_ERROR,

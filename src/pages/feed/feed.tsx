@@ -3,16 +3,17 @@ import FeedOrder from "../../components/feed-order/feed-order";
 import { useSelector } from "../../services/types/types";
 import { useMemo, useEffect } from "react";
 import {
-  getSocketStartFeed,
+  getSocketStart,
   getSocketClose,
 } from "../../services/actions/socket-data";
 import { useDispatch } from "../../services/types/types";
+import { wsUrl } from "../../services/types/types";
 
 const Feed = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSocketStartFeed());
+    dispatch(getSocketStart(`${wsUrl}/all`));
     return () => {
       dispatch(getSocketClose())
     };

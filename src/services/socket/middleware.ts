@@ -5,24 +5,19 @@ import type {
   RootState,
   TWSStoreActions
 } from "../types/types";
-import { getCookie } from "../../utile/cookie";
 
-export const socketMiddleware = (wsUrl: string, wsActions: TWSStoreActions): Middleware => {
+export const socketMiddleware = (wsActions: TWSStoreActions): Middleware => {
   return ((store: MiddlewareAPI<AppDispatch, RootState>) => {
     let socket: WebSocket | null = null;
 
     return (next) => (action: TApplicationActions) => {
       const { dispatch } = store;
-      const token = getCookie("accessToken");
-      const { wsInitProfile, wsInitFeed, onOpen, onClose, onError, onMessage } = wsActions;
+      
+      const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;
 
-      if (action.type === wsInitProfile && token) {
+      if (action.type === wsInit) {
         // объект класса WebSocket
-        socket = new WebSocket(`${wsUrl}?token=${token}`);
-      }
-      if (action.type === wsInitFeed) {
-        // объект класса WebSocket
-        socket = new WebSocket(`${wsUrl}/all`);
+        socket = new WebSocket(action.wsUrl);
       }
       if (socket) {
         // функция, которая вызывается при открытии сокета

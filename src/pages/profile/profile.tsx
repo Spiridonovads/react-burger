@@ -17,10 +17,12 @@ import {
 import { deleteLogout, getLogout } from "../../services/actions/logout-data";
 import clsx from "clsx";
 import FeedOrderProducts from "../../components/feed-order/feed-order-products";
-import { getSocketStartProfile, getSocketClose } from "../../services/actions/socket-data";
+import { getSocketStart, getSocketClose } from "../../services/actions/socket-data";
 import { setFeedModalState } from "../../services/actions/feed-data";
 import Modal from "../../components/modal/modal";
 import FeedOrderDetails from "../../components/feed-order-details/feed-order-details";
+import { wsUrl } from "../../services/types/types";
+import { getCookie } from "../../utile/cookie";
 
 type Data = { email: string; password: string; name: string };
 
@@ -30,6 +32,8 @@ const Profile = () => {
     password: "",
     name: "",
   });
+
+  const token = getCookie("accessToken");
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
@@ -50,7 +54,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getPerson());
-    dispatch(getSocketStartProfile());
+    dispatch(getSocketStart(`${wsUrl}?token=${token}`));
     return () => {
       dispatch(getSocketClose())
     }
