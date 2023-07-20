@@ -9,16 +9,10 @@ import {
   getFeedOrder,
   setFeedModalState
 } from "../../services/actions/feed-data";
+import { TFeedArray } from "../../services/reducers/feed-data";
 
 type Data = {
-  children: {
-    ingredients: object[];
-    number: number;
-    createdAt: string;
-    name: string;
-    status: string;
-    _id: string;
-  };
+  children: TFeedArray
 };
 
 const FeedOrderProducts: FC<Data> = ({ children }) => {
@@ -34,8 +28,8 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
   };
 
   const imageFilter = useMemo(() => {
-    return data.reduce((acc: object[], el: any) => {
-      children.ingredients.map((element: object) => {
+    return data.reduce((acc: string[], el) => {
+      children.ingredients.map((element: any) => {
         if (el._id === element) {
           acc.push(el.image);
         }
@@ -45,8 +39,8 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
   }, [children]);
 
   const priceFilter = useMemo(() => {
-    return data.reduce((acc: number, el: any) => {
-      children.ingredients.map((element: object) => {
+    return data.reduce((acc: number, el) => {
+      children.ingredients.map((element: any) => {
         if (el._id === element) {
           acc += el.price;
         }
@@ -94,7 +88,7 @@ const FeedOrderProducts: FC<Data> = ({ children }) => {
         )}
 
         <div className={`mt-6 ${appOrderProductsStyle.products}`}>
-          {imageFilter?.map((el: any, i: number) => {
+          {imageFilter?.map((el, i: number) => {
             while (i < 6) {
               return (
                 <div

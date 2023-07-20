@@ -4,9 +4,19 @@ import {
   GET_FEED_ORDER,
 } from "../actions/feed-data";
 import { TFeedActions } from "../actions/feed-data";
+import { TArray } from "./constructor-data";
+
+export type TFeedArray = {
+  ingredients: Array<TArray>;
+  number: number;
+  createdAt: string;
+  name: string;
+  status: string;
+  _id: string;
+}
 
 export type TState = {
-  data: object;
+  data: Array<TFeedActions>;
   error: boolean;
   loading: boolean;
   modalState: boolean;

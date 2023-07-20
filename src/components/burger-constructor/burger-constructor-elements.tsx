@@ -6,25 +6,26 @@ import { useSelector, useDispatch } from "../../services/types/types";
 import BurgerConstructorScrollElement from "./burger-constructor-scroll-element";
 import { Reorder } from "framer-motion";
 import { constructorOrderSort } from "../../services/actions/constructor-data";
+import { TArray } from "../../services/reducers/constructor-data";
 
 const BurgerConstructorElements = () => {
   const { order } = useSelector((state) => state.constructor);
 
   const dispatch = useDispatch();
 
-  const burgerBunsFilter = useMemo<object[]>(() => {
-    return order.filter((el: any) => el.type === "bun");
+  const burgerBunsFilter = useMemo<Array<TArray>>(() => {
+    return order.filter((el) => el.type === "bun");
   }, [order]);
 
-  const burgerFillingFilter = useMemo<object[]>(() => {
-    return order.filter((el: any) => el.type != "bun");
+  const burgerFillingFilter = useMemo<Array<TArray>>(() => {
+    return order.filter((el) => el.type != "bun");
   }, [order]);
 
   const total = useMemo<number>(() => {
-    return order.reduce((sum: number, current: any) => sum + current.price, 0);
+    return order.reduce((sum: number, current) => sum + current.price, 0);
   }, [burgerBunsFilter, burgerFillingFilter]);
 
-  const [items, setItems] = useState<object[]>(burgerFillingFilter);
+  const [items, setItems] = useState<Array<TArray>>(burgerFillingFilter);
 
   useEffect(() => {
     setItems(burgerFillingFilter);
@@ -38,7 +39,7 @@ const BurgerConstructorElements = () => {
     <>
       {order && (
         <>
-          {burgerBunsFilter.map((el: any) => {
+          {burgerBunsFilter.map((el) => {
             return (
               <div key={el._id} className="pl-8">
                 <ConstructorElement
@@ -53,14 +54,14 @@ const BurgerConstructorElements = () => {
           })}
           <Reorder.Group axis="y" values={items} onReorder={setItems}>
             <div className={appBurgerConstructorStyle.scroll}>
-              {items.map((el: any) => {
+              {items.map((el) => {
                 return (
                   <BurgerConstructorScrollElement key={el.uniqueId} data={el} />
                 );
               })}
             </div>
           </Reorder.Group>
-          {burgerBunsFilter.map((el: any) => {
+          {burgerBunsFilter.map((el) => {
             return (
               <div key={el._id} className="pl-8">
                 <ConstructorElement

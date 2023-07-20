@@ -8,7 +8,7 @@ const Ingredient = () => {
   let ingredient: object | undefined;
   const params = useParams();
 
-  ingredient = data?.find((el: any) => el._id === Object.values(params)[0]);
+  ingredient = data?.find((el) => el._id === Object.values(params)[0]);
 
   return (
     <main>

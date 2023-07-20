@@ -8,9 +8,10 @@ import {
 } from "../../services/actions/ingredients-data";
 import { Link, useLocation } from "react-router-dom";
 import { FC } from "react";
+import { TArray } from "../../services/reducers/constructor-data";
 
 type Data = {
-  elData: { _id: string; name: string; image: string; price: number };
+  elData: TArray;
 };
 
 const BurgerIngredientsProduct: FC<Data> = ({ elData }) => {
@@ -43,7 +44,7 @@ const BurgerIngredientsProduct: FC<Data> = ({ elData }) => {
         {!loading &&
           !error &&
           data.length > 0 &&
-          data.map((el: any) => {
+          data.map((el) => {
             if (el.name === elData.name && el.qty > 0) {
               return (
                 <div key={el._id} className={appBurgerIngredientsStyle.notice}>

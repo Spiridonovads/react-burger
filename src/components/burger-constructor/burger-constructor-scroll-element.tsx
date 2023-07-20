@@ -5,15 +5,10 @@ import { Reorder } from "framer-motion";
 import { useDispatch } from "../../services/types/types";
 import { deleteItem } from "../../services/actions/constructor-data";
 import { FC } from "react";
+import { TArray } from "../../services/reducers/constructor-data";
 
 type Data = {
-  data: {
-    _id: string;
-    uniqueId: string;
-    name: string;
-    price: number;
-    image: string;
-  };
+  data: TArray
 };
 
 const BurgerConstructorScrollElement: FC<Data> = ({ data }) => {

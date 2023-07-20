@@ -62,7 +62,7 @@ export const getRegistrationData = (form: {
   return res;
 };
 
-export const getOrderNumberData = (orderProducts: object[]) => {
+export const getOrderNumberData = (orderProducts: string[]) => {
   const res = fetch(`${BASE_URL}/orders`, {
     method: "POST",
     headers: {

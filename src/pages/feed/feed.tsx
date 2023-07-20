@@ -20,7 +20,7 @@ const Feed = () => {
   }, [dispatch]);
   const { data } = useSelector((state) => state.socket);
 
-  const ordersDoneFilter = useMemo<number[] | undefined>(() => {
+  const ordersDoneFilter = useMemo(() => {
     return data.orders?.reduce((acc: number[], el: any) => {
       if (el.status === "done") {
         acc.push(el.number);
@@ -29,7 +29,7 @@ const Feed = () => {
     }, []);
   }, [data]);
 
-  const ordersNotDoneFilter = useMemo<number[] | undefined>(() => {
+  const ordersNotDoneFilter = useMemo(() => {
     return data.orders?.reduce((acc: number[], el: any) => {
       if (el.status !== "done") {
         acc.push(el.number);

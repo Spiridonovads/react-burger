@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { getIngredientsData } from "../../utile/api";
 import { AppDispatch } from "../types/types";
+import { TArray } from "../reducers/constructor-data";
 
 export const DELETE_ITEM: "DELETE_ITEM" = "DELETE_ITEM";
 export const ADD_ITEM: "ADD_ITEM" = "ADD_ITEM";
@@ -21,10 +22,7 @@ export interface IDeleteItem {
   readonly id: string;
   readonly index: string;
 }
-export const deleteItem = (data: {
-  _id: string;
-  uniqueId: string;
-}): IDeleteItem => ({
+export const deleteItem = (data: TArray): IDeleteItem => ({
   type: DELETE_ITEM,
   id: data._id,
   index: data.uniqueId,
@@ -32,9 +30,9 @@ export const deleteItem = (data: {
 
 export interface IAddItem {
   readonly type: typeof ADD_ITEM;
-  readonly payload: object;
+  readonly payload: TArray;
 }
-export const addItem = (item: object): IAddItem => ({
+export const addItem = (item: TArray): IAddItem => ({
   type: ADD_ITEM,
   payload: {
     ...item,
@@ -51,10 +49,10 @@ export const addItemProperties = (): IAddItemProperties => ({
 
 export interface IConstructorOrderSort {
   readonly type: typeof CONSTRUCTOR_ORDER_SORT;
-  readonly value: object[];
+  readonly value: Array<TArray>;
 }
 export const constructorOrderSort = (
-  items: object[]
+  items: Array<TArray>
 ): IConstructorOrderSort => ({
   type: CONSTRUCTOR_ORDER_SORT,
   value: items,
@@ -73,7 +71,7 @@ export interface IGetConstructorIngredientsSuccess {
   data: any;
 }
 export const getConstructorIngredientsSuccess = (data: {
-  data: object;
+  data: Array<TArray>;
 }): IGetConstructorIngredientsSuccess => ({
   type: GET_CONSTRUCTOR_INGREDIENTS_SUCCESS,
   data: data.data,
@@ -89,9 +87,9 @@ export const getConstructorIngredientsFailed =
 
 export interface IBun {
   readonly type: typeof BUN;
-  readonly ingredient: {name: string};
+  readonly ingredient: TArray;
 }
-export const Bun = (item: any): IBun => ({
+export const Bun = (item: TArray): IBun => ({
   type: BUN,
   ingredient: item,
 });
@@ -123,7 +121,7 @@ export function getConstructorIngredients() {
   };
 }
 
-export const addIngridient = (item: object) => {
+export const addIngridient = (item: TArray) => {
   return function (dispatch: AppDispatch) {
     dispatch(addItem(item));
   };

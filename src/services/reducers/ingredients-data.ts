@@ -6,9 +6,10 @@ import {
   SET_MODAL_STATE,
 } from "../actions/ingredients-data";
 import { TIngredientsActions } from "../actions/ingredients-data";
+import { TArray } from "./constructor-data";
 
 type TState = {
-  data: object[];
+  data: Array<TArray>;
   error: boolean;
   loading: boolean;
   ingredient: object;

@@ -7,6 +7,7 @@ import BurgerIngredientsProduct from "./burger-ingredients-products";
 import { useSelector, useDispatch } from "../../services/types/types";
 import { useNavigate } from "react-router-dom";
 import { setModalState } from "../../services/actions/ingredients-data";
+import { TArray } from "../../services/reducers/constructor-data";
 
 const BurgerIngredients = () => {
   const [isIntersecting, setIsIntersecting] = useState<string>("");
@@ -69,16 +70,16 @@ const BurgerIngredients = () => {
     dispatch(setModalState(false));
   };
 
-  const burgerBuns = useMemo<object[]>(() => {
-    return data.filter((el: any) => el.type === "bun");
+  const burgerBuns = useMemo<Array<TArray>>(() => {
+    return data.filter((el) => el.type === "bun");
   }, [data]);
 
-  const burgerSauce = useMemo<object[]>(() => {
-    return data.filter((el: any) => el.type === "sauce");
+  const burgerSauce = useMemo<Array<TArray>>(() => {
+    return data.filter((el) => el.type === "sauce");
   }, [data]);
 
-  const burgerFillings = useMemo<object[]>(() => {
-    return data.filter((el: any) => el.type === "main");
+  const burgerFillings = useMemo<Array<TArray>>(() => {
+    return data.filter((el) => el.type === "main");
   }, [data]);
 
   return (
@@ -91,7 +92,7 @@ const BurgerIngredients = () => {
         <div id="one" ref={bunsRef}>
           <h2 className={appBurgerIngredientsStyle.default__title}>Булки</h2>
           <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-            {burgerBuns.map((el: any) => {
+            {burgerBuns.map((el) => {
               return <BurgerIngredientsProduct elData={el} key={el._id} />;
             })}
           </div>
@@ -102,7 +103,7 @@ const BurgerIngredients = () => {
             Соусы
           </h2>
           <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-            {burgerSauce.map((el: any) => {
+            {burgerSauce.map((el) => {
               return <BurgerIngredientsProduct elData={el} key={el._id} />;
             })}
           </div>
@@ -113,7 +114,7 @@ const BurgerIngredients = () => {
             Начинки
           </h2>
           <div className={`ml-4 mt-6 mr-2 ${appBurgerIngredientsStyle.cards}`}>
-            {burgerFillings.map((el: any) => {
+            {burgerFillings.map((el) => {
               return <BurgerIngredientsProduct elData={el} key={el._id} />;
             })}
           </div>

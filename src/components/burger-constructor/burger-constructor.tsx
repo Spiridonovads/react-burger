@@ -7,11 +7,12 @@ import {
   addItemProperties,
   Bun,
 } from "../../services/actions/constructor-data";
+import { TArray } from "../../services/reducers/constructor-data";
 
 const BurgerConstructor = () => {
   const [, dropTarget] = useDrop({
     accept: "ingredient",
-    drop(item: { type: string }) {
+    drop(item: TArray) {
       handleDrop(item);
     },
   });
@@ -20,7 +21,7 @@ const BurgerConstructor = () => {
 
   const dispatch = useDispatch();
 
-  const handleDrop = (item: { type: string }) => {
+  const handleDrop = (item: TArray) => {
     if (item.type !== "bun") {
       dispatch(addIngridient(item));
       dispatch(addItemProperties());

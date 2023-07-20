@@ -3,6 +3,7 @@ import { useSelector } from "../../services/types/types";
 import { FC, useMemo } from "react";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import clsx from "clsx";
+import { TArray } from "../../services/reducers/constructor-data";
 
 type Data = { route?: object };
 
@@ -25,7 +26,7 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
   }, [orderData]);
 
   const priceFilter = useMemo(() => {
-    return data?.reduce((acc: number, el: any) => {
+    return data?.reduce((acc: number, el) => {
       orderData.ingredients?.map((element: string) => {
         if (el._id === element) {
           acc += el.price;
@@ -36,8 +37,8 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
     }, 0);
   }, [orderData]);
 
-  const filter = useMemo(() => {
-    return data.reduce((acc: object[], el: any) => {
+  const filter = useMemo<Array<TArray>>(() => {
+    return data.reduce((acc: Array<TArray>, el) => {
       for (const key in qty) {
         if (el._id == key) {
           acc.push({ ...el, qty: qty[key] });
@@ -67,7 +68,7 @@ const FeedOrderDetails: FC<Data> = ({ route }) => {
         </p>
         <p className={`mb-6 ${styles.title}`}>Состав:</p>
         <div className={`mb-10 pr-6 ${styles.scroll}`}>
-          {filter.map((el: any) => {
+          {filter.map((el) => {
             return (
               <div key={el._id} className={`mb-4 ${styles.ingredient}`}>
                 <div className={styles.ingredient__name}>

@@ -1,5 +1,7 @@
+import { TFeedArray } from "../reducers/feed-data";
 export const SET_FEED_MODAL_STATE: "SET_MODAL_STATE" = "SET_MODAL_STATE";
 export const GET_FEED_ORDER: "GET_FEED_ORDER" = "GET_FEED_ORDER";
+
 
 export interface ISetFeedModalState {
   readonly type: typeof SET_FEED_MODAL_STATE;
@@ -12,9 +14,9 @@ export const setFeedModalState = (bool: boolean): ISetFeedModalState => ({
 
 export interface IGetFeedOrder {
   readonly type: typeof GET_FEED_ORDER;
-  readonly order: object;
+  readonly order: TFeedArray;
 }
-export const getFeedOrder = (data: object): IGetFeedOrder => ({
+export const getFeedOrder = (data: TFeedArray): IGetFeedOrder => ({
   type: GET_FEED_ORDER,
   order: data,
 });

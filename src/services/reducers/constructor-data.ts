@@ -11,12 +11,29 @@ import {
 } from "../actions/constructor-data";
 import { TConstructorActions } from "../actions/constructor-data";
 
+export type TArray = {
+calories: number
+carbohydrates: number
+fat: number
+image: string
+image_large: string
+image_mobile: string
+name: string
+price: number
+proteins: number
+type: string
+__v: number
+_id: string
+uniqueId: string
+qty: number
+}
+
 export type TState = {
-  data: object[];
+  data: Array<TArray>;
   error: boolean;
   loading: boolean;
-  order: object[];
-  sortOrder: object[];
+  order: Array<TArray>;
+  sortOrder: Array<TArray>;
   dragIngredient: {name?: string};
 };
 const initialState: TState = {
@@ -73,7 +90,7 @@ export const constructorReducer = (
     case ADD_ITEM_PROPERTIES: {
       return {
         ...state,
-        data: [...state.data].map((el: any) => {
+        data: [...state.data].map((el) => {
           if (el.name === state.dragIngredient.name) {
             ++el.qty;
           }
@@ -84,11 +101,11 @@ export const constructorReducer = (
     case DELETE_ITEM: {
       return {
         ...state,
-        data: [...state.data].map((el: any) =>
+        data: [...state.data].map((el) =>
           el._id === action.id ? { ...el, qty: --el.qty } : el
         ),
         order: [...state.sortOrder].filter(
-          (el: any) => el.uniqueId !== action.index
+          (el) => el.uniqueId !== action.index
         ),
       };
     }
@@ -97,7 +114,7 @@ export const constructorReducer = (
         ...state,
         order: [],
         sortOrder: [],
-        data: [...state.data].map((el: any) =>
+        data: [...state.data].map((el) =>
           el.qty > 0 ? { ...el, qty: 0 } : el
         ),
       };
@@ -105,7 +122,7 @@ export const constructorReducer = (
     case BUN: {
       return {
         ...state,
-        data: [...state.data].map((el: any) => {
+        data: [...state.data].map((el) => {
           if (el.name === action.ingredient.name) {
             el.qty = 2;
           } else if (el.type === "bun") {
@@ -115,7 +132,7 @@ export const constructorReducer = (
         }),
         order:
           state.order && state.order?.length > 0
-            ? [...state.sortOrder].reduce((acc: object[], el: any) => {
+            ? [...state.sortOrder].reduce((acc: TArray[], el) => {
                 if (el.type !== "bun") {
                   acc.push(el);
                 } else {

@@ -1,5 +1,6 @@
 import { getIngredientsData } from "../../utile/api";
 import { AppDispatch } from "../types/types";
+import { TArray } from "../reducers/constructor-data";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" =
   "GET_INGREDIENTS_REQUEST";
@@ -19,9 +20,11 @@ export const getIngredientsRequest = (): IGetIngredientsRequest => ({
 
 export interface IGetIngredientsSuccess {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  readonly data: object[];
+  readonly data: any;
 }
-export const getIngredientsSuccess = (data: any): IGetIngredientsSuccess => ({
+export const getIngredientsSuccess = (data: {
+  data: Array<TArray>;
+}): IGetIngredientsSuccess => ({
   type: GET_INGREDIENTS_SUCCESS,
   data: data.data,
 });
@@ -35,9 +38,9 @@ export const getIngredientsFailed = (): IGetIngredientsFailed => ({
 
 export interface IGetIngredientInfo {
   readonly type: typeof GET_INGREDIENT_INFO;
-  readonly el: object;
+  readonly el: TArray;
 }
-export const getIngredientInfo = (data: object): IGetIngredientInfo => ({
+export const getIngredientInfo = (data: TArray): IGetIngredientInfo => ({
   type: GET_INGREDIENT_INFO,
   el: data,
 });

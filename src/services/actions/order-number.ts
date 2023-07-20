@@ -45,7 +45,7 @@ export type TOrderActions =
   | IGetOrderNumberFailed
   | IOrderNumberDelete;
 
-export function getOrderNumber(orderProducts: object[]) {
+export function getOrderNumber(orderProducts: string[]) {
   return function (dispatch: AppDispatch) {
     dispatch(getOrderNumberRequest);
     getOrderNumberData(orderProducts)

@@ -20,8 +20,8 @@ const BurgerConstructorOrder: FC<Price> = ({ total }) => {
 
   const { order } = useSelector((state) => state.constructor);
 
-  const orderId = useMemo<object[]>(() => {
-    return order.map((el: any) => el._id);
+  const orderId = useMemo<string[]>(() => {
+    return order.map((el) => el._id);
   }, [order]);
 
   const dispatch = useDispatch();
