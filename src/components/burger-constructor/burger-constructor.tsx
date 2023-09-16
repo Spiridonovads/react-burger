@@ -33,6 +33,7 @@ const BurgerConstructor = () => {
     <section
       className={`pt-25 pl-4 ${appBurgerConstructorStyle.constructor__section}`}
       ref={dropTarget}
+      data-testid="drop-area"
     >
       {order && order.length === 0 && (
         <h1 className={appBurgerConstructorStyle.visible}>

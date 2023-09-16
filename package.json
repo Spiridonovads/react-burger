@@ -55,7 +55,12 @@
     ]
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.5",
     "@types/uuid": "^9.0.2",
-    "redux-devtools-extension": "^2.13.9"
+    "cypress": "^13.0.0",
+    "eslint-plugin-cypress": "^2.14.0",
+    "jest": "^27.5.1",
+    "redux-devtools-extension": "^2.13.9",
+    "start-server-and-test": "^2.0.0"
   }
 }

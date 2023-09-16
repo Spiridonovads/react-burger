@@ -12,7 +12,9 @@ import { wsActions } from "./services/types/types";
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware, socketMiddleware(wsActions)))
+  composeWithDevTools(
+    applyMiddleware(thunkMiddleware, socketMiddleware(wsActions))
+  )
 );
 
 const root = ReactDOM.createRoot(

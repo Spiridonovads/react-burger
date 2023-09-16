@@ -36,7 +36,7 @@ export type TState = {
   sortOrder: Array<TArray>;
   dragIngredient: {name?: string};
 };
-const initialState: TState = {
+export const initialState: TState = {
   data: [],
   error: false,
   loading: false,
