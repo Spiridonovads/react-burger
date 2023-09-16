@@ -32,7 +32,7 @@ const BurgerIngredientsProduct: FC<Data> = ({ elData }) => {
   const location = useLocation();
 
   return (
-    <div ref={dragRef}>
+    <div ref={dragRef} data-testid="product">
       <Link
         to={{ pathname: `/ingredients/${elData._id}`}}
         state={{ background: location }}

@@ -16,7 +16,7 @@ type TState = {
   modalState: boolean;
 };
 
-const initialState: TState = {
+export const initialState: TState = {
   data: [],
   error: false,
   loading: false,

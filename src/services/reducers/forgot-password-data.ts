@@ -12,7 +12,7 @@ export type TState = {
   loading: boolean;
 };
 
-const initialState: TState = {
+export const initialState: TState = {
   data: {},
   error: false,
   loading: false,

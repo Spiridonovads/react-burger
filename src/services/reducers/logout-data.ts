@@ -11,7 +11,7 @@ type TState = {
   error: boolean;
   loading: boolean;
 };
-const initialState = {
+export const initialState: TState = {
   data: {},
   error: false,
   loading: false,
@@ -29,10 +29,10 @@ export const logoutReducer = (
       };
     }
     case GET_LOGOUT_SUCCESS: {
-      return { ...state, error: false, data: action.data, loading: false };
+      return { ...state, data: action.data };
     }
     case GET_LOGOUT_FAILED: {
-      return { ...state, error: true, loading: false };
+      return { ...state, error: true};
     }
     case DELETE_LOGOUT: {
       return { ...state, data: {} };

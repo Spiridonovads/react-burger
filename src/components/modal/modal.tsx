@@ -26,7 +26,7 @@ const Modal: FC<Data> = ({ onCloseButtonClick, children }) => {
   return ReactDOM.createPortal(
     <>
       <ModalOverlay onCloseButtonClick={onCloseButtonClick} />
-      <div className={`pt-10 pl-10 pr-10 ${appModalStyle.modal}`}>
+      <div className={`pt-10 pl-10 pr-10 ${appModalStyle.modal}`}  data-testid="modal">
         <button onClick={onCloseButtonClick} className={appModalStyle.close}>
           <CloseIcon type="primary" />
         </button>

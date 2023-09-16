@@ -1,4 +1,8 @@
+//Ссылка на страницу с приложением: 
+
 # Getting Started with Create React App
+
+//https://spiridonovads.github.io/react-burger/ <------- ссылка на сайт
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

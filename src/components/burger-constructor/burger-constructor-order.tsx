@@ -51,6 +51,7 @@ const BurgerConstructorOrder: FC<Price> = ({ total }) => {
         <CurrencyIcon type="primary" />
       </div>
       <Button
+        data-testid="orderButton"
         htmlType="button"
         type="primary"
         size="medium"

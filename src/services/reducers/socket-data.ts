@@ -13,7 +13,7 @@ type TState = {
   error?: Event;
 };
 
-const initialState: TState = {
+export const initialState: TState = {
   wsConnected: false,
   data: {},
 };

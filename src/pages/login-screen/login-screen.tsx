@@ -38,6 +38,7 @@ const LoginScreen = () => {
         <form onSubmit={handleFormSubmit} className={loginScreenStyles.form}>
           <h2 className={loginScreenStyles.title}>Вход</h2>
           <EmailInput
+            data-testid="emailLoginInput"
             onChange={onChange}
             value={form.email}
             name={"email"}
@@ -45,13 +46,14 @@ const LoginScreen = () => {
             isIcon={false}
           />
           <PasswordInput
+            data-testid="passwordLoginInput"
             onChange={onChange}
             value={form.password}
             name={"password"}
             icon="ShowIcon"
             placeholder="Пароль"
           />
-          <Button htmlType="submit" type="primary" size="large">
+          <Button htmlType="submit" type="primary" size="large" data-testid="loginButton">
             Войти
           </Button>
           <div className={`mt-15 ${loginScreenStyles.text__block}`}>

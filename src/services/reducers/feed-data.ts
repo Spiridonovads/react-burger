@@ -23,7 +23,7 @@ export type TState = {
   order: object;
 };
 
-const initialState: TState = {
+export const initialState: TState = {
   data: [],
   error: false,
   loading: false,
