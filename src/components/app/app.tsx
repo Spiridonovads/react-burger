@@ -25,7 +25,7 @@ const App = () => {
       {!loading && !error && data.length > 0 && (
         <>
           <DndProvider backend={HTML5Backend}>
-            <BrowserRouter>
+            <BrowserRouter basename="/react-burger">
               <AppHeader />
               <AppRoute />
             </BrowserRouter>
