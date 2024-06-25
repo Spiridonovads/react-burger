@@ -35,15 +35,14 @@ const BurgerConstructor = () => {
       ref={dropTarget}
       data-testid="drop-area"
     >
-      {order && order.length === 0 && (
-        <h1 className={appBurgerConstructorStyle.visible}>
-          Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
-        </h1>
-      )}
-      {order && order.length > 0 && (
+      {order && order.length > 0 ? (
         <>
           <BurgerConstructorElements />
         </>
+      ) : (
+        <h1 className={appBurgerConstructorStyle.visible}>
+          Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+        </h1>
       )}
     </section>
   );
