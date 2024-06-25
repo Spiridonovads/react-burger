@@ -36,9 +36,7 @@ const BurgerConstructor = () => {
       data-testid="drop-area"
     >
       {order && order.length > 0 ? (
-        <>
-          <BurgerConstructorElements />
-        </>
+        <BurgerConstructorElements />
       ) : (
         <h1 className={appBurgerConstructorStyle.visible}>
           Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
