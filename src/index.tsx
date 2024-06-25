@@ -9,6 +9,7 @@ import thunkMiddleware from "redux-thunk";
 import { socketMiddleware } from "./services/socket/middleware";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { wsActions } from "./services/types/types";
+import { HashRouter } from "react-router-dom";
 
 export const store = createStore(
   rootReducer,
@@ -24,7 +25,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <HashRouter>
+        {" "}
+        <App />
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );
